@@ -1,0 +1,15 @@
+import { FC } from 'react';
+
+const Footer: FC = () => {
+  return (
+    <footer className="border-t border-border py-8">
+      <div className="mx-auto max-w-7xl px-4 text-center">
+        <p className="text-sm text-muted-foreground">
+          JJ20 演唱会回忆录 · 用音乐记录每一次相遇
+        </p>
+      </div>
+    </footer>
+  );
+};
+
+export default Footer;
