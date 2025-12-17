@@ -1,0 +1,37 @@
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[0;33m'
+CYAN='\033[0;36m'
+NC='\033[0m' # No Color
+
+# start commit info
+echo "${CYAN}Running pre-commit checks...${NC}"
+
+# Step 1: Type check
+echo "${YELLOW}Step 1: Checking TypeScript types...${NC}"
+if npm run type-check; then
+  echo "${GREEN}✔ TypeScript type check passed.${NC}"
+else
+  echo "${RED}✘ TypeScript type check failed. Please fix the errors above.${NC}"
+  exit 1
+fi
+
+# Step 2: ESLint check
+echo "${YELLOW}Step 2: Checking Code ESLint...${NC}"
+if npm run lint; then
+  echo "${GREEN}✔ Code ESLint check passed.${NC}"
+else
+  echo "${RED}✘ Code ESLint check failed. Please fix the errors above.${NC}"
+  exit 1
+fi
+
+echo "${GREEN}All checks passed! Proceeding with commit.${NC}"
+
+# Step 3: Format check
+echo "${YELLOW}Step 4: Checking code format with Prettier...${NC}"
+if npm run format:check; then
+  echo "${GREEN}✔ Code format looks good.${NC}"
+else
+  echo "${RED}✘ Code format issues detected. Please run 'npm run format' to fix them.${NC}"
+  exit 1
+fi
