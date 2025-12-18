@@ -18,6 +18,60 @@ export const allCities: BaseCityItem[] = [
     description:
       '泉城济南，千泉汇聚。趵突泉的灵动，大明湖的静谧，为这次音乐之旅增添了几分诗意。',
     memory: '泉水叮咚作响，歌声温暖如初。在这座温柔的城市，遇见最好的JJ',
+    exclusiveVideo: [
+      {
+        title: 'JJ20济南站 - 泉城之夜的感动',
+        thumbnail: 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=800',
+        url: 'https://www.bilibili.com/',
+        duration: '5:12',
+      },
+      {
+        title: '《修炼爱情》催泪现场',
+        thumbnail: 'https://images.unsplash.com/photo-1501386761578-eac5c94b800a?w=800',
+        url: 'https://www.bilibili.com/',
+        duration: '4:38',
+      },
+      {
+        title: '全场万人合唱《曹操》',
+        thumbnail: 'https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=800',
+        url: 'https://www.bilibili.com/',
+        duration: '6:02',
+      },
+    ],
+    exclusivePicture: [
+      {
+        src: 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=600',
+        alt: '济南奥体现场',
+      },
+      {
+        src: 'https://images.unsplash.com/photo-1501386761578-eac5c94b800a?w=600',
+        alt: '泉城夜色',
+      },
+      {
+        src: 'https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=600',
+        alt: '灯光璀璨',
+      },
+      {
+        src: 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=600',
+        alt: 'JJ深情演唱',
+      },
+      {
+        src: 'https://images.unsplash.com/photo-1429962714451-bb934ecdc4ec?w=600',
+        alt: '热情歌迷',
+      },
+      {
+        src: 'https://images.unsplash.com/photo-1506157786151-b8491531f063?w=600',
+        alt: '万人同唱',
+      },
+      {
+        src: 'https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?w=600',
+        alt: '舞台特效',
+      },
+      {
+        src: 'https://images.unsplash.com/photo-1459749411175-04bf5292ceea?w=600',
+        alt: '难忘瞬间',
+      },
+    ],
     attractions: [
       {
         name: '趵突泉',
@@ -98,6 +152,60 @@ export const allCities: BaseCityItem[] = [
     description:
       '郑州地处嵩山东麓、黄河之滨，居中华腹地，史谓“天地之中”，古为“商都”，今为“绿城”。',
     memory: '中原大地的音乐狂欢，八万颗心脏跟着JJ的节拍一起跳动',
+    exclusiveVideo: [
+      {
+        title: 'JJ20郑州站 - 中原大地的音浪',
+        thumbnail: 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=800',
+        url: 'https://www.bilibili.com/',
+        duration: '5:45',
+      },
+      {
+        title: '《她说》现场版感动全场',
+        thumbnail: 'https://images.unsplash.com/photo-1501386761578-eac5c94b800a?w=800',
+        url: 'https://www.bilibili.com/',
+        duration: '4:22',
+      },
+      {
+        title: '八万人齐唱《一千年以后》',
+        thumbnail: 'https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=800',
+        url: 'https://www.bilibili.com/',
+        duration: '5:58',
+      },
+    ],
+    exclusivePicture: [
+      {
+        src: 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=600',
+        alt: '郑州奥体现场',
+      },
+      {
+        src: 'https://images.unsplash.com/photo-1501386761578-eac5c94b800a?w=600',
+        alt: '中原夜色',
+      },
+      {
+        src: 'https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=600',
+        alt: '震撼舞台',
+      },
+      {
+        src: 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=600',
+        alt: '深情演绎',
+      },
+      {
+        src: 'https://images.unsplash.com/photo-1429962714451-bb934ecdc4ec?w=600',
+        alt: '热情歌迷',
+      },
+      {
+        src: 'https://images.unsplash.com/photo-1506157786151-b8491531f063?w=600',
+        alt: '万人合唱',
+      },
+      {
+        src: 'https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?w=600',
+        alt: '绚丽灯光',
+      },
+      {
+        src: 'https://images.unsplash.com/photo-1459749411175-04bf5292ceea?w=600',
+        alt: '完美收官',
+      },
+    ],
     attractions: [
       {
         name: '少林寺',
@@ -176,6 +284,60 @@ export const allCities: BaseCityItem[] = [
     description:
       '海风拂面，啤酒飘香。在这座美丽的海滨城市，我们一起唱响那些陪伴我们成长的旋律。',
     memory: '海风里飘着啤酒的香气，歌声里满是青春的味道，这是最惬意的一场演唱会',
+    exclusiveVideo: [
+      {
+        title: 'JJ20青岛站 - 海边的浪漫夜晚',
+        thumbnail: 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=800',
+        url: 'https://www.bilibili.com/',
+        duration: '4:56',
+      },
+      {
+        title: '《小酒窝》全场大合唱',
+        thumbnail: 'https://images.unsplash.com/photo-1501386761578-eac5c94b800a?w=800',
+        url: 'https://www.bilibili.com/',
+        duration: '3:42',
+      },
+      {
+        title: '安可返场《不为谁而作的歌》',
+        thumbnail: 'https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=800',
+        url: 'https://www.bilibili.com/',
+        duration: '5:18',
+      },
+    ],
+    exclusivePicture: [
+      {
+        src: 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=600',
+        alt: '青岛演唱会现场',
+      },
+      {
+        src: 'https://images.unsplash.com/photo-1501386761578-eac5c94b800a?w=600',
+        alt: '海风中的歌声',
+      },
+      {
+        src: 'https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=600',
+        alt: '绚丽舞台',
+      },
+      {
+        src: 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=600',
+        alt: '深情演绎',
+      },
+      {
+        src: 'https://images.unsplash.com/photo-1429962714451-bb934ecdc4ec?w=600',
+        alt: '歌迷互动',
+      },
+      {
+        src: 'https://images.unsplash.com/photo-1506157786151-b8491531f063?w=600',
+        alt: '万人合唱',
+      },
+      {
+        src: 'https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?w=600',
+        alt: '灯光秀',
+      },
+      {
+        src: 'https://images.unsplash.com/photo-1459749411175-04bf5292ceea?w=600',
+        alt: '完美ending',
+      },
+    ],
     attractions: [
       {
         name: '栈桥',
@@ -256,6 +418,60 @@ export const allCities: BaseCityItem[] = [
     description:
       '山城重庆，江河纵横。两江交汇的磅礴、立体城市的霓虹，让这场音乐之旅多了几分热烈与江湖气。',
     memory: '山城夜色下的音浪，灯火阑珊中与JJ共唱那些年的青春',
+    exclusiveVideo: [
+      {
+        title: 'JJ20重庆站 - 山城之夜的狂欢',
+        thumbnail: 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=800',
+        url: 'https://www.bilibili.com/',
+        duration: '5:33',
+      },
+      {
+        title: '《学不会》深情演绎',
+        thumbnail: 'https://images.unsplash.com/photo-1501386761578-eac5c94b800a?w=800',
+        url: 'https://www.bilibili.com/',
+        duration: '4:48',
+      },
+      {
+        title: '重庆歌迷大合唱《记得》',
+        thumbnail: 'https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=800',
+        url: 'https://www.bilibili.com/',
+        duration: '5:15',
+      },
+    ],
+    exclusivePicture: [
+      {
+        src: 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=600',
+        alt: '重庆奥体现场',
+      },
+      {
+        src: 'https://images.unsplash.com/photo-1501386761578-eac5c94b800a?w=600',
+        alt: '山城夜景',
+      },
+      {
+        src: 'https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=600',
+        alt: '绚丽舞台',
+      },
+      {
+        src: 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=600',
+        alt: '深情时刻',
+      },
+      {
+        src: 'https://images.unsplash.com/photo-1429962714451-bb934ecdc4ec?w=600',
+        alt: '热情互动',
+      },
+      {
+        src: 'https://images.unsplash.com/photo-1506157786151-b8491531f063?w=600',
+        alt: '万人齐唱',
+      },
+      {
+        src: 'https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?w=600',
+        alt: '烟火绽放',
+      },
+      {
+        src: 'https://images.unsplash.com/photo-1459749411175-04bf5292ceea?w=600',
+        alt: '难忘夜晚',
+      },
+    ],
     attractions: [
       {
         name: '洪崖洞',
@@ -336,6 +552,60 @@ export const allCities: BaseCityItem[] = [
     description:
       '这一夜，舞台灯光如江潮翻涌，旋律在体育馆内回荡。那些陪伴多年的旋律，穿过人海，也穿过时间，在武汉的夜空中重新相遇。有人轻声跟唱，有人放声呐喊，歌声与心跳同频，情绪在副歌处彻底释放。',
     memory: '江城春风与歌声交织，樱花树下我们一起唱着那些温暖的旋律',
+    exclusiveVideo: [
+      {
+        title: '武汉站音乐节 - 江城春风中的歌声',
+        thumbnail: 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=800',
+        url: 'https://www.bilibili.com/',
+        duration: '5:28',
+      },
+      {
+        title: '《黑键》钢琴独奏惊艳全场',
+        thumbnail: 'https://images.unsplash.com/photo-1501386761578-eac5c94b800a?w=800',
+        url: 'https://www.bilibili.com/',
+        duration: '4:35',
+      },
+      {
+        title: '武汉歌迷合唱《背对背拥抱》',
+        thumbnail: 'https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=800',
+        url: 'https://www.bilibili.com/',
+        duration: '5:42',
+      },
+    ],
+    exclusivePicture: [
+      {
+        src: 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=600',
+        alt: '武汉体育中心',
+      },
+      {
+        src: 'https://images.unsplash.com/photo-1501386761578-eac5c94b800a?w=600',
+        alt: '江城夜色',
+      },
+      {
+        src: 'https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=600',
+        alt: '华丽舞台',
+      },
+      {
+        src: 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=600',
+        alt: '深情演唱',
+      },
+      {
+        src: 'https://images.unsplash.com/photo-1429962714451-bb934ecdc4ec?w=600',
+        alt: '歌迷互动',
+      },
+      {
+        src: 'https://images.unsplash.com/photo-1506157786151-b8491531f063?w=600',
+        alt: '万人合唱',
+      },
+      {
+        src: 'https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?w=600',
+        alt: '灯光璀璨',
+      },
+      {
+        src: 'https://images.unsplash.com/photo-1459749411175-04bf5292ceea?w=600',
+        alt: '完美落幕',
+      },
+    ],
     attractions: [
       {
         name: '黄鹤楼',
@@ -415,6 +685,60 @@ export const allCities: BaseCityItem[] = [
     description:
       '首尔的夜色缓缓亮起，霓虹映照着城市的节奏，也点燃了这场特别的相遇。跨越语言与国界，JJ的歌声在韩国响起，旋律依旧熟悉，却在异国的空气中多了一层浪漫与力量。',
     memory: '跨越国界的音乐之旅，在异国他乡与来自世界各地的JM相聚',
+    exclusiveVideo: [
+      {
+        title: 'JJ20首尔站 - 跨越国界的感动',
+        thumbnail: 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=800',
+        url: 'https://www.bilibili.com/',
+        duration: '6:12',
+      },
+      {
+        title: '韩国歌迷中文合唱《江南》',
+        thumbnail: 'https://images.unsplash.com/photo-1501386761578-eac5c94b800a?w=800',
+        url: 'https://www.bilibili.com/',
+        duration: '4:55',
+      },
+      {
+        title: '《不潮不用花钱》嗨翻全场',
+        thumbnail: 'https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=800',
+        url: 'https://www.bilibili.com/',
+        duration: '5:08',
+      },
+    ],
+    exclusivePicture: [
+      {
+        src: 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=600',
+        alt: '首尔演唱会现场',
+      },
+      {
+        src: 'https://images.unsplash.com/photo-1501386761578-eac5c94b800a?w=600',
+        alt: '异国歌迷',
+      },
+      {
+        src: 'https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=600',
+        alt: '震撼舞台',
+      },
+      {
+        src: 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=600',
+        alt: '深情演绎',
+      },
+      {
+        src: 'https://images.unsplash.com/photo-1429962714451-bb934ecdc4ec?w=600',
+        alt: '热情互动',
+      },
+      {
+        src: 'https://images.unsplash.com/photo-1506157786151-b8491531f063?w=600',
+        alt: '万人齐唱',
+      },
+      {
+        src: 'https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?w=600',
+        alt: '绚丽特效',
+      },
+      {
+        src: 'https://images.unsplash.com/photo-1459749411175-04bf5292ceea?w=600',
+        alt: '难忘首尔夜',
+      },
+    ],
     attractions: [
       {
         name: '景福宫',
@@ -495,6 +819,60 @@ export const allCities: BaseCityItem[] = [
     description:
       '在首都的夜空下，与万千歌迷共同见证JJ20的震撼现场。故宫的红墙、长城的雄伟，都成为这次旅程的美好记忆。',
     memory: '那一晚，八万人的大合唱响彻鸟巢上空，仿佛整个北京都在为JJ欢呼',
+    exclusiveVideo: [
+      {
+        title: 'JJ20北京站 - 开场《圣所》震撼全场',
+        thumbnail: 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=800',
+        url: 'https://www.bilibili.com/',
+        duration: '5:32',
+      },
+      {
+        title: '万人大合唱《江南》感动瞬间',
+        thumbnail: 'https://images.unsplash.com/photo-1501386761578-eac5c94b800a?w=800',
+        url: 'https://www.bilibili.com/',
+        duration: '4:18',
+      },
+      {
+        title: '《那些你很冒险的梦》全场泪目',
+        thumbnail: 'https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=800',
+        url: 'https://www.bilibili.com/',
+        duration: '6:45',
+      },
+    ],
+    exclusivePicture: [
+      {
+        src: 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=600',
+        alt: '鸟巢演唱会现场',
+      },
+      {
+        src: 'https://images.unsplash.com/photo-1501386761578-eac5c94b800a?w=600',
+        alt: '万人合唱时刻',
+      },
+      {
+        src: 'https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=600',
+        alt: '舞台灯光秀',
+      },
+      {
+        src: 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=600',
+        alt: 'JJ深情演唱',
+      },
+      {
+        src: 'https://images.unsplash.com/photo-1429962714451-bb934ecdc4ec?w=600',
+        alt: '现场气氛',
+      },
+      {
+        src: 'https://images.unsplash.com/photo-1506157786151-b8491531f063?w=600',
+        alt: '歌迷互动',
+      },
+      {
+        src: 'https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?w=600',
+        alt: '烟火表演',
+      },
+      {
+        src: 'https://images.unsplash.com/photo-1459749411175-04bf5292ceea?w=600',
+        alt: '演唱会ending',
+      },
+    ],
     attractions: [
       {
         name: '故宫博物院',

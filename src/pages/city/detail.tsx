@@ -1,11 +1,13 @@
 import { FC, useMemo } from 'react';
 import { useParams } from 'react-router-dom';
-import { Landmark, Utensils, Map } from 'lucide-react';
+import { Video, Images, Landmark, Utensils, Map } from 'lucide-react';
 import DetailLayout from '@/components/layout/DetailLayout';
 import AttractionCard from '@/components/molecules/AttractionCard';
 import FoodCard from '@/components/molecules/FoodCard';
 import SectionCard from '@/components/molecules/SectionCard';
 import TravelTip from '@/components/molecules/TravelTip';
+import VideoSection from '@/components/molecules/VideoSection';
+import PictureSection from '@/components/molecules/PictureSection';
 import { allCities } from '@/static/city';
 
 const CityDetail: FC = () => {
@@ -16,6 +18,14 @@ const CityDetail: FC = () => {
   return (
     <DetailLayout {...cityDetail}>
       <div className="space-y-8">
+        <SectionCard icon={Video} title="限定视频">
+          <VideoSection videos={cityDetail.exclusiveVideo ?? []} />
+        </SectionCard>
+
+        <SectionCard icon={Images} title="精选照片">
+          <PictureSection pictures={cityDetail.exclusivePicture ?? []} />
+        </SectionCard>
+
         <SectionCard icon={Landmark} title="必游景点">
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {cityDetail.attractions?.map((attraction, idx) => (
