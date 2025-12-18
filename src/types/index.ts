@@ -39,3 +39,8 @@ export interface BaseCityItem extends BaseItem {
   foods?: BaseItem[];
   travels?: BaseItem[];
 }
+
+export interface TimelineItem extends BaseCityItem {
+  highlight: string;
+  songs: string[];
+}
