@@ -7,33 +7,61 @@ import {
   PauseCircleOutlined,
 } from '@ant-design/icons';
 import type { GalleryItem } from '@/types';
+import { useSmallLayout } from '@/hooks/useSmallLayout';
 
+interface ParticlesProps {
+  particleCount?: number;
+  textIcon?: string[];
+  fontSizeRange?: [number, number];
+  speedRange?: [number, number];
+}
 interface RotatingGalleryProps {
   galleries: GalleryItem[];
 }
 
 const { Title, Text } = Typography;
 
-const Particles: FC = () => {
+// 粒子效果组件
+const Particles: FC<ParticlesProps> = ({
+  particleCount = 40,
+  textIcon = ['JJ20', '❤', 'FINAL LAP', 'JM', '★', '♫', 'JJ', '♪'],
+  fontSizeRange = [6, 12],
+  speedRange = [2, 8],
+}) => {
   return (
     <div className="pointer-events-none absolute inset-0 overflow-hidden">
-      {[...Array(100)].map((_, i) => (
-        <div
-          key={i}
-          className="animate-float absolute h-1 w-1 rounded-full bg-purple-400/60"
-          style={{
-            left: `${Math.random() * 100}%`,
-            top: `${Math.random() * 100}%`,
-            animationDelay: `${Math.random() * 5}s`,
-            animationDuration: `${3 + Math.random() * 4}s`,
-          }}
-        />
-      ))}
+      {[...Array(particleCount)].map((_, i) => {
+        const randomTextIcon = textIcon[Math.floor(Math.random() * textIcon.length)];
+        const [minSize, maxSize] = fontSizeRange;
+        const [minSpeed, maxSpeed] = speedRange;
+
+        return (
+          <div
+            key={i}
+            className="animate-float absolute text-purple-400"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              animationDelay: `${Math.random() * 5}s`,
+              animationDuration: `${minSpeed + Math.random() * (maxSpeed - minSpeed)}s`,
+              fontSize: `${minSize + Math.random() * (maxSize - minSize)}px`,
+              opacity: 0.1 + Math.random() * 0.5,
+              filter: 'drop-shadow(0 0 2px currentColor)',
+              transform: `rotate(${Math.random() * 360}deg)`,
+              zIndex: Math.floor(Math.random() * 10),
+            }}
+          >
+            {randomTextIcon}
+          </div>
+        );
+      })}
     </div>
   );
 };
 
 const RotatingGallery: FC<RotatingGalleryProps> = ({ galleries }) => {
+  const isSP = useSmallLayout();
+
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(true);
   const [isHovered, setIsHovered] = useState(false);
@@ -107,7 +135,7 @@ const RotatingGallery: FC<RotatingGalleryProps> = ({ galleries }) => {
       >
         <div className="absolute inset-0 flex items-center justify-center">
           <div
-            className="relative h-[340px] w-[260px] md:h-[380px] md:w-[300px]"
+            className="relative h-[300px] w-[220px] md:h-[340px] md:w-[260px]"
             style={{
               transformStyle: 'preserve-3d',
               transform: `rotateY(${-currentIndex * angleStep}deg)`,
@@ -116,7 +144,7 @@ const RotatingGallery: FC<RotatingGalleryProps> = ({ galleries }) => {
           >
             {galleries.map((item, index) => {
               const angle = index * angleStep;
-              const radius = 320;
+              const radius = isSP ? 280 : 390;
               const isActive = index === currentIndex;
 
               return (
@@ -130,74 +158,121 @@ const RotatingGallery: FC<RotatingGalleryProps> = ({ galleries }) => {
                   }}
                   onClick={() => setCurrentIndex(index)}
                 >
-                  <Card
-                    hoverable
-                    className={`h-full w-full overflow-hidden transition-all duration-500 ${
-                      isActive ? 'shadow-2xl' : 'opacity-80'
+                  <div
+                    className={`h-full w-full transition-all duration-500 ${
+                      isActive ? 'scale-105' : 'scale-95'
                     }`}
                     style={{
-                      boxShadow: isActive
-                        ? `0 25px 50px -12px ${item.color}60, 0 0 30px ${item.color}30`
-                        : 'none',
+                      transformStyle: 'preserve-3d',
+                      transform: isActive ? 'translateZ(20px)' : 'translateZ(0)',
                     }}
-                    styles={{
-                      body: { padding: 0, height: '100%' },
-                    }}
-                    cover={
-                      <div className="group relative h-full overflow-hidden">
-                        <img
-                          src={item.image}
-                          alt={item.name}
-                          className={`h-full w-full object-cover transition-transform duration-700 ${
-                            isActive ? 'scale-105' : 'scale-100'
-                          } group-hover:scale-110`}
-                        />
+                  >
+                    <div
+                      className="absolute inset-0 rounded-xl transition-all duration-500"
+                      style={{
+                        transform: 'translateZ(-15px)',
+                        background: `linear-gradient(135deg, ${item.color}30, transparent)`,
+                        filter: 'blur(20px)',
+                        opacity: isActive ? 1 : 0.3,
+                      }}
+                    />
 
-                        <div
-                          className={`absolute inset-0 transition-opacity duration-500 ${
-                            isActive ? 'opacity-100' : 'opacity-0'
-                          }`}
-                          style={{
-                            background: `linear-gradient(45deg, transparent, ${item.color}20, transparent)`,
-                            animation: isActive ? 'shimmer 2s infinite' : 'none',
-                          }}
-                        />
+                    <div
+                      className={`absolute -inset-1 rounded-xl transition-all duration-500 ${
+                        isActive ? 'opacity-100' : 'opacity-0'
+                      }`}
+                      style={{
+                        background: `linear-gradient(135deg, ${item.color}60, transparent, ${item.color}40)`,
+                        transform: 'translateZ(-5px)',
+                      }}
+                    />
 
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
+                    <Card
+                      hoverable
+                      className={`h-full w-full overflow-hidden rounded-xl border-2 transition-all duration-500 ${
+                        isActive ? 'shadow-2xl' : 'opacity-70'
+                      }`}
+                      style={{
+                        borderColor: isActive
+                          ? `${item.color}80`
+                          : 'rgba(255,255,255,0.1)',
+                        boxShadow: isActive
+                          ? `0 30px 60px -15px ${item.color}50, 0 0 40px ${item.color}20, inset 0 1px 0 rgba(255,255,255,0.2)`
+                          : '0 10px 30px -10px rgba(0,0,0,0.5)',
+                        background:
+                          'linear-gradient(145deg, rgba(30,30,40,0.9), rgba(20,20,30,0.95))',
+                      }}
+                      styles={{
+                        body: { padding: 0, height: '100%' },
+                      }}
+                      cover={
+                        <div className="group relative h-full overflow-hidden">
+                          <img
+                            src={item.image}
+                            alt={item.name}
+                            className={`h-full w-full object-cover transition-transform duration-700 ${
+                              isActive ? 'scale-110' : 'scale-100'
+                            } group-hover:scale-115`}
+                          />
 
-                        <div className="absolute bottom-0 left-0 right-0 p-4">
                           <div
-                            className="mb-3 h-0.5 w-8 transition-all duration-500"
+                            className={`absolute inset-0 transition-opacity duration-500 ${
+                              isActive ? 'opacity-100' : 'opacity-0'
+                            }`}
                             style={{
-                              backgroundColor: item.color,
-                              width: isActive ? '3rem' : '2rem',
+                              background: `linear-gradient(45deg, transparent, ${item.color}30, transparent)`,
+                              animation: isActive ? 'shimmer 2s infinite' : 'none',
                             }}
                           />
-                          <Text
-                            className="mb-1 block text-sm"
-                            style={{ color: item.color }}
-                          >
-                            {item.date}
-                          </Text>
-                          <Title level={4} className="!mb-1 !text-white">
-                            {item.name}
-                          </Title>
-                          <Text className="line-clamp-2 text-sm italic text-gray-300">
-                            {`"${item.memory}"`}
-                          </Text>
-                        </div>
 
-                        {isActive && (
                           <div
-                            className="absolute right-3 top-3 animate-pulse rounded-full px-2 py-1 text-xs text-white"
-                            style={{ backgroundColor: item.color }}
-                          >
-                            正在播放
+                            className="pointer-events-none absolute left-0 right-0 top-0 h-24"
+                            style={{
+                              background:
+                                'linear-gradient(to bottom, rgba(255,255,255,0.15), transparent)',
+                            }}
+                          />
+
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent" />
+
+                          <div className="absolute bottom-0 left-0 right-0 p-4">
+                            <div
+                              className="mb-3 h-1 rounded-full transition-all duration-500"
+                              style={{
+                                backgroundColor: item.color,
+                                width: isActive ? '3rem' : '2rem',
+                                boxShadow: isActive ? `0 0 10px ${item.color}` : 'none',
+                              }}
+                            />
+                            <Text
+                              className="mb-1 block text-sm font-medium"
+                              style={{ color: item.color }}
+                            >
+                              {item.date}
+                            </Text>
+                            <Title level={4} className="!mb-1 !text-white drop-shadow-lg">
+                              {item.name}
+                            </Title>
+                            <Text className="line-clamp-2 text-sm italic text-gray-300">
+                              {`"${item.memory}"`}
+                            </Text>
                           </div>
-                        )}
-                      </div>
-                    }
-                  />
+
+                          {isActive && (
+                            <div
+                              className="absolute right-3 top-3 animate-pulse rounded-full px-3 py-1.5 text-xs font-medium text-white backdrop-blur-sm"
+                              style={{
+                                backgroundColor: `${item.color}cc`,
+                                boxShadow: `0 4px 15px ${item.color}50`,
+                              }}
+                            >
+                              正在播放
+                            </div>
+                          )}
+                        </div>
+                      }
+                    />
+                  </div>
                 </div>
               );
             })}
@@ -248,6 +323,7 @@ const RotatingGallery: FC<RotatingGalleryProps> = ({ galleries }) => {
                   backgroundColor: index === currentIndex ? item.color : undefined,
                 }}
               />
+
               <div className="pointer-events-none absolute bottom-4 left-1/2 -translate-x-1/2 whitespace-nowrap rounded bg-black/80 px-2 py-1 text-xs text-white opacity-0 transition-opacity group-hover:opacity-100">
                 {item.name}
               </div>
