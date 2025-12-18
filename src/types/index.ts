@@ -1,5 +1,17 @@
 import { LucideIcon } from 'lucide-react';
 
+export interface VideoItem {
+  title: string;
+  thumbnail: string;
+  url: string;
+  duration?: string;
+}
+
+export interface PictureItem {
+  src: string;
+  alt: string;
+}
+
 export interface GalleryItem {
   id: number;
   name: string;
@@ -21,6 +33,8 @@ export interface BaseCityItem extends BaseItem {
   address: string;
   date: string;
   memory?: string;
+  exclusiveVideo?: VideoItem[];
+  exclusivePicture?: PictureItem[];
   attractions?: BaseItem[];
   foods?: BaseItem[];
   travels?: BaseItem[];
