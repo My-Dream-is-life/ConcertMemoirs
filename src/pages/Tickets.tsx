@@ -4,6 +4,7 @@ import { Modal } from 'antd';
 import TicketCard from '@/components/molecules/TicketCard';
 import { tickets } from '@/static/ticket';
 import type { TicketItem } from '@/types';
+import '@/css/ticketModal.css';
 
 const Tickets: FC = () => {
   const [selectedTicket, setSelectedTicket] = useState<TicketItem>();
