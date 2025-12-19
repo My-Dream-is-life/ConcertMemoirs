@@ -5,9 +5,10 @@ import type { TicketItem } from '@/types';
 interface TicketCardProp {
   ticket: TicketItem;
   index: number;
+  onClick: () => void;
 }
 
-const TicketCard: FC<TicketCardProp> = ({ ticket, index }) => {
+const TicketCard: FC<TicketCardProp> = ({ ticket, index, onClick }) => {
   return (
     <motion.div
       initial={{ opacity: 0, y: 50, rotateX: -15 }}
@@ -18,20 +19,48 @@ const TicketCard: FC<TicketCardProp> = ({ ticket, index }) => {
         rotateY: 5,
         boxShadow: '0 30px 60px -15px rgba(168, 85, 247, 0.4)',
       }}
-      className="perspective-1000 group relative"
+      className="perspective-1000 group relative cursor-pointer"
+      onClick={onClick}
     >
       <div className="relative overflow-hidden rounded-2xl border border-purple-500/30 bg-gradient-to-br from-purple-900/90 via-purple-800/80 to-purple-900/90 shadow-[0_10px_40px_-10px_rgba(168,85,247,0.3)] backdrop-blur-xl">
         <div className="absolute left-0 right-0 top-0 h-1 bg-gradient-to-r from-transparent via-purple-400 to-transparent" />
 
         <div className="absolute inset-0 translate-x-[-100%] bg-gradient-to-r from-transparent via-white/5 to-transparent transition-transform duration-1000 group-hover:translate-x-[100%]" />
 
+        <div className="absolute right-4 top-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+          <span className="flex items-center gap-1 text-xs text-purple-300/80">
+            <svg
+              className="h-4 w-4"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+              />
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+              />
+            </svg>
+            点击查看详情
+          </span>
+        </div>
+
         <div className="flex">
           <div className="flex-1 space-y-4 p-6">
             <div className="space-y-1">
               <div className="text-xs font-medium uppercase tracking-wider text-purple-300">
-                JJ20 世界巡回演唱会
+                {ticket.tourName}
               </div>
-              <h3 className="text-2xl font-bold text-white">林俊杰 {ticket.name}站</h3>
+              <h3 className="text-2xl font-bold text-white">
+                {ticket.artist} {ticket.name}站
+              </h3>
             </div>
 
             <div className="flex items-center gap-2 text-purple-200">
@@ -109,7 +138,7 @@ const TicketCard: FC<TicketCardProp> = ({ ticket, index }) => {
               ))}
             </div>
             <div className="mt-1 font-mono text-[8px] text-purple-400">
-              JJ20-{ticket.name.slice(0, 2)}-{ticket.date.slice(0, 3)}
+              {ticket.orderNumber.slice(0, 12)}
             </div>
           </div>
         </div>

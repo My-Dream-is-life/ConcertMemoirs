@@ -54,4 +54,10 @@ export interface TicketItem {
   section: string;
   price: string;
   showNumber: string;
+  ticketImage?: string;
+  tourName: string;
+  artist: string;
+  gate: string;
+  orderNumber: string;
+  specialNotes?: string;
 }
