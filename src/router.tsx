@@ -4,6 +4,7 @@ import Home from './pages/Home';
 import Timeline from './pages/Timeline';
 import CityList from './pages/city/list';
 import CityDetail from './pages/city/detail';
+import Tickets from './pages/Tickets';
 import NotFound from './pages/NotFound';
 import { ROUTER_PATH } from './constants';
 
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
       {
         path: ROUTER_PATH.CITY_DETAIL,
         element: <CityDetail />,
+      },
+      {
+        path: ROUTER_PATH.TICKETS,
+        element: <Tickets />,
       },
     ],
   },
