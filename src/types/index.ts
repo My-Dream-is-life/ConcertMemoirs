@@ -44,3 +44,14 @@ export interface TimelineItem extends BaseCityItem {
   highlight: string;
   songs: string[];
 }
+
+export interface TicketItem {
+  name: string;
+  address: string;
+  date: string;
+  time: string;
+  seat: string;
+  section: string;
+  price: string;
+  showNumber: string;
+}
