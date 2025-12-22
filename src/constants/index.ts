@@ -5,5 +5,6 @@ export enum ROUTER_PATH {
   CITY_LIST = '/city-list',
   CITY_DETAIL = '/city/:id',
   TICKETS = '/tickets',
+  COLLECTION = '/collection',
   NOT_FOUND = '/404',
 }

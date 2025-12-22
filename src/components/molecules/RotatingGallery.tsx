@@ -8,56 +8,13 @@ import {
 } from '@ant-design/icons';
 import type { GalleryItem } from '@/types';
 import { useSmallLayout } from '@/hooks/useSmallLayout';
+import BaseParticles from '../atoms/BaseParticles';
 
-interface ParticlesProps {
-  particleCount?: number;
-  textIcon?: string[];
-  fontSizeRange?: [number, number];
-  speedRange?: [number, number];
-}
 interface RotatingGalleryProps {
   galleries: GalleryItem[];
 }
 
 const { Title, Text } = Typography;
-
-// 粒子效果组件
-const Particles: FC<ParticlesProps> = ({
-  particleCount = 40,
-  textIcon = ['JJ20', '❤', 'FINAL LAP', 'JM', '★', '♫', 'JJ', '♪'],
-  fontSizeRange = [6, 12],
-  speedRange = [2, 8],
-}) => {
-  return (
-    <div className="pointer-events-none absolute inset-0 overflow-hidden">
-      {[...Array(particleCount)].map((_, i) => {
-        const randomTextIcon = textIcon[Math.floor(Math.random() * textIcon.length)];
-        const [minSize, maxSize] = fontSizeRange;
-        const [minSpeed, maxSpeed] = speedRange;
-
-        return (
-          <div
-            key={i}
-            className="animate-float absolute text-purple-400"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 5}s`,
-              animationDuration: `${minSpeed + Math.random() * (maxSpeed - minSpeed)}s`,
-              fontSize: `${minSize + Math.random() * (maxSize - minSize)}px`,
-              opacity: 0.1 + Math.random() * 0.5,
-              filter: 'drop-shadow(0 0 2px currentColor)',
-              transform: `rotate(${Math.random() * 360}deg)`,
-              zIndex: Math.floor(Math.random() * 10),
-            }}
-          >
-            {randomTextIcon}
-          </div>
-        );
-      })}
-    </div>
-  );
-};
 
 const RotatingGallery: FC<RotatingGalleryProps> = ({ galleries }) => {
   const isSP = useSmallLayout();
@@ -114,7 +71,7 @@ const RotatingGallery: FC<RotatingGalleryProps> = ({ galleries }) => {
         }}
       />
 
-      <Particles />
+      <BaseParticles />
 
       <Title
         level={2}

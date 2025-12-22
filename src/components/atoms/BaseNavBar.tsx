@@ -13,6 +13,7 @@ const navItem: NavItem[] = [
   { path: ROUTER_PATH.TIME_LINE, label: '时间线' },
   { path: ROUTER_PATH.CITY_LIST, label: '巡演城市' },
   { path: ROUTER_PATH.TICKETS, label: '票根珍藏' },
+  { path: ROUTER_PATH.COLLECTION, label: '收藏柜' },
 ];
 
 const BaseNavBar: FC = () => {
