@@ -1,8 +1,10 @@
 import { FC, useState } from 'react';
 import { Modal } from 'antd';
 import { motion } from 'framer-motion';
+import { Lock, CheckCircle } from 'lucide-react';
 import BaseParticles from '@/components/atoms/BaseParticles';
-import { collections, type CollectionItem } from '@/static/collection';
+import { collections, rarityConfig, type CollectionItem } from '@/static/collection';
+import CollectionProgress from '@/components/molecules/CollectionProgress';
 
 interface CabinetItemProps {
   item: CollectionItem;
@@ -10,25 +12,9 @@ interface CabinetItemProps {
   onClick: () => void;
 }
 
-const rarityColors = {
-  common: 'from-gray-400 to-gray-600',
-  rare: 'from-blue-400 to-purple-600',
-  legendary: 'from-purple-500 to-pink-500',
-};
-
-const rarityGlow = {
-  common: 'shadow-gray-500/30',
-  rare: 'shadow-blue-500/50',
-  legendary: 'shadow-purple-500/70',
-};
-
-const rarityLabel = {
-  common: '普通',
-  rare: '稀有',
-  legendary: '传说',
-};
-
 const CabinetItem: FC<CabinetItemProps> = ({ item, index, onClick }) => {
+  const config = rarityConfig[item.rarity];
+
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.8, rotateY: -30 }}
@@ -36,7 +22,7 @@ const CabinetItem: FC<CabinetItemProps> = ({ item, index, onClick }) => {
       transition={{ delay: index * 0.1, duration: 0.5 }}
       whileHover={{ scale: 1.05, rotateY: 5 }}
       onClick={onClick}
-      className="group cursor-pointer"
+      className={`group cursor-pointer ${!item.collected && 'opacity-70 grayscale'}`}
     >
       <div className="relative">
         <div className="absolute inset-0 -rotate-1 transform rounded-2xl bg-gradient-to-b from-purple-900/80 to-purple-950/90" />
@@ -51,7 +37,7 @@ const CabinetItem: FC<CabinetItemProps> = ({ item, index, onClick }) => {
 
             <motion.div
               whileHover={{ y: -5 }}
-              className={`relative aspect-square w-full overflow-hidden rounded-xl shadow-2xl ${rarityGlow[item.rarity]}`}
+              className={`relative aspect-square w-full overflow-hidden rounded-xl shadow-2xl ${config.glow}`}
             >
               <img
                 src={item.image}
@@ -60,7 +46,7 @@ const CabinetItem: FC<CabinetItemProps> = ({ item, index, onClick }) => {
               />
 
               <div
-                className={`absolute inset-0 bg-gradient-to-t ${rarityColors[item.rarity]} opacity-20 transition-opacity group-hover:opacity-40`}
+                className={`absolute inset-0 bg-gradient-to-t ${config.color} opacity-20 transition-opacity group-hover:opacity-40`}
               />
 
               <motion.div
@@ -68,6 +54,22 @@ const CabinetItem: FC<CabinetItemProps> = ({ item, index, onClick }) => {
                 animate={{ translateX: ['100%', '-100%'] }}
                 transition={{ duration: 3, repeat: Infinity, repeatDelay: 2 }}
               />
+
+              {!item.collected && (
+                <div className="absolute inset-0 flex items-center justify-center bg-black/50">
+                  <Lock className="h-10 w-10 text-purple-400" />
+                </div>
+              )}
+
+              {item.collected && (
+                <motion.div
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  className="absolute bottom-2 right-2 rounded-full bg-green-500/90 p-1.5 shadow-lg"
+                >
+                  <CheckCircle className="h-4 w-4 text-white" />
+                </motion.div>
+              )}
             </motion.div>
           </div>
 
@@ -75,12 +77,16 @@ const CabinetItem: FC<CabinetItemProps> = ({ item, index, onClick }) => {
             <h3 className="truncate text-lg font-bold text-white">{item.name}</h3>
             <div className="mt-2 flex items-center justify-center gap-2">
               <span
-                className={`rounded-full bg-gradient-to-r px-2 py-0.5 text-xs font-medium ${rarityColors[item.rarity]} text-white`}
+                className={`rounded-full bg-gradient-to-r px-2 py-0.5 text-xs font-medium ${config.color} text-white`}
               >
-                {rarityLabel[item.rarity]}
+                {config.label}
               </span>
               <span className="text-xs text-purple-300">{item.city}</span>
             </div>
+
+            {!item.collected && (
+              <p className="mt-1 text-xs italic text-purple-500">尚未收集</p>
+            )}
           </div>
 
           <div className="absolute left-2 top-2 h-2 w-2 rounded-full bg-purple-400/50" />
@@ -104,7 +110,7 @@ const Collection: FC = () => {
         <motion.div
           initial={{ opacity: 0, y: -30 }}
           animate={{ opacity: 1, y: 0 }}
-          className="mb-16 text-center"
+          className="mb-12 text-center"
         >
           <motion.h1
             className="mb-4 bg-gradient-to-r from-purple-300 via-pink-300 to-purple-300 bg-clip-text text-5xl font-bold text-transparent md:text-7xl"
@@ -117,28 +123,9 @@ const Collection: FC = () => {
             ✨ 珍藏柜 ✨
           </motion.h1>
 
-          <p className="text-lg text-purple-300">收藏每一份珍贵的演唱会周边</p>
+          <p className="mb-10 text-lg text-purple-300">收藏每一份珍贵的演唱会周边</p>
 
-          <div className="mt-8 flex justify-center gap-8">
-            <div className="text-center">
-              <div className="text-3xl font-bold text-white">{collections.length}</div>
-              <div className="text-sm text-purple-400">收藏品</div>
-            </div>
-
-            <div className="text-center">
-              <div className="text-3xl font-bold text-purple-300">
-                {collections.filter((i) => i.rarity === 'legendary').length}
-              </div>
-              <div className="text-sm text-purple-400">传说级</div>
-            </div>
-
-            <div className="text-center">
-              <div className="text-3xl font-bold text-blue-300">
-                {collections.filter((i) => i.rarity === 'rare').length}
-              </div>
-              <div className="text-sm text-purple-400">稀有</div>
-            </div>
-          </div>
+          <CollectionProgress items={collections} />
         </motion.div>
 
         <div className="grid grid-cols-2 gap-6 md:grid-cols-3 md:gap-8 lg:grid-cols-4">
@@ -180,7 +167,7 @@ const Collection: FC = () => {
             className="p-4"
           >
             <div
-              className={`relative overflow-hidden rounded-2xl shadow-2xl ${rarityGlow[selectedItem.rarity]} mb-6`}
+              className={`relative overflow-hidden rounded-2xl shadow-2xl ${rarityConfig[selectedItem.rarity].glow} mb-6`}
             >
               <img
                 src={selectedItem.image}
@@ -189,14 +176,30 @@ const Collection: FC = () => {
               />
 
               <div
-                className={`absolute inset-0 bg-gradient-to-t ${rarityColors[selectedItem.rarity]} opacity-20`}
+                className={`absolute inset-0 bg-gradient-to-t ${rarityConfig[selectedItem.rarity].color} opacity-20`}
               />
 
               <div
-                className={`absolute right-4 top-4 rounded-full bg-gradient-to-r px-3 py-1 text-sm font-bold ${rarityColors[selectedItem.rarity]} text-white shadow-lg`}
+                className={`absolute right-4 top-4 rounded-full bg-gradient-to-r px-3 py-1 text-sm font-bold ${rarityConfig[selectedItem.rarity].color} flex items-center gap-1 text-white shadow-lg`}
               >
-                {rarityLabel[selectedItem.rarity]}
+                {(() => {
+                  const Icon = rarityConfig[selectedItem.rarity].icon;
+                  return <Icon className="h-4 w-4" />;
+                })()}
+                {rarityConfig[selectedItem.rarity].label}
               </div>
+
+              {selectedItem.collected ? (
+                <div className="absolute bottom-4 left-4 flex items-center gap-1 rounded-full bg-green-500/90 px-3 py-1 text-sm text-white">
+                  <CheckCircle className="h-4 w-4" />
+                  已收集
+                </div>
+              ) : (
+                <div className="absolute bottom-4 left-4 flex items-center gap-1 rounded-full bg-purple-500/90 px-3 py-1 text-sm text-white">
+                  <Lock className="h-4 w-4" />
+                  未收集
+                </div>
+              )}
             </div>
 
             <h2 className="mb-2 text-2xl font-bold text-white">{selectedItem.name}</h2>
@@ -209,7 +212,9 @@ const Collection: FC = () => {
               </div>
 
               <div>
-                <div className="text-sm text-purple-400">获得日期</div>
+                <div className="text-sm text-purple-400">
+                  {selectedItem.collected ? '获得日期' : '预计获得'}
+                </div>
                 <div className="font-medium text-white">{selectedItem.date}</div>
               </div>
             </div>

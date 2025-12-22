@@ -1,3 +1,5 @@
+import { Star, Gem, Crown } from 'lucide-react';
+
 export interface CollectionItem {
   id: number;
   name: string;
@@ -6,6 +8,7 @@ export interface CollectionItem {
   city: string;
   date: string;
   rarity: 'common' | 'rare' | 'legendary';
+  collected: boolean;
 }
 
 export const collections: CollectionItem[] = [
@@ -18,6 +21,7 @@ export const collections: CollectionItem[] = [
     city: '北京',
     date: '2024-05-18',
     rarity: 'legendary',
+    collected: true,
   },
   {
     id: 2,
@@ -28,6 +32,7 @@ export const collections: CollectionItem[] = [
     city: '青岛',
     date: '2024-06-08',
     rarity: 'rare',
+    collected: true,
   },
   {
     id: 3,
@@ -38,6 +43,7 @@ export const collections: CollectionItem[] = [
     city: '济南',
     date: '2024-06-22',
     rarity: 'common',
+    collected: true,
   },
   {
     id: 4,
@@ -48,6 +54,7 @@ export const collections: CollectionItem[] = [
     city: '郑州',
     date: '2024-07-13',
     rarity: 'rare',
+    collected: false,
   },
   {
     id: 5,
@@ -58,6 +65,7 @@ export const collections: CollectionItem[] = [
     city: '重庆',
     date: '2024-08-03',
     rarity: 'legendary',
+    collected: true,
   },
   {
     id: 6,
@@ -68,6 +76,7 @@ export const collections: CollectionItem[] = [
     city: '武汉',
     date: '2024-08-17',
     rarity: 'legendary',
+    collected: false,
   },
   {
     id: 7,
@@ -78,6 +87,7 @@ export const collections: CollectionItem[] = [
     city: '韩国',
     date: '2024-09-07',
     rarity: 'rare',
+    collected: true,
   },
   {
     id: 8,
@@ -88,5 +98,27 @@ export const collections: CollectionItem[] = [
     city: '全国',
     date: '2024-09-30',
     rarity: 'legendary',
+    collected: true,
   },
 ];
+
+export const rarityConfig = {
+  common: {
+    label: '普通',
+    color: 'from-gray-400 to-gray-600',
+    icon: Star,
+    glow: 'shadow-gray-500/30',
+  },
+  rare: {
+    label: '稀有',
+    color: 'from-blue-400 to-purple-600',
+    icon: Gem,
+    glow: 'shadow-blue-500/50',
+  },
+  legendary: {
+    label: '传说',
+    color: 'from-purple-500 to-pink-500',
+    icon: Crown,
+    glow: 'shadow-purple-500/70',
+  },
+};
