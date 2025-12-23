@@ -7,4 +7,5 @@ export enum ROUTER_PATH {
   TICKETS = '/tickets',
   COLLECTION = '/collection',
   NOT_FOUND = '/404',
+  ARTIST_INTRODUCTION = '/artist-introduction',
 }
