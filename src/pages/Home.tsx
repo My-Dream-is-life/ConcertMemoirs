@@ -76,6 +76,69 @@ const Home: FC = () => {
       <section className="px-4 py-12 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
           <Link
+            to={ROUTER_PATH.ARTIST_INTRODUCTION}
+            className="group relative mb-8 block overflow-hidden rounded-2xl border-2 border-primary/40 bg-gradient-to-br from-background via-primary/30 to-black p-8 transition-all duration-300 hover:border-primary/80 hover:shadow-[0_0_60px_hsl(var(--primary)/0.3)]"
+          >
+            <div className="pointer-events-none absolute inset-0 z-0 scale-110 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary/30 via-background/80 to-black opacity-30 blur-2xl" />
+
+            <div className="relative z-10 flex flex-col items-center gap-8 md:flex-row">
+              <img
+                src={HomeConcert}
+                alt="JJ Lin"
+                className="h-32 w-32 animate-fade-in rounded-full border-4 border-primary/40 object-cover shadow-lg"
+              />
+              <div className="flex-1 text-left">
+                <h2 className="mb-2 flex animate-fade-up items-center gap-2 font-display text-3xl font-bold text-primary md:text-4xl">
+                  <span className="inline-block animate-pulse text-amber-300">★</span>
+                  林俊杰 · JJ Lin
+                </h2>
+                <p
+                  className="mb-2 animate-fade-up text-base text-foreground/90 md:text-lg"
+                  style={{ animationDelay: '100ms' }}
+                >
+                  华语乐坛灵魂人物，20+年音乐旅程，代表作《江南》《修炼爱情》《她说》等。点击了解更多
+                  →
+                </p>
+                <div
+                  className="mt-2 flex animate-fade-up gap-4"
+                  style={{ animationDelay: '200ms' }}
+                >
+                  <span className="inline-flex items-center gap-1 rounded-full bg-primary/20 px-3 py-1 text-sm font-medium text-primary">
+                    音乐才子
+                  </span>
+                  <span className="inline-flex items-center gap-1 rounded-full bg-amber-300/20 px-3 py-1 text-sm font-medium text-amber-400">
+                    20年陪伴
+                  </span>
+                </div>
+              </div>
+              <span className="hidden text-2xl font-bold text-primary transition-transform group-hover:translate-x-2 md:block">
+                →
+              </span>
+            </div>
+          </Link>
+        </div>
+      </section>
+
+      <section className="bg-background/50 px-4 py-20 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl">
+          <div className="mb-16 text-center">
+            <h2 className="mb-4 font-display text-3xl font-bold text-foreground md:text-4xl">
+              追随音乐的脚步
+            </h2>
+            <p className="mx-auto max-w-2xl text-muted-foreground">
+              每一座城市都承载着独特的记忆，每一场演唱会都是一次心灵的洗礼
+            </p>
+          </div>
+
+          <div className="mx-auto max-w-7xl">
+            <RotatingGallery galleries={galleries} />
+          </div>
+        </div>
+      </section>
+
+      <section className="px-4 py-12 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl">
+          <Link
             to={ROUTER_PATH.TIME_LINE}
             className="group block rounded-2xl border border-primary/30 bg-gradient-to-r from-primary/20 via-accent/10 to-primary/20 p-8 transition-all duration-300 hover:border-primary/60 hover:shadow-[0_0_40px_hsl(var(--primary)/0.2)]"
           >
@@ -98,23 +161,6 @@ const Home: FC = () => {
               </span>
             </div>
           </Link>
-        </div>
-      </section>
-
-      <section className="bg-background/50 px-4 py-20 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-7xl">
-          <div className="mb-16 text-center">
-            <h2 className="mb-4 font-display text-3xl font-bold text-foreground md:text-4xl">
-              追随音乐的脚步
-            </h2>
-            <p className="mx-auto max-w-2xl text-muted-foreground">
-              每一座城市都承载着独特的记忆，每一场演唱会都是一次心灵的洗礼
-            </p>
-          </div>
-
-          <div className="mx-auto max-w-7xl">
-            <RotatingGallery galleries={galleries} />
-          </div>
         </div>
       </section>
 

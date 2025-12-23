@@ -28,7 +28,7 @@ const Header: FC = () => {
       style={{
         position: 'sticky',
         top: 0,
-        zIndex: 1,
+        zIndex: 9999,
         padding: 0,
       }}
     >

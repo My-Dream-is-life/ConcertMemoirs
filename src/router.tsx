@@ -6,6 +6,7 @@ import CityList from './pages/city/list';
 import CityDetail from './pages/city/detail';
 import Tickets from './pages/Tickets';
 import Collection from './pages/Collection';
+import ArtistIntro from './pages/ArtistIntro';
 import NotFound from './pages/NotFound';
 import { ROUTER_PATH } from './constants';
 
@@ -41,6 +42,10 @@ const router = createBrowserRouter([
       {
         path: ROUTER_PATH.COLLECTION,
         element: <Collection />,
+      },
+      {
+        path: ROUTER_PATH.ARTIST_INTRODUCTION,
+        element: <ArtistIntro />,
       },
     ],
   },
