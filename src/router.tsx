@@ -55,7 +55,7 @@ const router = createBrowserRouter([
   },
   {
     path: '*',
-    element: <Navigate to={ROUTER_PATH.HOME} replace />,
+    element: <Navigate to={ROUTER_PATH.NOT_FOUND} replace />,
   },
 ]);
 
