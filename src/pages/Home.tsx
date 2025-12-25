@@ -2,6 +2,7 @@ import { FC } from 'react';
 import { Link } from 'react-router-dom';
 import { Music, Sparkles, Heart, MapPin, Clock } from 'lucide-react';
 import RotatingGallery from '@/components/molecules/RotatingGallery';
+import CityAreaMap from '@/components/molecules/CityAreaMap';
 import { ROUTER_PATH } from '@/constants';
 import { galleries } from '@/static/home';
 import HomeConcert from '@/assets/home-concert.jpg';
@@ -172,6 +173,12 @@ const Home: FC = () => {
             &quot; 二十年的坚持，是因为有你们一路相伴 &quot;
           </blockquote>
           <cite className="text-muted-foreground">—— 林俊杰(JJ Lin)</cite>
+        </div>
+      </section>
+
+      <section className="bg-background/50 px-4 py-20 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl">
+          <CityAreaMap />
         </div>
       </section>
     </div>
