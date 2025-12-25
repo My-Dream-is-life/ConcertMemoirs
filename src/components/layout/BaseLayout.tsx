@@ -3,10 +3,13 @@ import { Layout } from 'antd';
 import { Outlet } from 'react-router-dom';
 import Header from '../organisms/Header';
 import Footer from '../organisms/Footer';
+import { useScrollToTop } from '@/hooks/useScrollToTop';
 
 const { Content } = Layout;
 
 const BaseLayout: FC = () => {
+  useScrollToTop();
+
   return (
     <Layout id="website-content" className="min-h-screen bg-background">
       <Header />
