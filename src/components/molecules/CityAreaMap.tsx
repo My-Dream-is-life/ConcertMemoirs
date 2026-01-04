@@ -137,7 +137,10 @@ const CityAreaMap: FC = () => {
   }));
 
   useEffect(() => {
-    fetch('https://geo.datav.aliyun.com/areas_v3/bound/geojson?code=100000_full')
+    fetch('https://geo.datav.aliyun.com/areas_v3/bound/geojson?code=100000_full', {
+      referrerPolicy: 'no-referrer',
+      mode: 'cors',
+    })
       .then((res) => res.json())
       .then((geoJson) => {
         echarts.registerMap('china', geoJson);
