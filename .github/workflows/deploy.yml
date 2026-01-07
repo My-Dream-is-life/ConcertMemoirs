@@ -15,41 +15,86 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Debug Webhook URL
+        run: |
+          echo "GitHub Secrets 是否设置: ${{ secrets.QQ_BOT_WEBHOOK != '' }}"
+          # 显示URL（部分隐藏以保护安全）
+          WEBHOOK_URL="${{ secrets.QQ_BOT_WEBHOOK }}"
+          if [[ -n "$WEBHOOK_URL" ]]; then
+            echo "Webhook URL 前几位: ${WEBHOOK_URL:0:30}..."
+            echo "Webhook URL 长度: ${#WEBHOOK_URL}"
+            
+            # 提取域名进行测试
+            DOMAIN=$(echo "$WEBHOOK_URL" | sed -E 's|https?://([^/]+).*|\1|')
+            echo "测试连接域名: $DOMAIN"
+            
+            # 测试网络连通性（只测试域名，不发送webhook）
+            if timeout 5 curl -s -I "https://$DOMAIN" > /dev/null 2>&1; then
+              echo "✅ 域名可访问"
+            else
+              echo "❌ 域名无法访问"
+            fi
+          else
+            echo "❌ QQ_BOT_WEBHOOK 未设置"
+          fi
+
       - name: Setup and Test
         run: |
           echo "Running setup and tests..."
-          # 你的安装和测试命令
 
       - name: Deploy
         run: |
           echo "Deploying..."
-          # 你的部署命令
 
       - name: Send Success Notification
         if: success()
         run: |
-          curl -X POST \
+          echo "准备发送成功通知..."
+
+          # 构建JSON数据
+          JSON_DATA=$(cat <<EOF
+          {
+            "platform": "qq",
+            "event": "deploy",
+            "status": "success",
+            "title": "✅ 部署成功",
+            "message": "项目部署完成",
+            "repository": "${{ github.repository }}",
+            "branch": "${{ github.ref_name }}",
+            "commit_short": "${{ github.sha | slice: 0, 7 }}",
+            "author": "${{ github.actor }}",
+            "run_url": "https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          }
+          EOF
+          )
+
+          echo "发送的JSON数据:"
+          echo "$JSON_DATA"
+
+          # 发送请求并捕获完整响应
+          RESPONSE=$(curl -v -X POST \
             -H "Content-Type: application/json" \
-            -d '{
-              "platform": "qq",
-              "event": "deploy",
-              "status": "success",
-              "title": "✅ 部署成功",
-              "message": "项目部署完成",
-              "repository": "${{ github.repository }}",
-              "branch": "${{ github.ref_name }}",
-              "commit_short": "${{ github.sha }}",
-              "author": "${{ github.actor }}",
-              "time": "${{ github.event.head_commit.timestamp }}",
-              "run_url": "https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
-            }' \
-            "${{ secrets.QQ_BOT_WEBHOOK }}"
+            -H "User-Agent: GitHub-Actions-Webhook/1.0" \
+            -d "$JSON_DATA" \
+            -w "\nHTTP_STATUS:%{http_code}" \
+            "${{ secrets.QQ_BOT_WEBHOOK }}" 2>&1)
+
+          echo "=== curl 详细输出 ==="
+          echo "$RESPONSE"
+          echo "===================="
+
+          # 提取HTTP状态码
+          HTTP_STATUS=$(echo "$RESPONSE" | grep "HTTP_STATUS:" | cut -d':' -f2)
+          echo "HTTP 状态码: $HTTP_STATUS"
 
       - name: Send Failure Notification
         if: failure()
         run: |
-          curl -X POST \
+          echo "准备发送失败通知..."
+
+          curl -v -X POST \
             -H "Content-Type: application/json" \
+            -H "User-Agent: GitHub-Actions-Webhook/1.0" \
             -d '{
               "platform": "qq",
               "event": "deploy",
@@ -59,7 +104,6 @@ jobs:
               "repository": "${{ github.repository }}",
               "branch": "${{ github.ref_name }}",
               "author": "${{ github.actor }}",
-              "run_url": "https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}",
-              "error_step": "${{ job.status }}"
+              "run_url": "https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
             }' \
             "${{ secrets.QQ_BOT_WEBHOOK }}"
