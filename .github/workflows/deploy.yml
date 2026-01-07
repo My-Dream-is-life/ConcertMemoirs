@@ -61,7 +61,7 @@ jobs:
             "message": "项目部署完成",
             "repository": "${{ github.repository }}",
             "branch": "${{ github.ref_name }}",
-            "commit_short": "${{ github.sha | slice: 0, 7 }}",
+            "commit_short": "${{ github.sha }}",
             "author": "${{ github.actor }}",
             "run_url": "https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
           }
