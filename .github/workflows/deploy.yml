@@ -25,9 +25,57 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Robot test notification
-      - name: Robot test notification
-        run: |
-          echo "测试QQ机器人通知"
-          curl -X POST "${{ secrets.QQ_BOT_WEBHOOK }}" \
-          -H "Content-Type: application/json" \
-          -d '{"text":"测试消息"}'
+      - name: Robot notify start
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.QQ_BOT_TOKEN }}
+          token: ${{ secrets.QQ_BOT_TOKEN }}
+          message: |
+            🚀 GitHub actions build start
+            ────────────────────────────
+            📦 Project: ${{ github.event.repository.name }}
+            🌿 Branch: ${{ github.ref }}
+            🆔 Commit: ${{ github.sha:0:7 }}
+            👤 Author: ${{ github.actor }}
+            ⏰ End Time: ${{ format(fromJSON('"' + github.event.head_commit.timestamp + '"'), 'YYYY-MM-DD HH:mm:ss') }}
+            📝 Commit Message: ${{ github.event.head_commit.message }}
+            ────────────────────────────
+            Build progress view:
+            https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        if: always()
+
+      # Extract the code and use this Action to be able to pull the latest code
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+
+      # Robot test success
+      - name: Robot notify success
+        if: success()
+        uses: distributhor/workflow-webhook@v3
+        env:
+          webhook_url: ${{ secrets.QQ_BOT_WEBHOOK }}
+          webhook_secret: ''
+        with:
+          data: |
+            {
+              "msg_type": "text",
+              "content": {
+                "text": "✅ GitHub actions build success\nProject: ${{ github.event.repository.name }}\nBranch: ${{ github.ref }}\nCommit: ${{ github.sha:0:7 }}\nAuthor: ${{ github.actor }}\nEnd Time: ${{ format(fromJSON('"' + github.event.head_commit.timestamp + '"'), 'YYYY-MM-DD HH:mm:ss') }}\nURL: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+              }
+            }
+
+      # Robot test fail
+      - name: Robot notify fail
+        if: failure()
+        uses: distributhor/workflow-webhook@v3
+        env:
+          webhook_url: ${{ secrets.QQ_BOT_WEBHOOK }}
+          webhook_secret: ''
+        with:
+          data: |
+            {
+              "msg_type": "text",
+              "content": {
+                "text": "❌ GitHub actions build fail\nProject: ${{ github.event.repository.name }}\nBranch: ${{ github.ref }}\nCommit: ${{ github.sha:0:7 }}\nAuthor: ${{ github.actor }}\nEnd Time: ${{ format(fromJSON('"' + github.event.head_commit.timestamp + '"'), 'YYYY-MM-DD HH:mm:ss') }}\nURL: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+              }
+            }
