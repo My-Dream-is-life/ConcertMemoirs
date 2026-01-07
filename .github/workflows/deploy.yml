@@ -27,14 +27,25 @@ jobs:
       # Get variables
       - name: Prepare variables
         id: prepare
+        env:
+          PUSH_TIME_RAW: ${{ github.event.head_commit.timestamp }}
+          REPOSITORY: ${{ github.repository }}
+          RUN_ID: ${{ github.run_id }}
         run: |
           # Get commit SHA
           SHA="${GITHUB_SHA:0:7}"
 
+          # Format push time
+          if [[ -n "$PUSH_TIME_RAW" ]]; then
+            PUSH_TIME_FORMATTED=$(date -d "$PUSH_TIME_RAW" '+%Y-%m-%d %H:%M:%S' 2>/dev/null || echo "$PUSH_TIME_RAW")
+          else
+            PUSH_TIME_FORMATTED=$PUSH_TIME_RAW
+          fi
+
           # Output variables
           echo "sha=$SHA" >> $GITHUB_OUTPUT
-          echo "push_time=${{ format(fromJSON('"' + github.event.head_commit.timestamp + '"'), 'YYYY-MM-DD HH:mm:ss') }}" >> $GITHUB_OUTPUT
-          echo "url=https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}" >> $GITHUB_OUTPUT
+          echo "push_time=$PUSH_TIME_FORMATTED" >> $GITHUB_OUTPUT
+          echo "url=https://github.com/$REPOSITORY/actions/runs/$RUN_ID" >> $GITHUB_OUTPUT
 
       # Robot test notification
       - name: Robot notify start
@@ -64,8 +75,8 @@ jobs:
         if: success()
         uses: distributhor/workflow-webhook@v3
         env:
-          webhook_url: ${{ secrets.QQ_BOT_WEBHOOK }}
-          webhook_secret: ''
+          WEBHOOK_URL: ${{ secrets.QQ_BOT_WEBHOOK }}
+          WEBHOOK_SECRET: ''
         with:
           data: |
             {
@@ -80,8 +91,8 @@ jobs:
         if: failure()
         uses: distributhor/workflow-webhook@v3
         env:
-          webhook_url: ${{ secrets.QQ_BOT_WEBHOOK }}
-          webhook_secret: ''
+          WEBHOOK_URL: ${{ secrets.QQ_BOT_WEBHOOK }}
+          WEBHOOK_SECRET: ''
         with:
           data: |
             {
