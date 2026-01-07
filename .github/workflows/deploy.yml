@@ -24,6 +24,18 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+      # Get variables
+      - name: Prepare variables
+        id: prepare
+        run: |
+          # Get commit SHA
+          SHA="${GITHUB_SHA:0:7}"
+
+          # Output variables
+          echo "sha=$SHA" >> $GITHUB_OUTPUT
+          echo "push_time=${{ format(fromJSON('"' + github.event.head_commit.timestamp + '"'), 'YYYY-MM-DD HH:mm:ss') }}" >> $GITHUB_OUTPUT
+          echo "url=https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}" >> $GITHUB_OUTPUT
+
       # Robot test notification
       - name: Robot notify start
         uses: appleboy/telegram-action@master
@@ -35,13 +47,12 @@ jobs:
             ────────────────────────────
             📦 Project: ${{ github.event.repository.name }}
             🌿 Branch: ${{ github.ref }}
-            🆔 Commit: ${{ github.sha:0:7 }}
+            🆔 Commit: ${{ steps.prepare.outputs.sha }}
             👤 Author: ${{ github.actor }}
-            ⏰ End Time: ${{ format(fromJSON('"' + github.event.head_commit.timestamp + '"'), 'YYYY-MM-DD HH:mm:ss') }}
+            ⏰ End Time: ${{ steps.prepare.outputs.push_time }}
             📝 Commit Message: ${{ github.event.head_commit.message }}
             ────────────────────────────
-            Build progress view:
-            https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
+            Build progress view: ${{ steps.prepare.outputs.url }}
         if: always()
 
       # Extract the code and use this Action to be able to pull the latest code
@@ -60,7 +71,7 @@ jobs:
             {
               "msg_type": "text",
               "content": {
-                "text": "✅ GitHub actions build success\nProject: ${{ github.event.repository.name }}\nBranch: ${{ github.ref }}\nCommit: ${{ github.sha:0:7 }}\nAuthor: ${{ github.actor }}\nEnd Time: ${{ format(fromJSON('"' + github.event.head_commit.timestamp + '"'), 'YYYY-MM-DD HH:mm:ss') }}\nURL: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+                "text": "✅ GitHub actions build success\nProject: ${{ github.event.repository.name }}\nBranch: ${{ github.ref }}\nCommit: ${{ steps.prepare.outputs.sha }}\nAuthor: ${{ github.actor }}\nEnd Time: ${{ steps.prepare.outputs.push_time }}\nURL: ${{ steps.prepare.outputs.url }}"
               }
             }
 
@@ -76,6 +87,6 @@ jobs:
             {
               "msg_type": "text",
               "content": {
-                "text": "❌ GitHub actions build fail\nProject: ${{ github.event.repository.name }}\nBranch: ${{ github.ref }}\nCommit: ${{ github.sha:0:7 }}\nAuthor: ${{ github.actor }}\nEnd Time: ${{ format(fromJSON('"' + github.event.head_commit.timestamp + '"'), 'YYYY-MM-DD HH:mm:ss') }}\nURL: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+                "text": "❌ GitHub actions build fail\nProject: ${{ github.event.repository.name }}\nBranch: ${{ github.ref }}\nCommit: ${{ steps.prepare.outputs.sha }}\nAuthor: ${{ github.actor }}\nEnd Time: ${{ steps.prepare.outputs.push_time }}\nURL: ${{ steps.prepare.outputs.url }}"
               }
             }
