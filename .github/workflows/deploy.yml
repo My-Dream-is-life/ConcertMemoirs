@@ -1,103 +1,65 @@
-# This is a basic workflow to help you get started with Actions
+name: Deploy with QQ Bot Notification
 
-name: CI build and deploy to tencent cloud server
-
-# Controls when the workflow will run
 on:
-  # Triggers the workflow on push or pull request events but only for the main branch
-  # Currently, it is in the testing branch
   push:
     branches: [feature/ci-cd]
   pull_request:
     types: [opened]
     branches: [feature/ci-cd]
 
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
-
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
-  build:
-    # The type of runner that the job will run on
+  deploy:
     runs-on: ubuntu-latest
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Get variables
-      - name: Prepare variables
-        id: prepare
-        env:
-          PUSH_TIME_RAW: ${{ github.event.head_commit.timestamp }}
-          REPOSITORY: ${{ github.repository }}
-          RUN_ID: ${{ github.run_id }}
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup and Test
         run: |
-          # Get commit SHA
-          SHA="${GITHUB_SHA:0:7}"
+          echo "Running setup and tests..."
+          # 你的安装和测试命令
 
-          # Format push time
-          if [[ -n "$PUSH_TIME_RAW" ]]; then
-            PUSH_TIME_FORMATTED=$(date -d "$PUSH_TIME_RAW" '+%Y-%m-%d %H:%M:%S' 2>/dev/null || echo "$PUSH_TIME_RAW")
-          else
-            PUSH_TIME_FORMATTED=$PUSH_TIME_RAW
-          fi
+      - name: Deploy
+        run: |
+          echo "Deploying..."
+          # 你的部署命令
 
-          # Output variables
-          echo "sha=$SHA" >> $GITHUB_OUTPUT
-          echo "push_time=$PUSH_TIME_FORMATTED" >> $GITHUB_OUTPUT
-          echo "url=https://github.com/$REPOSITORY/actions/runs/$RUN_ID" >> $GITHUB_OUTPUT
-
-      # Robot test notification
-      - name: Robot notify start
-        uses: appleboy/telegram-action@master
-        with:
-          to: ${{ secrets.QQ_BOT_TOKEN }}
-          token: ${{ secrets.QQ_BOT_TOKEN }}
-          message: |
-            🚀 GitHub actions build start
-            ────────────────────────────
-            📦 Project: ${{ github.event.repository.name }}
-            🌿 Branch: ${{ github.ref }}
-            🆔 Commit: ${{ steps.prepare.outputs.sha }}
-            👤 Author: ${{ github.actor }}
-            ⏰ End Time: ${{ steps.prepare.outputs.push_time }}
-            📝 Commit Message: ${{ github.event.head_commit.message }}
-            ────────────────────────────
-            Build progress view: ${{ steps.prepare.outputs.url }}
-        if: always()
-
-      # Extract the code and use this Action to be able to pull the latest code
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
-
-      # Robot test success
-      - name: Robot notify success
+      - name: Send Success Notification
         if: success()
-        uses: distributhor/workflow-webhook@v3
-        env:
-          WEBHOOK_URL: ${{ secrets.QQ_BOT_WEBHOOK }}
-          WEBHOOK_SECRET: ''
-        with:
-          data: |
-            {
-              "msg_type": "text",
-              "content": {
-                "text": "✅ GitHub actions build success\nProject: ${{ github.event.repository.name }}\nBranch: ${{ github.ref }}\nCommit: ${{ steps.prepare.outputs.sha }}\nAuthor: ${{ github.actor }}\nEnd Time: ${{ steps.prepare.outputs.push_time }}\nURL: ${{ steps.prepare.outputs.url }}"
-              }
-            }
+        run: |
+          curl -X POST \
+            -H "Content-Type: application/json" \
+            -d '{
+              "platform": "qq",
+              "event": "deploy",
+              "status": "success",
+              "title": "✅ 部署成功",
+              "message": "项目部署完成",
+              "repository": "${{ github.repository }}",
+              "branch": "${{ github.ref_name }}",
+              "commit_short": "${{ github.sha }}",
+              "author": "${{ github.actor }}",
+              "time": "${{ github.event.head_commit.timestamp }}",
+              "run_url": "https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+            }' \
+            "${{ secrets.QQ_BOT_WEBHOOK }}"
 
-      # Robot test fail
-      - name: Robot notify fail
+      - name: Send Failure Notification
         if: failure()
-        uses: distributhor/workflow-webhook@v3
-        env:
-          WEBHOOK_URL: ${{ secrets.QQ_BOT_WEBHOOK }}
-          WEBHOOK_SECRET: ''
-        with:
-          data: |
-            {
-              "msg_type": "text",
-              "content": {
-                "text": "❌ GitHub actions build fail\nProject: ${{ github.event.repository.name }}\nBranch: ${{ github.ref }}\nCommit: ${{ steps.prepare.outputs.sha }}\nAuthor: ${{ github.actor }}\nEnd Time: ${{ steps.prepare.outputs.push_time }}\nURL: ${{ steps.prepare.outputs.url }}"
-              }
-            }
+        run: |
+          curl -X POST \
+            -H "Content-Type: application/json" \
+            -d '{
+              "platform": "qq",
+              "event": "deploy",
+              "status": "failure",
+              "title": "❌ 部署失败",
+              "message": "部署过程中出现错误",
+              "repository": "${{ github.repository }}",
+              "branch": "${{ github.ref_name }}",
+              "author": "${{ github.actor }}",
+              "run_url": "https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}",
+              "error_step": "${{ job.status }}"
+            }' \
+            "${{ secrets.QQ_BOT_WEBHOOK }}"
