@@ -69,23 +69,10 @@ jobs:
 
           # Use heredoc to build JSON data
           # Avoid complex quotation mark escaping
-          JSON_DATA=$(cat << EOF
-          {
-            "type": "group_message",
-            "data": {
-              "groupId": "${GROUP_ID}",
-              "message": [
-                {
-                  "type": "text",
-                  "data": {
-                    "text": "${STATUS_EMOJI} GitHub Actions build ${STATUS_TEXT}\\nProject: ${PROJECT}\\nBranch: ${BRANCH}\\nCommit: ${{ steps.prepare.outputs.sha }}\\nAuthor: ${AUTHOR}\\nEnd Time: ${{ steps.prepare.outputs.push_time }}\\nURL: ${{ steps.prepare.outputs.url }}"
-                  }
-                }
-              ]
-            }
-          }
-          EOF
-          )
+          JSON_DATA='{
+            "group_id": "'"${GROUP_ID}"'",
+            "message": "测试消息"
+          }'
 
           curl -X POST "${{ secrets.QQ_BOT_WEBHOOK }}" \
             -H "Content-Type: application/json" \
