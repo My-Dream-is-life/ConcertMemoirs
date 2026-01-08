@@ -1,109 +1,86 @@
-name: Deploy with QQ Bot Notification
+# This is a basic workflow to help you get started with Actions
 
+name: CI build and deploy to tencent cloud server
+
+# Controls when the workflow will run
 on:
+  # Triggers the workflow on push or pull request events but only for the main branch
+  # Currently, it is in the testing branch
   push:
     branches: [feature/ci-cd]
   pull_request:
     types: [opened]
     branches: [feature/ci-cd]
 
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  deploy:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
+    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Debug Webhook URL
+      # Get variables
+      - name: Prepare variables
+        id: prepare
+        env:
+          REPOSITORY: ${{ github.repository }}
+          PUSH_TIME_RAW: ${{ github.event.head_commit.timestamp }}
+          RUN_ID: ${{ github.run_id }}
         run: |
-          echo "GitHub Secrets 是否设置: ${{ secrets.QQ_BOT_WEBHOOK != '' }}"
-          # 显示URL（部分隐藏以保护安全）
-          WEBHOOK_URL="${{ secrets.QQ_BOT_WEBHOOK }}"
-          if [[ -n "$WEBHOOK_URL" ]]; then
-            echo "Webhook URL 前几位: ${WEBHOOK_URL:0:30}..."
-            echo "Webhook URL 长度: ${#WEBHOOK_URL}"
-            
-            # 提取域名进行测试
-            DOMAIN=$(echo "$WEBHOOK_URL" | sed -E 's|https?://([^/]+).*|\1|')
-            echo "测试连接域名: $DOMAIN"
-            
-            # 测试网络连通性（只测试域名，不发送webhook）
-            if timeout 5 curl -s -I "https://$DOMAIN" > /dev/null 2>&1; then
-              echo "✅ 域名可访问"
-            else
-              echo "❌ 域名无法访问"
-            fi
+          # Format commit SHA
+          SHA="${GITHUB_SHA:0:7}"
+
+          # Format push time
+          if [[ -n "$PUSH_TIME_RAW" ]]; then
+            PUSH_TIME_FORMATTED=$(date -d "$PUSH_TIME_RAW" '+%Y-%m-%d %H:%M:%S' 2>/dev/null || echo "$PUSH_TIME_RAW")
           else
-            echo "❌ QQ_BOT_WEBHOOK 未设置"
+            PUSH_TIME_FORMATTED=$PUSH_TIME_RAW
           fi
 
-      - name: Setup and Test
+          # Output variables
+          echo "sha=$SHA" >> $GITHUB_OUTPUT
+          echo "push_time=$PUSH_TIME_FORMATTED" >> $GITHUB_OUTPUT
+          echo "url=https://github.com/$REPOSITORY/actions/runs/$RUN_ID" >> $GITHUB_OUTPUT
+
+      # Extract the code and use this Action to be able to pull the latest code
+      # Checks-out your repository under $GITHUB_WORKSPACE
+      - uses: actions/checkout@v4
+
+      # Robot notification test
+      - name: Robot group notify
+        if: github.event_name != 'pull_request'
+        env:
+          GROUP_ID: '758201611'
+          PROJECT: ${{ github.event.repository.name }}
+          BRANCH: ${{ github.ref_name }}
+          AUTHOR: ${{ github.actor }}
         run: |
-          echo "Running setup and tests..."
+          if [ "${{ job.status }}" = "success" ]; then
+            STATUS_EMOJI="✅"
+            STATUS_TEXT="success"
+          else
+            STATUS_EMOJI="❌"
+            STATUS_TEXT="failed"
+          fi
 
-      - name: Deploy
-        run: |
-          echo "Deploying..."
-
-      - name: Send Success Notification
-        if: success()
-        run: |
-          echo "准备发送成功通知..."
-
-          # 构建JSON数据
-          JSON_DATA=$(cat <<EOF
-          {
-            "platform": "qq",
-            "event": "deploy",
-            "status": "success",
-            "title": "✅ 部署成功",
-            "message": "项目部署完成",
-            "repository": "${{ github.repository }}",
-            "branch": "${{ github.ref_name }}",
-            "commit_short": "${{ github.sha }}",
-            "author": "${{ github.actor }}",
-            "run_url": "https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
-          }
-          EOF
-          )
-
-          echo "发送的JSON数据:"
-          echo "$JSON_DATA"
-
-          # 发送请求并捕获完整响应
-          RESPONSE=$(curl -v -X POST \
+          curl -X POST "${{ secrets.QQ_BOT_WEBHOOK }}" \
             -H "Content-Type: application/json" \
-            -H "User-Agent: GitHub-Actions-Webhook/1.0" \
-            -d "$JSON_DATA" \
-            -w "\nHTTP_STATUS:%{http_code}" \
-            "${{ secrets.QQ_BOT_WEBHOOK }}" 2>&1)
-
-          echo "=== curl 详细输出 ==="
-          echo "$RESPONSE"
-          echo "===================="
-
-          # 提取HTTP状态码
-          HTTP_STATUS=$(echo "$RESPONSE" | grep "HTTP_STATUS:" | cut -d':' -f2)
-          echo "HTTP 状态码: $HTTP_STATUS"
-
-      - name: Send Failure Notification
-        if: failure()
-        run: |
-          echo "准备发送失败通知..."
-
-          curl -v -X POST \
-            -H "Content-Type: application/json" \
-            -H "User-Agent: GitHub-Actions-Webhook/1.0" \
             -d '{
-              "platform": "qq",
-              "event": "deploy",
-              "status": "failure",
-              "title": "❌ 部署失败",
-              "message": "部署过程中出现错误",
-              "repository": "${{ github.repository }}",
-              "branch": "${{ github.ref_name }}",
-              "author": "${{ github.actor }}",
-              "run_url": "https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
-            }' \
-            "${{ secrets.QQ_BOT_WEBHOOK }}"
+              "type": "group_message",
+              "data": {
+                "groupId": ${GROUP_ID},
+                "message": [
+                  {
+                    "type": "text",
+                    "data": {
+                      "text": "${ STATUS_EMOJI } GitHub Actions build ${ STATUS_TEXT }\nProject: ${ PROJECT }\nBranch: ${ BRANCH }\nCommit: ${{ steps.prepare.outputs.sha }}\nAuthor: ${ AUTHOR }\nEnd Time: ${{ steps.prepare.outputs.push_time }}\nURL: ${{ steps.prepare.outputs.url }}"
+                    }
+                  }
+                ]
+              }
+            }'
