@@ -39,7 +39,7 @@ jobs:
           if [[ -n "$PUSH_TIME_RAW" ]]; then
             PUSH_TIME_FORMATTED=$(date -d "$PUSH_TIME_RAW" '+%Y-%m-%d %H:%M:%S' 2>/dev/null || echo "$PUSH_TIME_RAW")
           else
-            PUSH_TIME_FORMATTED=$PUSH_TIME_RAW
+            PUSH_TIME_FORMATTED=$(date '+%Y-%m-%d %H:%M:%S')
           fi
 
           # Output variables
@@ -53,7 +53,6 @@ jobs:
 
       # Robot notification test
       - name: Robot group notify
-        if: github.event_name != 'pull_request'
         env:
           GROUP_ID: '758201611'
           PROJECT: ${{ github.event.repository.name }}
@@ -73,12 +72,12 @@ jobs:
             -d '{
               "type": "group_message",
               "data": {
-                "groupId": ${GROUP_ID},
+                "groupId": '"${GROUP_ID}"',
                 "message": [
                   {
                     "type": "text",
                     "data": {
-                      "text": "${ STATUS_EMOJI } GitHub Actions build ${ STATUS_TEXT }\nProject: ${ PROJECT }\nBranch: ${ BRANCH }\nCommit: ${{ steps.prepare.outputs.sha }}\nAuthor: ${ AUTHOR }\nEnd Time: ${{ steps.prepare.outputs.push_time }}\nURL: ${{ steps.prepare.outputs.url }}"
+                      "text": "'"${ STATUS_EMOJI }"' GitHub Actions build '"${ STATUS_TEXT }"'\nProject: '"${ PROJECT }"'\nBranch: '"${ BRANCH }"'\nCommit: ${{ steps.prepare.outputs.sha }}\nAuthor: '"${ AUTHOR }"'\nEnd Time: ${{ steps.prepare.outputs.push_time }}\nURL: ${{ steps.prepare.outputs.url }}"
                     }
                   }
                 ]
