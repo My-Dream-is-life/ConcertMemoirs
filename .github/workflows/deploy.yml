@@ -74,6 +74,7 @@ jobs:
             "message": "测试消息"
           }'
 
-          curl -X POST "${{ secrets.QQ_BOT_WEBHOOK }}" \
+          curl -X POST https://astrbot-push-lite.songcarin.cn \
             -H "Content-Type: application/json" \
+            -H "Authorization: Bearer Ca9ofnAoLgvDpUsYC5APizYrp99k5ql9tAPpYo7GIoM" \
             -d "${JSON_DATA}"
