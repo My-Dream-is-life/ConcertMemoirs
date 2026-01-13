@@ -17,64 +17,17 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
-  build:
-    # The type of runner that the job will run on
+  notify_qq:
     runs-on: ubuntu-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Get variables
-      - name: Prepare variables
-        id: prepare
+      - name: Send Notification to QQ
         env:
-          REPOSITORY: ${{ github.repository }}
-          PUSH_TIME_RAW: ${{ github.event.head_commit.timestamp }}
-          RUN_ID: ${{ github.run_id }}
+          QQ_WEBHOOK_URL: ${{ secrets.QQ_BOT_WEBHOOK }} # 在 GitHub Secrets 中配置
         run: |
-          # Format commit SHA
-          SHA="${GITHUB_SHA:0:7}"
-
-          # Format push time
-          if [[ -n "$PUSH_TIME_RAW" ]]; then
-            PUSH_TIME_FORMATTED=$(date -d "$PUSH_TIME_RAW" '+%Y-%m-%d %H:%M:%S' 2>/dev/null || echo "$PUSH_TIME_RAW")
-          else
-            PUSH_TIME_FORMATTED=$(date '+%Y-%m-%d %H:%M:%S')
-          fi
-
-          # Output variables
-          echo "sha=$SHA" >> $GITHUB_OUTPUT
-          echo "push_time=$PUSH_TIME_FORMATTED" >> $GITHUB_OUTPUT
-          echo "url=https://github.com/$REPOSITORY/actions/runs/$RUN_ID" >> $GITHUB_OUTPUT
-
-      # Extract the code and use this Action to be able to pull the latest code
-      # Checks-out your repository under $GITHUB_WORKSPACE
-      - uses: actions/checkout@v4
-
-      # Robot notification test
-      - name: Robot group notify
-        env:
-          GROUP_ID: '758201611'
-          PROJECT: ${{ github.event.repository.name }}
-          BRANCH: ${{ github.ref_name }}
-          AUTHOR: ${{ github.actor }}
-        run: |
-          if [ "${{ job.status }}" = "success" ]; then
-            STATUS_EMOJI="✅"
-            STATUS_TEXT="success"
-          else
-            STATUS_EMOJI="❌"
-            STATUS_TEXT="failed"
-          fi
-
-          # Use heredoc to build JSON data
-          # Avoid complex quotation mark escaping
-          JSON_DATA='{
-            "group_id": "'"${GROUP_ID}"'",
-            "message": "测试消息"
-          }'
-
-          curl -X POST https://astrbot-push-lite.songcarin.cn \
-            -H "Content-Type: application/json" \
-            -H "Authorization: Bearer Ca9ofnAoLgvDpUsYC5APizYrp99k5ql9tAPpYo7GIoM" \
-            -d "${JSON_DATA}"
+          curl -X POST $QQ_BOT_WEBHOOK \
+              -H 'Content-Type: application/json' \
+              -d '{
+                    "message": "Hello from GitHub Actions!",
+                    "sender": "GitHub Actions",
+                    "type": "text"
+                  }'
