@@ -22,7 +22,7 @@ jobs:
     steps:
       - name: Send Notification to QQ
         env:
-          QQ_WEBHOOK_URL: ${{ secrets.QQ_BOT_WEBHOOK }} # 在 GitHub Secrets 中配置
+          QQ_WEBHOOK_URL: ${{ secrets.QQ_BOT_WEBHOOK }}
         run: |
           curl -X POST ${{ env.QQ_WEBHOOK_URL }} \
               -H 'Content-Type: application/json' \
