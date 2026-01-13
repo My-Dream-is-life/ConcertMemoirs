@@ -24,7 +24,7 @@ jobs:
         env:
           QQ_WEBHOOK_URL: ${{ secrets.QQ_BOT_WEBHOOK }} # 在 GitHub Secrets 中配置
         run: |
-          curl -X POST $QQ_BOT_WEBHOOK \
+          curl -X POST ${{ env.QQ_WEBHOOK_URL }} \
               -H 'Content-Type: application/json' \
               -d '{
                     "message": "Hello from GitHub Actions!",
