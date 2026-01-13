@@ -27,7 +27,7 @@ jobs:
           curl -X POST ${{ env.QQ_WEBHOOK_URL }} \
               -H 'Content-Type: application/json' \
               -d '{
-                    "message": "Hello from GitHub Actions!",
-                    "sender": "GitHub Actions",
-                    "type": "text"
+                    "markdown": {
+                      "content": "> **GitHub Actions 通知** \n\n 状态：成功 \n\n [点击查看详情](github.com{{ github.repository }}/actions)"
+                    }
                   }'
