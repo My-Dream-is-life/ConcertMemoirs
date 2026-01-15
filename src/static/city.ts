@@ -1,19 +1,28 @@
 import { Train, Clock, Wallet, Camera } from 'lucide-react';
 import type { BaseCityItem } from '@/types';
-import JiNan from '@/assets/city/jinan.jpg';
-import ZhengZhou from '@/assets/city/zhengzhou.jpg';
-import QingDao from '@/assets/city/qingdao.jpg';
-import ChongQing from '@/assets/city/chongqing.jpg';
-import WuHan from '@/assets/city/wuhan.jpg';
-import Korea from '@/assets/city/korea.jpg';
-import BeiJing from '@/assets/city/beijing.jpg';
+import JiNanHome from '@/assets/city/jinan/home.jpg';
+import JiNanExclusive1 from '@/assets/city/jinan/exclusiveImg/exclusive1.jpg';
+import JiNanExclusive2 from '@/assets/city/jinan/exclusiveImg/exclusive2.jpg';
+import JiNanExclusive3 from '@/assets/city/jinan/exclusiveImg/exclusive3.jpg';
+import JiNanExclusive4 from '@/assets/city/jinan/exclusiveImg/exclusive4.jpg';
+import JiNanExclusive5 from '@/assets/city/jinan/exclusiveImg/exclusive5.jpg';
+import JiNanExclusive6 from '@/assets/city/jinan/exclusiveImg/exclusive6.jpg';
+import JiNanExclusive7 from '@/assets/city/jinan/exclusiveImg/exclusive7.jpg';
+import JiNanExclusive8 from '@/assets/city/jinan/exclusiveImg/exclusive8.jpg';
+
+import ZhengZhouHome from '@/assets/city/zhengzhou/home.jpg';
+import QingDaoHome from '@/assets/city//qingdao/home.jpg';
+import ChongQingHome from '@/assets/city/chongqing/home.jpg';
+import WuHanHome from '@/assets/city/wuhan/home.jpg';
+import KoreaHome from '@/assets/city/korea/home.jpg';
+import BeiJingHome from '@/assets/city/beijing/home.jpg';
 
 export const allCities: BaseCityItem[] = [
   {
     id: 'jinan',
     name: '济南',
     address: '奥林匹克体育中心',
-    image: JiNan,
+    image: JiNanHome,
     date: '2024年05月12日',
     description:
       '泉城济南，千泉汇聚。趵突泉的灵动，大明湖的静谧，为这次音乐之旅增添了几分诗意。',
@@ -40,35 +49,35 @@ export const allCities: BaseCityItem[] = [
     ],
     exclusivePicture: [
       {
-        src: 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=600',
+        src: JiNanExclusive1,
         alt: '济南奥体现场',
       },
       {
-        src: 'https://images.unsplash.com/photo-1501386761578-eac5c94b800a?w=600',
-        alt: '泉城夜色',
-      },
-      {
-        src: 'https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=600',
-        alt: '灯光璀璨',
-      },
-      {
-        src: 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=600',
+        src: JiNanExclusive2,
         alt: 'JJ深情演唱',
       },
       {
-        src: 'https://images.unsplash.com/photo-1429962714451-bb934ecdc4ec?w=600',
-        alt: '热情歌迷',
+        src: JiNanExclusive3,
+        alt: ' JJ与JM互动',
       },
       {
-        src: 'https://images.unsplash.com/photo-1506157786151-b8491531f063?w=600',
-        alt: '万人同唱',
+        src: JiNanExclusive4,
+        alt: '灯光璀璨',
       },
       {
-        src: 'https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?w=600',
+        src: JiNanExclusive5,
+        alt: 'Patti蔡宥绮',
+      },
+      {
+        src: JiNanExclusive6,
+        alt: '济南场涂鸦',
+      },
+      {
+        src: JiNanExclusive7,
         alt: '舞台特效',
       },
       {
-        src: 'https://images.unsplash.com/photo-1459749411175-04bf5292ceea?w=600',
+        src: JiNanExclusive8,
         alt: '难忘瞬间',
       },
     ],
@@ -147,7 +156,7 @@ export const allCities: BaseCityItem[] = [
     id: 'zhengzhou',
     name: '郑州',
     address: '奥林匹克体育中心',
-    image: ZhengZhou,
+    image: ZhengZhouHome,
     date: '2024年08月03日',
     description:
       '郑州地处嵩山东麓、黄河之滨，居中华腹地，史谓“天地之中”，古为“商都”，今为“绿城”。',
@@ -279,7 +288,7 @@ export const allCities: BaseCityItem[] = [
     id: 'qingdao',
     name: '青岛',
     address: '市民健身中心',
-    image: QingDao,
+    image: QingDaoHome,
     date: '2024年09月21日',
     description:
       '海风拂面，啤酒飘香。在这座美丽的海滨城市，我们一起唱响那些陪伴我们成长的旋律。',
@@ -413,7 +422,7 @@ export const allCities: BaseCityItem[] = [
     id: 'chongqing',
     name: '重庆',
     address: '奥林匹克体育中心',
-    image: ChongQing,
+    image: ChongQingHome,
     date: '2024年11月03日',
     description:
       '山城重庆，江河纵横。两江交汇的磅礴、立体城市的霓虹，让这场音乐之旅多了几分热烈与江湖气。',
@@ -547,7 +556,7 @@ export const allCities: BaseCityItem[] = [
     id: 'wuhan',
     name: '武汉',
     address: 'INTIME音乐公园',
-    image: WuHan,
+    image: WuHanHome,
     date: '2025年04月21日',
     description:
       '这一夜，舞台灯光如江潮翻涌，旋律在体育馆内回荡。那些陪伴多年的旋律，穿过人海，也穿过时间，在武汉的夜空中重新相遇。有人轻声跟唱，有人放声呐喊，歌声与心跳同频，情绪在副歌处彻底释放。',
@@ -680,7 +689,7 @@ export const allCities: BaseCityItem[] = [
     id: 'korea',
     name: '韩国',
     address: '迎仕柏综艺馆',
-    image: Korea,
+    image: KoreaHome,
     date: '2025年06月15日',
     description:
       '首尔的夜色缓缓亮起，霓虹映照着城市的节奏，也点燃了这场特别的相遇。跨越语言与国界，JJ的歌声在韩国响起，旋律依旧熟悉，却在异国的空气中多了一层浪漫与力量。',
@@ -814,7 +823,7 @@ export const allCities: BaseCityItem[] = [
     id: 'beijing',
     name: '北京',
     address: '鸟巢文化中心',
-    image: BeiJing,
+    image: BeiJingHome,
     date: '2025年07月04日',
     description:
       '在首都的夜空下，与万千歌迷共同见证JJ20的震撼现场。故宫的红墙、长城的雄伟，都成为这次旅程的美好记忆。',
