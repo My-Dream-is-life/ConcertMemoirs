@@ -9,6 +9,14 @@ import JiNanExclusive5 from '@/assets/city/jinan/exclusiveImg/exclusive5.jpg';
 import JiNanExclusive6 from '@/assets/city/jinan/exclusiveImg/exclusive6.jpg';
 import JiNanExclusive7 from '@/assets/city/jinan/exclusiveImg/exclusive7.jpg';
 import JiNanExclusive8 from '@/assets/city/jinan/exclusiveImg/exclusive8.jpg';
+import JiNanAttraction1 from '@/assets/city/jinan/attraction/attraction1.jpg';
+import JiNanAttraction2 from '@/assets/city/jinan/attraction/attraction2.jpg';
+import JiNanAttraction3 from '@/assets/city/jinan/attraction/attraction3.jpg';
+import JiNanAttraction4 from '@/assets/city/jinan/attraction/attraction4.jpg';
+import JiNanFood1 from '@/assets/city/jinan/food/food1.jpg';
+import JiNanFood2 from '@/assets/city/jinan/food/food2.jpg';
+import JiNanFood3 from '@/assets/city/jinan/food/food3.jpg';
+import JiNanFood4 from '@/assets/city/jinan/food/food4.jpg';
 
 import ZhengZhouHome from '@/assets/city/zhengzhou/home.jpg';
 import QingDaoHome from '@/assets/city//qingdao/home.jpg';
@@ -84,45 +92,45 @@ export const allCities: BaseCityItem[] = [
     attractions: [
       {
         name: '趵突泉',
-        image: 'https://images.unsplash.com/photo-1505228395891-9a51e7e86bf6?w=800',
+        image: JiNanAttraction1,
         description: '天下第一泉，三股清泉昼夜喷涌，冬日更有水汽缭绕的仙境景象。',
       },
       {
         name: '大明湖',
-        image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800',
+        image: JiNanAttraction2,
         description: '四面荷花三面柳，一城山色半城湖。泛舟湖上，感受老舍笔下的济南之美。',
       },
       {
         name: '千佛山',
-        image: 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800',
+        image: JiNanAttraction3,
         description: '登高望远，俯瞰泉城全貌。佛像、古刹，感受千年佛教文化。',
       },
       {
         name: '芙蓉街',
-        image: 'https://images.unsplash.com/photo-1533929736458-ca588d08c8be?w=800',
+        image: JiNanAttraction4,
         description: '济南最热闹的老街，美食、文创、老建筑，感受地道的济南市井气息。',
       },
     ],
     foods: [
       {
         name: '油旋',
-        image: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?w=400',
+        image: JiNanFood1,
         description:
           '济南特色小吃，外酥里嫩，层层分明，配上一碗甜沫是老济南人的早餐标配。',
       },
       {
         name: '把子肉',
-        image: 'https://images.unsplash.com/photo-1544025162-d76694265947?w=400',
+        image: JiNanFood2,
         description: '肥而不腻，入口即化。一块把子肉、一碗米饭，简单却满足。',
       },
       {
         name: '济南烧烤',
-        image: 'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=400',
+        image: JiNanFood3,
         description: '山东烧烤看济南！羊肉串、烤腰子、烤馒头片，配上大蒜，绝了！',
       },
       {
         name: '草包包子',
-        image: 'https://images.unsplash.com/photo-1496116218417-1a781b1c416c?w=400',
+        image: JiNanFood4,
         description: '百年老字号，皮薄馅大，汤汁丰富。猪肉大葱馅最经典。',
       },
     ],
