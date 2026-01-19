@@ -19,6 +19,15 @@ import JiNanFood3 from '@/assets/city/jinan/food/food3.jpg';
 import JiNanFood4 from '@/assets/city/jinan/food/food4.jpg';
 
 import ZhengZhouHome from '@/assets/city/zhengzhou/home.jpg';
+import ZhengZhouExclusive1 from '@/assets/city/zhengzhou/exclusiveImg/exclusive1.jpg';
+import ZhengZhouExclusive2 from '@/assets/city/zhengzhou/exclusiveImg/exclusive2.jpg';
+import ZhengZhouExclusive3 from '@/assets/city/zhengzhou/exclusiveImg/exclusive3.jpg';
+import ZhengZhouExclusive4 from '@/assets/city/zhengzhou/exclusiveImg/exclusive4.jpg';
+import ZhengZhouExclusive5 from '@/assets/city/zhengzhou/exclusiveImg/exclusive5.jpg';
+import ZhengZhouExclusive6 from '@/assets/city/zhengzhou/exclusiveImg/exclusive6.jpg';
+import ZhengZhouExclusive7 from '@/assets/city/zhengzhou/exclusiveImg/exclusive7.jpg';
+import ZhengZhouExclusive8 from '@/assets/city/zhengzhou/exclusiveImg/exclusive8.jpg';
+
 import QingDaoHome from '@/assets/city//qingdao/home.jpg';
 import ChongQingHome from '@/assets/city/chongqing/home.jpg';
 import WuHanHome from '@/assets/city/wuhan/home.jpg';
@@ -191,36 +200,36 @@ export const allCities: BaseCityItem[] = [
     ],
     exclusivePicture: [
       {
-        src: 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=600',
-        alt: '郑州奥体现场',
+        src: ZhengZhouExclusive1,
+        alt: '深情传递',
       },
       {
-        src: 'https://images.unsplash.com/photo-1501386761578-eac5c94b800a?w=600',
-        alt: '中原夜色',
+        src: ZhengZhouExclusive2,
+        alt: '彩排现场',
       },
       {
-        src: 'https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=600',
-        alt: '震撼舞台',
-      },
-      {
-        src: 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=600',
+        src: ZhengZhouExclusive3,
         alt: '深情演绎',
       },
       {
-        src: 'https://images.unsplash.com/photo-1429962714451-bb934ecdc4ec?w=600',
-        alt: '热情歌迷',
+        src: ZhengZhouExclusive4,
+        alt: '震撼舞台',
       },
       {
-        src: 'https://images.unsplash.com/photo-1506157786151-b8491531f063?w=600',
-        alt: '万人合唱',
+        src: ZhengZhouExclusive5,
+        alt: '专属弹唱',
       },
       {
-        src: 'https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?w=600',
+        src: ZhengZhouExclusive6,
+        alt: '郑州奥体现场',
+      },
+      {
+        src: ZhengZhouExclusive7,
         alt: '绚丽灯光',
       },
       {
-        src: 'https://images.unsplash.com/photo-1459749411175-04bf5292ceea?w=600',
-        alt: '完美收官',
+        src: ZhengZhouExclusive8,
+        alt: '深情演绎',
       },
     ],
     attractions: [
