@@ -1,11 +1,19 @@
 import JiNanHome from '@/assets/city/jinan/home.jpg';
-import ZhengZhouHome from '@/assets//city/zhengzhou/home.jpg';
+import JiNanSong from '@/assets/city/jinan/whereverYouAre.mp3';
+import ZhengZhouHome from '@/assets/city/zhengzhou/home.jpg';
+import ZhengZhouSong from '@/assets/city/zhengzhou/life.mp3';
 import QingDaoHome from '@/assets/city/qingdao/home.jpg';
+import QingDaoSong from '@/assets/city/qingdao/windIsRising.mp3';
 import ChongQingHome from '@/assets/city/chongqing/home.jpg';
+import ChongQingSong from '@/assets/city/chongqing/loveMeOrHim.mp3';
 import WuHanHome from '@/assets/city/wuhan/home.jpg';
+import WuHanSong from '@/assets/city/wuhan/hero.mp3';
 import KoreaHome from '@/assets/city/korea/home.jpg';
+import KoreaSong from '@/assets/city/korea/freak.mp3';
 import BeiJingHome from '@/assets/city/beijing/home.jpg';
+import BeiJingSong from '@/assets/city/beijing/takeABow.mp3';
 import GalleryConcert from '@/assets/gallery-concert.jpg';
+import gallerySong from '@/assets/galleryRemember.mp3';
 import type { GalleryItem } from '@/types';
 
 export const galleries: GalleryItem[] = [
@@ -16,6 +24,8 @@ export const galleries: GalleryItem[] = [
     image: JiNanHome,
     memory: '泉城的热情与感动',
     color: '#22c55e',
+    song: '《只要有你的地方》',
+    songFile: JiNanSong,
   },
   {
     id: 2,
@@ -24,6 +34,8 @@ export const galleries: GalleryItem[] = [
     image: ZhengZhouHome,
     memory: '中原大地的音乐狂欢',
     color: '#f59e0b',
+    song: '《生生》',
+    songFile: ZhengZhouSong,
   },
   {
     id: 3,
@@ -32,6 +44,8 @@ export const galleries: GalleryItem[] = [
     image: QingDaoHome,
     memory: '海风中的音乐盛宴',
     color: '#3b82f6',
+    song: '《起风了》',
+    songFile: QingDaoSong,
   },
   {
     id: 4,
@@ -40,6 +54,8 @@ export const galleries: GalleryItem[] = [
     image: ChongQingHome,
     memory: '山城夜色下的音浪',
     color: '#ec4899',
+    song: '《爱我还是他》',
+    songFile: ChongQingSong,
   },
   {
     id: 5,
@@ -48,6 +64,8 @@ export const galleries: GalleryItem[] = [
     image: WuHanHome,
     memory: '江城春风与歌声交织',
     color: '#06b6d4',
+    song: '《真心英雄》',
+    songFile: WuHanSong,
   },
   {
     id: 6,
@@ -56,6 +74,8 @@ export const galleries: GalleryItem[] = [
     image: KoreaHome,
     memory: '跨越国界的音乐之旅',
     color: '#8b5cf6',
+    song: '《Freak》',
+    songFile: KoreaSong,
   },
   {
     id: 7,
@@ -64,6 +84,8 @@ export const galleries: GalleryItem[] = [
     image: BeiJingHome,
     memory: '鸟巢的星光与万人合唱',
     color: '#a855f7',
+    song: '《谢幕》',
+    songFile: BeiJingSong,
   },
   {
     id: 8,
@@ -72,5 +94,7 @@ export const galleries: GalleryItem[] = [
     image: GalleryConcert,
     memory: '每一次相遇都是奇迹',
     color: '#f59e0b',
+    song: '《记得》',
+    songFile: gallerySong,
   },
 ];
