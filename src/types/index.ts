@@ -19,6 +19,8 @@ export interface GalleryItem {
   image: string;
   memory: string;
   color: string;
+  song: string;
+  songFile: string;
 }
 
 export interface BaseItem {

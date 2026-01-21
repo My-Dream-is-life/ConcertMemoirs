@@ -1,14 +1,17 @@
-import { FC, useState, useEffect, useCallback, useMemo } from 'react';
+import { FC, useState, useEffect, useCallback, useMemo, useRef } from 'react';
 import { Card, Typography } from 'antd';
 import {
   LeftOutlined,
   RightOutlined,
   PlayCircleOutlined,
   PauseCircleOutlined,
+  SoundOutlined,
+  MutedOutlined,
 } from '@ant-design/icons';
 import type { GalleryItem } from '@/types';
 import { useSmallLayout } from '@/hooks/useSmallLayout';
 import BaseParticles from '../atoms/BaseParticles';
+import { formatTime } from '@/lib/utils';
 
 interface RotatingGalleryProps {
   galleries: GalleryItem[];
@@ -21,7 +24,12 @@ const RotatingGallery: FC<RotatingGalleryProps> = ({ galleries }) => {
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(true);
-  const [isHovered, setIsHovered] = useState(false);
+  const [currentTime, setCurrentTime] = useState(0);
+  const [duration, setDuration] = useState(0);
+
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+  const progressRef = useRef<HTMLDivElement>(null);
+  const isSwitchingRef = useRef(false);
 
   const total = galleries.length;
   const angleStep = 360 / total;
@@ -30,24 +38,84 @@ const RotatingGallery: FC<RotatingGalleryProps> = ({ galleries }) => {
     () => galleries[currentIndex],
     [currentIndex, galleries]
   );
-
-  useEffect(() => {
-    if (!isPlaying || isHovered) return;
-
-    const interval = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % total);
-    }, 3500);
-
-    return () => clearInterval(interval);
-  }, [isPlaying, isHovered, total]);
+  const particles = useMemo(() => <BaseParticles />, []);
 
   const handlePrev = useCallback(() => {
     setCurrentIndex((prev) => (prev - 1 + total) % total);
+    setIsPlaying(true);
   }, [total]);
 
   const handleNext = useCallback(() => {
     setCurrentIndex((prev) => (prev + 1) % total);
+    setIsPlaying(true);
   }, [total]);
+
+  useEffect(() => {
+    const audio = new Audio();
+    audio.volume = 0.5;
+    audio.loop = false;
+    audioRef.current = audio;
+
+    const onTimeUpdate = () => {
+      setCurrentTime(audio.currentTime);
+    };
+    const onLoaded = () => {
+      setDuration(audio.duration || 0);
+    };
+    const onEnded = () => {
+      if (isSwitchingRef.current) return;
+      if (!isPlaying) return;
+
+      setCurrentIndex((prev) => (prev + 1) % total);
+    };
+
+    audio.addEventListener('timeupdate', onTimeUpdate);
+    audio.addEventListener('loadedmetadata', onLoaded);
+    audio.addEventListener('ended', onEnded);
+
+    return () => {
+      audio.pause();
+      audio.removeEventListener('timeupdate', onTimeUpdate);
+      audio.removeEventListener('loadedmetadata', onLoaded);
+      audio.removeEventListener('ended', onEnded);
+      audioRef.current = null;
+    };
+  }, [isPlaying, total]);
+
+  useEffect(() => {
+    const audio = audioRef.current;
+
+    if (!audio) return;
+
+    isSwitchingRef.current = true;
+    audio.src = currentGallery.songFile;
+    audio.currentTime = 0;
+    setCurrentTime(0);
+    setDuration(0);
+
+    const playIfNeeded = async () => {
+      if (isPlaying) {
+        try {
+          await audio.play();
+        } catch {}
+      }
+      isSwitchingRef.current = false;
+    };
+
+    playIfNeeded();
+  }, [currentGallery, isPlaying]);
+
+  useEffect(() => {
+    const audio = audioRef.current;
+
+    if (!audio) return;
+
+    if (isPlaying) {
+      audio.play().catch(() => {});
+    } else {
+      audio.pause();
+    }
+  }, [isPlaying]);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -62,6 +130,17 @@ const RotatingGallery: FC<RotatingGalleryProps> = ({ galleries }) => {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [handlePrev, handleNext]);
 
+  const handleProgressClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!audioRef.current || !progressRef.current) return;
+
+    const rect = progressRef.current.getBoundingClientRect();
+    const percentage = (e.clientX - rect.left) / rect.width;
+    const newTime = percentage * duration;
+
+    audioRef.current.currentTime = newTime;
+    setCurrentTime(newTime);
+  };
+
   return (
     <div className="relative py-12">
       <div
@@ -71,7 +150,7 @@ const RotatingGallery: FC<RotatingGalleryProps> = ({ galleries }) => {
         }}
       />
 
-      <BaseParticles />
+      {particles}
 
       <Title
         level={2}
@@ -84,12 +163,77 @@ const RotatingGallery: FC<RotatingGalleryProps> = ({ galleries }) => {
         {currentGallery.name} · {currentGallery.date}
       </Text>
 
-      <div
-        className="relative h-[420px] md:h-[520px]"
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-        style={{ perspective: '1200px' }}
-      >
+      <div className="relative z-10 mb-6 flex flex-col items-center gap-3 px-4">
+        <div
+          className="flex items-center gap-2 rounded-full border px-4 py-2 backdrop-blur-sm transition-all duration-300"
+          style={{
+            backgroundColor: `${currentGallery.color}20`,
+            borderColor: `${currentGallery.color}50`,
+          }}
+        >
+          <div className="flex h-4 items-end gap-0.5">
+            {[1, 2, 3, 4].map((i) => (
+              <div
+                key={i}
+                className={`w-1 rounded-full transition-all duration-300 ${
+                  isPlaying ? 'animate-music-bar' : 'h-1'
+                }`}
+                style={{
+                  backgroundColor: currentGallery.color,
+                  animationDelay: `${i * 0.2}s`,
+                  height: isPlaying ? undefined : '4px',
+                }}
+              />
+            ))}
+          </div>
+          <span className="text-sm font-medium text-white">
+            {isPlaying ? '♪ 正在播放' : '⏸ 已暂停'} · {currentGallery.song}
+          </span>
+          <button
+            onClick={() => {
+              setIsPlaying(!isPlaying);
+            }}
+            className="ml-2 rounded-full p-1 transition-colors hover:bg-white/10"
+          >
+            {!isPlaying ? (
+              <MutedOutlined className="text-gray-400" />
+            ) : (
+              <SoundOutlined style={{ color: currentGallery.color }} />
+            )}
+          </button>
+        </div>
+
+        <div className="flex w-full max-w-md items-center gap-3">
+          <span className="w-10 text-right text-xs text-gray-400">
+            {formatTime(currentTime)}
+          </span>
+          <div
+            ref={progressRef}
+            onClick={handleProgressClick}
+            className="group relative h-2 flex-1 cursor-pointer overflow-hidden rounded-full bg-white/10"
+          >
+            <div
+              className="absolute inset-0 rounded-full transition-all duration-100"
+              style={{
+                width: duration > 0 ? `${(currentTime / duration) * 100}%` : '0%',
+                background: `linear-gradient(90deg, ${currentGallery.color}, ${currentGallery.color}cc)`,
+              }}
+            />
+            <div
+              className="absolute bottom-0 top-0 -mt-0.5 h-3 w-3 rounded-full opacity-0 shadow-lg transition-opacity group-hover:opacity-100"
+              style={{
+                left:
+                  duration > 0 ? `calc(${(currentTime / duration) * 100}% - 6px)` : '0%',
+                backgroundColor: currentGallery.color,
+                boxShadow: `0 0 10px ${currentGallery.color}`,
+              }}
+            />
+          </div>
+          <span className="w-10 text-xs text-gray-400">{formatTime(duration)}</span>
+        </div>
+      </div>
+
+      <div className="relative h-[420px] md:h-[520px]" style={{ perspective: '1200px' }}>
         <div className="absolute inset-0 flex items-center justify-center">
           <div
             className="relative h-[300px] w-[220px] md:h-[340px] md:w-[260px]"
@@ -217,13 +361,14 @@ const RotatingGallery: FC<RotatingGalleryProps> = ({ galleries }) => {
 
                           {isActive && (
                             <div
-                              className="absolute right-3 top-3 animate-pulse rounded-full px-3 py-1.5 text-xs font-medium text-white backdrop-blur-sm"
+                              className="absolute right-3 top-3 rounded-full px-3 py-1.5 text-xs font-medium text-white backdrop-blur-sm"
                               style={{
                                 backgroundColor: `${item.color}cc`,
                                 boxShadow: `0 4px 15px ${item.color}50`,
+                                animation: isPlaying ? 'pulse 2s infinite' : 'none',
                               }}
                             >
-                              正在播放
+                              {isPlaying ? '正在播放' : '已暂停'}
                             </div>
                           )}
                         </div>
@@ -300,6 +445,13 @@ const RotatingGallery: FC<RotatingGalleryProps> = ({ galleries }) => {
         }
         .animate-float {
           animation: float 4s ease-in-out infinite;
+        }
+        @keyframes music-bar {
+          0%, 100% { height: 4px; }
+          50% { height: 16px; }
+        }
+        .animate-music-bar {
+          animation: music-bar 0.5s ease-in-out infinite;
         }
       `}</style>
     </div>
