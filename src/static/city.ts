@@ -37,6 +37,15 @@ import ZhengZhouFood3 from '@/assets/city/zhengzhou/food/food3.jpg';
 import ZhengZhouFood4 from '@/assets/city/zhengzhou/food/food4.jpg';
 
 import QingDaoHome from '@/assets/city//qingdao/home.jpg';
+import QingDaoExclusive1 from '@/assets/city/qingdao/exclusiveImg/exclusive1.jpg';
+import QingDaoExclusive2 from '@/assets/city/qingdao/exclusiveImg/exclusive2.jpg';
+import QingDaoExclusive3 from '@/assets/city/qingdao/exclusiveImg/exclusive3.jpg';
+import QingDaoExclusive4 from '@/assets/city/qingdao/exclusiveImg/exclusive4.jpg';
+import QingDaoExclusive5 from '@/assets/city/qingdao/exclusiveImg/exclusive5.jpg';
+import QingDaoExclusive6 from '@/assets/city/qingdao/exclusiveImg/exclusive6.jpg';
+import QingDaoExclusive7 from '@/assets/city/qingdao/exclusiveImg/exclusive7.jpg';
+import QingDaoExclusive8 from '@/assets/city/qingdao/exclusiveImg/exclusive8.jpg';
+
 import ChongQingHome from '@/assets/city/chongqing/home.jpg';
 import WuHanHome from '@/assets/city/wuhan/home.jpg';
 import KoreaHome from '@/assets/city/korea/home.jpg';
@@ -340,35 +349,35 @@ export const allCities: BaseCityItem[] = [
     ],
     exclusivePicture: [
       {
-        src: 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=600',
-        alt: '青岛演唱会现场',
+        src: QingDaoExclusive1,
+        alt: '吉他solo',
       },
       {
-        src: 'https://images.unsplash.com/photo-1501386761578-eac5c94b800a?w=600',
-        alt: '海风中的歌声',
+        src: QingDaoExclusive2,
+        alt: '亲情弹唱',
       },
       {
-        src: 'https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=600',
-        alt: '绚丽舞台',
+        src: QingDaoExclusive3,
+        alt: 'SMG青岛限定',
       },
       {
-        src: 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=600',
+        src: QingDaoExclusive4,
         alt: '深情演绎',
       },
       {
-        src: 'https://images.unsplash.com/photo-1429962714451-bb934ecdc4ec?w=600',
-        alt: '歌迷互动',
+        src: QingDaoExclusive5,
+        alt: '璀璨星空',
       },
       {
-        src: 'https://images.unsplash.com/photo-1506157786151-b8491531f063?w=600',
-        alt: '万人合唱',
-      },
-      {
-        src: 'https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?w=600',
+        src: QingDaoExclusive6,
         alt: '灯光秀',
       },
       {
-        src: 'https://images.unsplash.com/photo-1459749411175-04bf5292ceea?w=600',
+        src: QingDaoExclusive7,
+        alt: '可爱小林',
+      },
+      {
+        src: QingDaoExclusive8,
         alt: '完美ending',
       },
     ],
