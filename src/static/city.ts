@@ -45,6 +45,14 @@ import QingDaoExclusive5 from '@/assets/city/qingdao/exclusiveImg/exclusive5.jpg
 import QingDaoExclusive6 from '@/assets/city/qingdao/exclusiveImg/exclusive6.jpg';
 import QingDaoExclusive7 from '@/assets/city/qingdao/exclusiveImg/exclusive7.jpg';
 import QingDaoExclusive8 from '@/assets/city/qingdao/exclusiveImg/exclusive8.jpg';
+import QingDaoAttraction1 from '@/assets/city/qingdao/attraction/attraction1.jpg';
+import QingDaoAttraction2 from '@/assets/city/qingdao/attraction/attraction2.jpg';
+import QingDaoAttraction3 from '@/assets/city/qingdao/attraction/attraction3.jpg';
+import QingDaoAttraction4 from '@/assets/city/qingdao/attraction/attraction4.jpg';
+import QingDaoFood1 from '@/assets/city/qingdao/food/food1.jpg';
+import QingDaoFood2 from '@/assets/city/qingdao/food/food2.jpg';
+import QingDaoFood3 from '@/assets/city/qingdao/food/food3.jpg';
+import QingDaoFood4 from '@/assets/city/qingdao/food/food4.jpg';
 
 import ChongQingHome from '@/assets/city/chongqing/home.jpg';
 import WuHanHome from '@/assets/city/wuhan/home.jpg';
@@ -384,44 +392,44 @@ export const allCities: BaseCityItem[] = [
     attractions: [
       {
         name: '栈桥',
-        image: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800',
+        image: QingDaoAttraction1,
         description: '青岛地标，百年历史。漫步栈桥，感受海风拂面，远眺小青岛灯塔。',
       },
       {
         name: '八大关风景区',
-        image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800',
+        image: QingDaoAttraction2,
         description: '万国建筑博览会，红瓦绿树、碧海蓝天，每条街道都是一幅画。',
       },
       {
         name: '崂山',
-        image: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800',
+        image: QingDaoAttraction3,
         description: '海上名山第一，道教圣地。推荐太清宫线路，欣赏海天一色。',
       },
       {
         name: '青岛啤酒博物馆',
-        image: 'https://images.unsplash.com/photo-1535958636474-b021ee887b13?w=800',
+        image: QingDaoAttraction4,
         description: '了解青岛啤酒的百年历史，品尝原浆和纯生，感受啤酒文化。',
       },
     ],
     foods: [
       {
         name: '青岛大虾',
-        image: 'https://images.unsplash.com/photo-1565680018434-b513d5e5fd47?w=400',
+        image: QingDaoFood1,
         description: '个大肉鲜，白灼或椒盐都好吃。推荐去台东夜市或劈柴院品尝。',
       },
       {
         name: '海鲜大餐',
-        image: 'https://images.unsplash.com/photo-1559339352-11d035aa65de?w=400',
+        image: QingDaoFood2,
         description: '蛤蜊、海蛎子、海虹、八爪鱼...配上青岛啤酒，人间美味！',
       },
       {
         name: '鲅鱼水饺',
-        image: 'https://images.unsplash.com/photo-1496116218417-1a781b1c416c?w=400',
+        image: QingDaoFood3,
         description: '青岛特色，鲅鱼肉馅鲜嫩爽滑，一口一个鲜。',
       },
       {
         name: '排骨米饭',
-        image: 'https://images.unsplash.com/photo-1544025162-d76694265947?w=400',
+        image: QingDaoFood4,
         description: '青岛人的日常美食，酱香浓郁的排骨配上白米饭，满足感爆棚。',
       },
     ],
