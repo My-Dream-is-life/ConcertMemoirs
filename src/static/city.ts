@@ -27,6 +27,14 @@ import ZhengZhouExclusive5 from '@/assets/city/zhengzhou/exclusiveImg/exclusive5
 import ZhengZhouExclusive6 from '@/assets/city/zhengzhou/exclusiveImg/exclusive6.jpg';
 import ZhengZhouExclusive7 from '@/assets/city/zhengzhou/exclusiveImg/exclusive7.jpg';
 import ZhengZhouExclusive8 from '@/assets/city/zhengzhou/exclusiveImg/exclusive8.jpg';
+import ZhengZhouAttraction1 from '@/assets/city/zhengzhou/attraction/attraction1.jpg';
+import ZhengZhouAttraction2 from '@/assets/city/zhengzhou/attraction/attraction2.jpg';
+import ZhengZhouAttraction3 from '@/assets/city/zhengzhou/attraction/attraction3.jpg';
+import ZhengZhouAttraction4 from '@/assets/city/zhengzhou/attraction/attraction4.jpg';
+import ZhengZhouFood1 from '@/assets/city/zhengzhou/food/food1.jpg';
+import ZhengZhouFood2 from '@/assets/city/zhengzhou/food/food2.jpg';
+import ZhengZhouFood3 from '@/assets/city/zhengzhou/food/food3.jpg';
+import ZhengZhouFood4 from '@/assets/city/zhengzhou/food/food4.jpg';
 
 import QingDaoHome from '@/assets/city//qingdao/home.jpg';
 import ChongQingHome from '@/assets/city/chongqing/home.jpg';
@@ -235,44 +243,44 @@ export const allCities: BaseCityItem[] = [
     attractions: [
       {
         name: '少林寺',
-        image: 'https://images.unsplash.com/photo-1508804185872-d7badad00f7d?w=800',
+        image: ZhengZhouAttraction1,
         description: '天下武功出少林，感受千年古刹的禅武文化，观赏精彩的少林功夫表演。',
       },
       {
         name: '龙门石窟',
-        image: 'https://images.unsplash.com/photo-1599571234909-29ed5d1321d6?w=800',
+        image: ZhengZhouAttraction2,
         description: '中国四大石窟之一，卢舍那大佛的微笑穿越千年，震撼人心。',
       },
       {
         name: '黄河风景区',
-        image: 'https://images.unsplash.com/photo-1548013146-72479768bada?w=800',
+        image: ZhengZhouAttraction3,
         description: '母亲河畔感受黄河文化，炎黄二帝巨塑气势磅礴。',
       },
       {
         name: '河南博物院',
-        image: 'https://images.unsplash.com/photo-1566438480900-0609be27a4be?w=800',
+        image: ZhengZhouAttraction4,
         description: '馆藏文物17万余件，贾湖骨笛、妇好鸮尊等国宝级文物不容错过。',
       },
     ],
     foods: [
       {
         name: '烩面',
-        image: 'https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=400',
+        image: ZhengZhouFood1,
         description: '河南特色面食，面条筋道，汤底浓郁，配上香菜、豆腐丝，暖胃又暖心。',
       },
       {
         name: '胡辣汤',
-        image: 'https://images.unsplash.com/photo-1555126634-323283e090fa?w=400',
+        image: ZhengZhouFood2,
         description: '河南人的早餐灵魂，麻辣鲜香，配上油条油饼，开启元气满满的一天。',
       },
       {
         name: '灌汤包',
-        image: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400',
+        image: ZhengZhouFood3,
         description: '皮薄馅大汤汁多，先开窗后喝汤再吃肉，才是正确吃法。',
       },
       {
         name: '道口烧鸡',
-        image: 'https://images.unsplash.com/photo-1518492104633-130d0cc84637?w=400',
+        image: ZhengZhouFood4,
         description: '三百年历史的中华名吃，色泽金黄，肉质酥烂，香味浓郁。',
       },
     ],
