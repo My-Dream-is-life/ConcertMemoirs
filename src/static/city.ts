@@ -73,6 +73,15 @@ import ChongQingFood3 from '@/assets/city/chongqing/food/food3.jpg';
 import ChongQingFood4 from '@/assets/city/chongqing/food/food4.jpg';
 
 import WuHanHome from '@/assets/city/wuhan/home.jpg';
+import WuHanExclusive1 from '@/assets/city/wuhan/exclusiveImg/exclusive1.jpg';
+import WuHanExclusive2 from '@/assets/city/wuhan/exclusiveImg/exclusive2.jpg';
+import WuHanExclusive3 from '@/assets/city/wuhan/exclusiveImg/exclusive3.jpg';
+import WuHanExclusive4 from '@/assets/city/wuhan/exclusiveImg/exclusive4.jpg';
+import WuHanExclusive5 from '@/assets/city/wuhan/exclusiveImg/exclusive5.jpg';
+import WuHanExclusive6 from '@/assets/city/wuhan/exclusiveImg/exclusive6.jpg';
+import WuHanExclusive7 from '@/assets/city/wuhan/exclusiveImg/exclusive7.jpg';
+import WuHanExclusive8 from '@/assets/city/wuhan/exclusiveImg/exclusive8.jpg';
+
 import KoreaHome from '@/assets/city/korea/home.jpg';
 import BeiJingHome from '@/assets/city/beijing/home.jpg';
 
@@ -642,35 +651,35 @@ export const allCities: BaseCityItem[] = [
     ],
     exclusivePicture: [
       {
-        src: 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=600',
-        alt: '武汉体育中心',
+        src: WuHanExclusive1,
+        alt: '亲情演唱',
       },
       {
-        src: 'https://images.unsplash.com/photo-1501386761578-eac5c94b800a?w=600',
-        alt: '江城夜色',
+        src: WuHanExclusive2,
+        alt: '动人时刻',
       },
       {
-        src: 'https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=600',
-        alt: '华丽舞台',
+        src: WuHanExclusive3,
+        alt: '大哥出场',
       },
       {
-        src: 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=600',
+        src: WuHanExclusive4,
         alt: '深情演唱',
       },
       {
-        src: 'https://images.unsplash.com/photo-1429962714451-bb934ecdc4ec?w=600',
+        src: WuHanExclusive5,
         alt: '歌迷互动',
       },
       {
-        src: 'https://images.unsplash.com/photo-1506157786151-b8491531f063?w=600',
-        alt: '万人合唱',
-      },
-      {
-        src: 'https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?w=600',
+        src: WuHanExclusive6,
         alt: '灯光璀璨',
       },
       {
-        src: 'https://images.unsplash.com/photo-1459749411175-04bf5292ceea?w=600',
+        src: WuHanExclusive7,
+        alt: '万人合唱',
+      },
+      {
+        src: WuHanExclusive8,
         alt: '完美落幕',
       },
     ],
