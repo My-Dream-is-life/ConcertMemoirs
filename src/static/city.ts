@@ -55,6 +55,23 @@ import QingDaoFood3 from '@/assets/city/qingdao/food/food3.jpg';
 import QingDaoFood4 from '@/assets/city/qingdao/food/food4.jpg';
 
 import ChongQingHome from '@/assets/city/chongqing/home.jpg';
+import ChongQingExclusive1 from '@/assets/city/chongqing/exclusiveImg/exclusive1.jpg';
+import ChongQingExclusive2 from '@/assets/city/chongqing/exclusiveImg/exclusive2.jpg';
+import ChongQingExclusive3 from '@/assets/city/chongqing/exclusiveImg/exclusive3.jpg';
+import ChongQingExclusive4 from '@/assets/city/chongqing/exclusiveImg/exclusive4.jpg';
+import ChongQingExclusive5 from '@/assets/city/chongqing/exclusiveImg/exclusive5.jpg';
+import ChongQingExclusive6 from '@/assets/city/chongqing/exclusiveImg/exclusive6.jpg';
+import ChongQingExclusive7 from '@/assets/city/chongqing/exclusiveImg/exclusive7.jpg';
+import ChongQingExclusive8 from '@/assets/city/chongqing/exclusiveImg/exclusive8.jpg';
+import ChongQingAttraction1 from '@/assets/city/chongqing/attraction/attraction1.jpg';
+import ChongQingAttraction2 from '@/assets/city/chongqing/attraction/attraction2.jpg';
+import ChongQingAttraction3 from '@/assets/city/chongqing/attraction/attraction3.jpg';
+import ChongQingAttraction4 from '@/assets/city/chongqing/attraction/attraction4.jpg';
+import ChongQingFood1 from '@/assets/city/chongqing/food/food1.jpg';
+import ChongQingFood2 from '@/assets/city/chongqing/food/food2.jpg';
+import ChongQingFood3 from '@/assets/city/chongqing/food/food3.jpg';
+import ChongQingFood4 from '@/assets/city/chongqing/food/food4.jpg';
+
 import WuHanHome from '@/assets/city/wuhan/home.jpg';
 import KoreaHome from '@/assets/city/korea/home.jpg';
 import BeiJingHome from '@/assets/city/beijing/home.jpg';
@@ -491,82 +508,82 @@ export const allCities: BaseCityItem[] = [
     ],
     exclusivePicture: [
       {
-        src: 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=600',
-        alt: '重庆奥体现场',
+        src: ChongQingExclusive1,
+        alt: '重量级嘉宾',
       },
       {
-        src: 'https://images.unsplash.com/photo-1501386761578-eac5c94b800a?w=600',
-        alt: '山城夜景',
+        src: ChongQingExclusive2,
+        alt: '演唱会现场',
       },
       {
-        src: 'https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=600',
+        src: ChongQingExclusive3,
         alt: '绚丽舞台',
       },
       {
-        src: 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=600',
+        src: ChongQingExclusive4,
         alt: '深情时刻',
       },
       {
-        src: 'https://images.unsplash.com/photo-1429962714451-bb934ecdc4ec?w=600',
+        src: ChongQingExclusive5,
         alt: '热情互动',
       },
       {
-        src: 'https://images.unsplash.com/photo-1506157786151-b8491531f063?w=600',
-        alt: '万人齐唱',
+        src: ChongQingExclusive6,
+        alt: '重庆涂鸦板',
       },
       {
-        src: 'https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?w=600',
-        alt: '烟火绽放',
+        src: ChongQingExclusive7,
+        alt: '林距离',
       },
       {
-        src: 'https://images.unsplash.com/photo-1459749411175-04bf5292ceea?w=600',
+        src: ChongQingExclusive8,
         alt: '难忘夜晚',
       },
     ],
     attractions: [
       {
         name: '洪崖洞',
-        image: 'https://images.unsplash.com/photo-1508804185872-d7badad00f7d?w=800',
+        image: ChongQingAttraction1,
         description:
           '现实版千与千寻，夜景璀璨。11层吊脚楼依山而建，每一层都是不同的风景。',
       },
       {
         name: '解放碑',
-        image: 'https://images.unsplash.com/photo-1599571234909-29ed5d1321d6?w=800',
+        image: ChongQingAttraction2,
         description:
           '重庆地标，繁华的商业中心。周边美食云集，是感受山城夜生活的最佳起点。',
       },
       {
         name: '磁器口古镇',
-        image: 'https://images.unsplash.com/photo-1548013146-72479768bada?w=800',
+        image: ChongQingAttraction3,
         description: '千年古镇，石板路蜿蜒。陈麻花、毛血旺的香味飘散在青石巷中。',
       },
       {
         name: '长江索道',
-        image: 'https://images.unsplash.com/photo-1566438480900-0609be27a4be?w=800',
+        image: ChongQingAttraction4,
         description: '山城特有的空中交通，横跨长江，俯瞰两岸风光，体验8D魔幻城市。',
       },
     ],
     foods: [
       {
         name: '重庆火锅',
-        image: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400',
+        image: ChongQingFood1,
         description:
           '麻辣鲜香，牛油锅底是灵魂。毛肚鸭肠涮七上八下，配上油碟蒜泥，巴适得很！',
       },
       {
         name: '重庆小面',
-        image: 'https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=400',
+        image: ChongQingFood2,
         description: '重庆人的早餐标配，麻辣味十足。一碗小面，开启地道的山城一天。',
       },
       {
         name: '酸辣粉',
-        image: 'https://images.unsplash.com/photo-1555126634-323283e090fa?w=400',
+        image: ChongQingFood3,
         description: '酸辣爽口，粉条滑嫩。配上花生碎和香菜，酸爽开胃。',
       },
       {
         name: '江湖菜',
-        image: 'https://images.unsplash.com/photo-1518492104633-130d0cc84637?w=400',
+        image: ChongQingFood4,
         description: '来凤鱼、辣子鸡、毛血旺...大盆大碗，麻辣鲜香，是重庆人的豪爽性格。',
       },
     ],
