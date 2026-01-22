@@ -73,6 +73,23 @@ import ChongQingFood3 from '@/assets/city/chongqing/food/food3.jpg';
 import ChongQingFood4 from '@/assets/city/chongqing/food/food4.jpg';
 
 import WuHanHome from '@/assets/city/wuhan/home.jpg';
+import WuHanExclusive1 from '@/assets/city/wuhan/exclusiveImg/exclusive1.jpg';
+import WuHanExclusive2 from '@/assets/city/wuhan/exclusiveImg/exclusive2.jpg';
+import WuHanExclusive3 from '@/assets/city/wuhan/exclusiveImg/exclusive3.jpg';
+import WuHanExclusive4 from '@/assets/city/wuhan/exclusiveImg/exclusive4.jpg';
+import WuHanExclusive5 from '@/assets/city/wuhan/exclusiveImg/exclusive5.jpg';
+import WuHanExclusive6 from '@/assets/city/wuhan/exclusiveImg/exclusive6.jpg';
+import WuHanExclusive7 from '@/assets/city/wuhan/exclusiveImg/exclusive7.jpg';
+import WuHanExclusive8 from '@/assets/city/wuhan/exclusiveImg/exclusive8.jpg';
+import WuHanAttraction1 from '@/assets/city/wuhan/attraction/attraction1.jpg';
+import WuHanAttraction2 from '@/assets/city/wuhan/attraction/attraction2.jpg';
+import WuHanAttraction3 from '@/assets/city/wuhan/attraction/attraction3.jpg';
+import WuHanAttraction4 from '@/assets/city/wuhan/attraction/attraction4.jpg';
+import WuHanFood1 from '@/assets/city/wuhan/food/food1.jpg';
+import WuHanFood2 from '@/assets/city/wuhan/food/food2.jpg';
+import WuHanFood3 from '@/assets/city/wuhan/food/food3.jpg';
+import WuHanFood4 from '@/assets/city/wuhan/food/food4.jpg';
+
 import KoreaHome from '@/assets/city/korea/home.jpg';
 import BeiJingHome from '@/assets/city/beijing/home.jpg';
 
@@ -642,81 +659,81 @@ export const allCities: BaseCityItem[] = [
     ],
     exclusivePicture: [
       {
-        src: 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=600',
-        alt: '武汉体育中心',
+        src: WuHanExclusive1,
+        alt: '亲情演唱',
       },
       {
-        src: 'https://images.unsplash.com/photo-1501386761578-eac5c94b800a?w=600',
-        alt: '江城夜色',
+        src: WuHanExclusive2,
+        alt: '动人时刻',
       },
       {
-        src: 'https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=600',
-        alt: '华丽舞台',
+        src: WuHanExclusive3,
+        alt: '大哥出场',
       },
       {
-        src: 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=600',
+        src: WuHanExclusive4,
         alt: '深情演唱',
       },
       {
-        src: 'https://images.unsplash.com/photo-1429962714451-bb934ecdc4ec?w=600',
+        src: WuHanExclusive5,
         alt: '歌迷互动',
       },
       {
-        src: 'https://images.unsplash.com/photo-1506157786151-b8491531f063?w=600',
-        alt: '万人合唱',
-      },
-      {
-        src: 'https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?w=600',
+        src: WuHanExclusive6,
         alt: '灯光璀璨',
       },
       {
-        src: 'https://images.unsplash.com/photo-1459749411175-04bf5292ceea?w=600',
+        src: WuHanExclusive7,
+        alt: '万人合唱',
+      },
+      {
+        src: WuHanExclusive8,
         alt: '完美落幕',
       },
     ],
     attractions: [
       {
         name: '黄鹤楼',
-        image: 'https://images.unsplash.com/photo-1508804185872-d7badad00f7d?w=800',
+        image: WuHanAttraction1,
         description:
           '江南三大名楼之首，崔颢题诗、李白搁笔的传奇之地。登楼远眺，尽览江城风光。',
       },
       {
         name: '东湖风景区',
-        image: 'https://images.unsplash.com/photo-1599571234909-29ed5d1321d6?w=800',
+        image: WuHanAttraction2,
         description: '中国最大的城中湖，樱花盛开时节美不胜收，骑行环湖是最佳体验方式。',
       },
       {
         name: '武汉长江大桥',
-        image: 'https://images.unsplash.com/photo-1548013146-72479768bada?w=800',
+        image: WuHanAttraction3,
         description: '万里长江第一桥，承载着新中国的建设记忆。桥上漫步，感受长江的壮阔。',
       },
       {
         name: '户部巷',
-        image: 'https://images.unsplash.com/photo-1566438480900-0609be27a4be?w=800',
+        image: WuHanAttraction4,
         description: '汉味小吃第一巷，热干面、豆皮、面窝...一条巷子吃遍武汉美食。',
       },
     ],
     foods: [
       {
         name: '热干面',
-        image: 'https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=400',
+        image: WuHanFood1,
         description:
           '武汉人的灵魂早餐，芝麻酱香浓郁，面条筋道爽滑。加卤蛋和酸豆角更地道！',
       },
       {
         name: '武昌鱼',
-        image: 'https://images.unsplash.com/photo-1518492104633-130d0cc84637?w=400',
+        image: WuHanFood2,
         description: '才饮长沙水，又食武昌鱼。清蒸最佳，肉质细嫩，鲜美无比。',
       },
       {
         name: '豆皮',
-        image: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400',
+        image: WuHanFood3,
         description: '老通城的招牌，金黄酥脆的外皮包裹着糯米和肉丁，香气四溢。',
       },
       {
         name: '鸭脖',
-        image: 'https://images.unsplash.com/photo-1555126634-323283e090fa?w=400',
+        image: WuHanFood4,
         description: '精武鸭脖、周黑鸭...麻辣鲜香，是追剧看球的最佳伴侣。',
       },
     ],
