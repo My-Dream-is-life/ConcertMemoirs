@@ -55,6 +55,15 @@ import QingDaoFood3 from '@/assets/city/qingdao/food/food3.jpg';
 import QingDaoFood4 from '@/assets/city/qingdao/food/food4.jpg';
 
 import ChongQingHome from '@/assets/city/chongqing/home.jpg';
+import ChongQingExclusive1 from '@/assets/city/chongqing/exclusiveImg/exclusive1.jpg';
+import ChongQingExclusive2 from '@/assets/city/chongqing/exclusiveImg/exclusive2.jpg';
+import ChongQingExclusive3 from '@/assets/city/chongqing/exclusiveImg/exclusive3.jpg';
+import ChongQingExclusive4 from '@/assets/city/chongqing/exclusiveImg/exclusive4.jpg';
+import ChongQingExclusive5 from '@/assets/city/chongqing/exclusiveImg/exclusive5.jpg';
+import ChongQingExclusive6 from '@/assets/city/chongqing/exclusiveImg/exclusive6.jpg';
+import ChongQingExclusive7 from '@/assets/city/chongqing/exclusiveImg/exclusive7.jpg';
+import ChongQingExclusive8 from '@/assets/city/chongqing/exclusiveImg/exclusive8.jpg';
+
 import WuHanHome from '@/assets/city/wuhan/home.jpg';
 import KoreaHome from '@/assets/city/korea/home.jpg';
 import BeiJingHome from '@/assets/city/beijing/home.jpg';
@@ -491,35 +500,35 @@ export const allCities: BaseCityItem[] = [
     ],
     exclusivePicture: [
       {
-        src: 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=600',
-        alt: '重庆奥体现场',
+        src: ChongQingExclusive1,
+        alt: '重量级嘉宾',
       },
       {
-        src: 'https://images.unsplash.com/photo-1501386761578-eac5c94b800a?w=600',
-        alt: '山城夜景',
+        src: ChongQingExclusive2,
+        alt: '演唱会现场',
       },
       {
-        src: 'https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=600',
+        src: ChongQingExclusive3,
         alt: '绚丽舞台',
       },
       {
-        src: 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=600',
+        src: ChongQingExclusive4,
         alt: '深情时刻',
       },
       {
-        src: 'https://images.unsplash.com/photo-1429962714451-bb934ecdc4ec?w=600',
+        src: ChongQingExclusive5,
         alt: '热情互动',
       },
       {
-        src: 'https://images.unsplash.com/photo-1506157786151-b8491531f063?w=600',
-        alt: '万人齐唱',
+        src: ChongQingExclusive6,
+        alt: '重庆涂鸦板',
       },
       {
-        src: 'https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?w=600',
-        alt: '烟火绽放',
+        src: ChongQingExclusive7,
+        alt: '林距离',
       },
       {
-        src: 'https://images.unsplash.com/photo-1459749411175-04bf5292ceea?w=600',
+        src: ChongQingExclusive8,
         alt: '难忘夜晚',
       },
     ],
