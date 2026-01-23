@@ -99,6 +99,14 @@ import KoreaExclusive5 from '@/assets/city/korea/exclusiveImg/exclusive5.jpg';
 import KoreaExclusive6 from '@/assets/city/korea/exclusiveImg/exclusive6.jpg';
 import KoreaExclusive7 from '@/assets/city/korea/exclusiveImg/exclusive7.jpg';
 import KoreaExclusive8 from '@/assets/city/korea/exclusiveImg/exclusive8.jpg';
+import KoreaAttraction1 from '@/assets/city/korea/attraction/attraction1.jpg';
+import KoreaAttraction2 from '@/assets/city/korea/attraction/attraction2.jpg';
+import KoreaAttraction3 from '@/assets/city/korea/attraction/attraction3.jpg';
+import KoreaAttraction4 from '@/assets/city/korea/attraction/attraction4.jpg';
+import KoreaFood1 from '@/assets/city/korea/food/food1.jpg';
+import KoreaFood2 from '@/assets/city/korea/food/food2.jpg';
+import KoreaFood3 from '@/assets/city/korea/food/food3.jpg';
+import KoreaFood4 from '@/assets/city/korea/food/food4.jpg';
 
 import BeiJingHome from '@/assets/city/beijing/home.jpg';
 
@@ -836,45 +844,45 @@ export const allCities: BaseCityItem[] = [
     attractions: [
       {
         name: '景福宫',
-        image: 'https://images.unsplash.com/photo-1508804185872-d7badad00f7d?w=800',
+        image: KoreaAttraction1,
         description:
           '朝鲜王朝的正宫，穿韩服免费入场。守门将换岗仪式庄严肃穆，仿佛穿越时空。',
       },
       {
         name: '北村韩屋村',
-        image: 'https://images.unsplash.com/photo-1599571234909-29ed5d1321d6?w=800',
+        image: KoreaAttraction2,
         description: '保存完好的传统韩屋聚落，青瓦白墙间感受韩国传统之美。',
       },
       {
         name: '明洞',
-        image: 'https://images.unsplash.com/photo-1548013146-72479768bada?w=800',
+        image: KoreaAttraction3,
         description: '首尔最繁华的购物天堂，化妆品、美食、潮流应有尽有。',
       },
       {
         name: '南山首尔塔',
-        image: 'https://images.unsplash.com/photo-1566438480900-0609be27a4be?w=800',
+        image: KoreaAttraction4,
         description: '首尔地标，夜景绝美。情侣锁墙见证无数爱情，是浪漫约会圣地。',
       },
     ],
     foods: [
       {
         name: '韩式烤肉',
-        image: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400',
+        image: KoreaFood1,
         description: '五花肉、牛排骨在烤盘上滋滋作响，包上生菜蘸酱，一口下去满足感爆棚。',
       },
       {
         name: '部队锅',
-        image: 'https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=400',
+        image: KoreaFood2,
         description: '泡菜、年糕、午餐肉、泡面...大杂烩的美味，韩剧里的经典美食。',
       },
       {
         name: '炸鸡啤酒',
-        image: 'https://images.unsplash.com/photo-1518492104633-130d0cc84637?w=400',
+        image: KoreaFood3,
         description: '韩国国民美食组合，酥脆炸鸡配冰啤酒，看球追剧的完美搭配。',
       },
       {
         name: '石锅拌饭',
-        image: 'https://images.unsplash.com/photo-1555126634-323283e090fa?w=400',
+        image: KoreaFood4,
         description: '滚烫石锅里的米饭配上各色蔬菜和辣酱，锅巴香脆是灵魂所在。',
       },
     ],
