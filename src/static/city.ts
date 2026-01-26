@@ -109,6 +109,22 @@ import KoreaFood3 from '@/assets/city/korea/food/food3.jpg';
 import KoreaFood4 from '@/assets/city/korea/food/food4.jpg';
 
 import BeiJingHome from '@/assets/city/beijing/home.jpg';
+import BeiJingExclusive1 from '@/assets/city/beijing/exclusiveImg/exclusive1.jpg';
+import BeiJingExclusive2 from '@/assets/city/beijing/exclusiveImg/exclusive2.jpg';
+import BeiJingExclusive3 from '@/assets/city/beijing/exclusiveImg/exclusive3.jpg';
+import BeiJingExclusive4 from '@/assets/city/beijing/exclusiveImg/exclusive4.jpg';
+import BeiJingExclusive5 from '@/assets/city/beijing/exclusiveImg/exclusive5.jpg';
+import BeiJingExclusive6 from '@/assets/city/beijing/exclusiveImg/exclusive6.jpg';
+import BeiJingExclusive7 from '@/assets/city/beijing/exclusiveImg/exclusive7.jpg';
+import BeiJingExclusive8 from '@/assets/city/beijing/exclusiveImg/exclusive8.jpg';
+import BeiJingAttraction1 from '@/assets/city/beijing/attraction/attraction1.jpg';
+import BeiJingAttraction2 from '@/assets/city/beijing/attraction/attraction2.jpg';
+import BeiJingAttraction3 from '@/assets/city/beijing/attraction/attraction3.jpg';
+import BeiJingAttraction4 from '@/assets/city/beijing/attraction/attraction4.jpg';
+import BeiJingFood1 from '@/assets/city/beijing/food/food1.jpg';
+import BeiJingFood2 from '@/assets/city/beijing/food/food2.jpg';
+import BeiJingFood3 from '@/assets/city/beijing/food/food3.jpg';
+import BeiJingFood4 from '@/assets/city/beijing/food/food4.jpg';
 
 export const allCities: BaseCityItem[] = [
   {
@@ -943,80 +959,80 @@ export const allCities: BaseCityItem[] = [
     ],
     exclusivePicture: [
       {
-        src: 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=600',
-        alt: '鸟巢演唱会现场',
+        src: BeiJingExclusive1,
+        alt: '闪亮登场',
       },
       {
-        src: 'https://images.unsplash.com/photo-1501386761578-eac5c94b800a?w=600',
-        alt: '万人合唱时刻',
+        src: BeiJingExclusive2,
+        alt: '舞台烟花秀',
       },
       {
-        src: 'https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=600',
-        alt: '舞台灯光秀',
+        src: BeiJingExclusive3,
+        alt: '特定嘉宾',
       },
       {
-        src: 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=600',
-        alt: 'JJ深情演唱',
+        src: BeiJingExclusive4,
+        alt: '深情舞蹈',
       },
       {
-        src: 'https://images.unsplash.com/photo-1429962714451-bb934ecdc4ec?w=600',
-        alt: '现场气氛',
+        src: BeiJingExclusive5,
+        alt: '限量版跑车',
       },
       {
-        src: 'https://images.unsplash.com/photo-1506157786151-b8491531f063?w=600',
-        alt: '歌迷互动',
+        src: BeiJingExclusive6,
+        alt: '闪亮登场',
       },
       {
-        src: 'https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?w=600',
-        alt: '烟火表演',
+        src: BeiJingExclusive7,
+        alt: '特邀嘉宾',
       },
       {
-        src: 'https://images.unsplash.com/photo-1459749411175-04bf5292ceea?w=600',
+        src: BeiJingExclusive8,
         alt: '演唱会ending',
       },
     ],
     attractions: [
       {
         name: '故宫博物院',
-        image: 'https://images.unsplash.com/photo-1508804185872-d7badad00f7d?w=800',
+        image: BeiJingAttraction1,
         description:
           '世界上现存规模最大、保存最为完整的木质结构古建筑群，感受600年皇家气派。',
       },
       {
         name: '长城',
-        image: 'https://images.unsplash.com/photo-1508804185872-d7badad00f7d?w=800',
+        image: BeiJingAttraction2,
         description: '不到长城非好汉！推荐慕田峪段，人少景美，适合拍照。',
       },
       {
         name: '颐和园',
-        image: 'https://images.unsplash.com/photo-1599571234909-29ed5d1321d6?w=800',
+        image: BeiJingAttraction3,
         description: '中国现存最大的皇家园林，昆明湖畔漫步，感受皇家园林的精致。',
       },
       {
         name: '天坛公园',
-        image: 'https://images.unsplash.com/photo-1548013146-72479768bada?w=800',
+        image: BeiJingAttraction4,
         description: '明清两代帝王祭天的场所，祈年殿的建筑之美令人叹为观止。',
       },
     ],
     foods: [
       {
         name: '北京烤鸭',
-        image: 'https://images.unsplash.com/photo-1518492104633-130d0cc84637?w=400',
+        image: BeiJingFood1,
         description: '外皮酥脆，肉质鲜嫩。推荐全聚德、大董，记得提前预约！',
       },
       {
         name: '老北京炸酱面',
-        image: 'https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=400',
+        image: BeiJingFood2,
         description: '面条劲道，酱香浓郁，配上黄瓜丝、豆芽等菜码，绝对地道。',
       },
       {
         name: '涮羊肉',
-        image: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400',
+        image: BeiJingFood3,
         description: '冬天必吃！鲜嫩的羊肉配上麻酱蘸料，暖胃又暖心。',
       },
       {
         name: '豆汁儿配焦圈',
-        image: 'https://images.unsplash.com/photo-1555126634-323283e090fa?w=400',
+        image: BeiJingFood4,
         description: '老北京特色早点，酸中带甜的独特风味，敢尝试才是真正的旅行家！',
       },
     ],
