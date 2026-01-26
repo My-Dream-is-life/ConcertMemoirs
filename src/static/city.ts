@@ -109,6 +109,14 @@ import KoreaFood3 from '@/assets/city/korea/food/food3.jpg';
 import KoreaFood4 from '@/assets/city/korea/food/food4.jpg';
 
 import BeiJingHome from '@/assets/city/beijing/home.jpg';
+import BeiJingExclusive1 from '@/assets/city/beijing/exclusiveImg/exclusive1.jpg';
+import BeiJingExclusive2 from '@/assets/city/beijing/exclusiveImg/exclusive2.jpg';
+import BeiJingExclusive3 from '@/assets/city/beijing/exclusiveImg/exclusive3.jpg';
+import BeiJingExclusive4 from '@/assets/city/beijing/exclusiveImg/exclusive4.jpg';
+import BeiJingExclusive5 from '@/assets/city/beijing/exclusiveImg/exclusive5.jpg';
+import BeiJingExclusive6 from '@/assets/city/beijing/exclusiveImg/exclusive6.jpg';
+import BeiJingExclusive7 from '@/assets/city/beijing/exclusiveImg/exclusive7.jpg';
+import BeiJingExclusive8 from '@/assets/city/beijing/exclusiveImg/exclusive8.jpg';
 
 export const allCities: BaseCityItem[] = [
   {
@@ -943,35 +951,35 @@ export const allCities: BaseCityItem[] = [
     ],
     exclusivePicture: [
       {
-        src: 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=600',
-        alt: '鸟巢演唱会现场',
+        src: BeiJingExclusive1,
+        alt: '闪亮登场',
       },
       {
-        src: 'https://images.unsplash.com/photo-1501386761578-eac5c94b800a?w=600',
-        alt: '万人合唱时刻',
+        src: BeiJingExclusive2,
+        alt: '舞台烟花秀',
       },
       {
-        src: 'https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=600',
-        alt: '舞台灯光秀',
+        src: BeiJingExclusive3,
+        alt: '特定嘉宾',
       },
       {
-        src: 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=600',
-        alt: 'JJ深情演唱',
+        src: BeiJingExclusive4,
+        alt: '深情舞蹈',
       },
       {
-        src: 'https://images.unsplash.com/photo-1429962714451-bb934ecdc4ec?w=600',
-        alt: '现场气氛',
+        src: BeiJingExclusive5,
+        alt: '限量版跑车',
       },
       {
-        src: 'https://images.unsplash.com/photo-1506157786151-b8491531f063?w=600',
-        alt: '歌迷互动',
+        src: BeiJingExclusive6,
+        alt: '闪亮登场',
       },
       {
-        src: 'https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?w=600',
-        alt: '烟火表演',
+        src: BeiJingExclusive7,
+        alt: '特邀嘉宾',
       },
       {
-        src: 'https://images.unsplash.com/photo-1459749411175-04bf5292ceea?w=600',
+        src: BeiJingExclusive8,
         alt: '演唱会ending',
       },
     ],
