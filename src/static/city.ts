@@ -117,6 +117,14 @@ import BeiJingExclusive5 from '@/assets/city/beijing/exclusiveImg/exclusive5.jpg
 import BeiJingExclusive6 from '@/assets/city/beijing/exclusiveImg/exclusive6.jpg';
 import BeiJingExclusive7 from '@/assets/city/beijing/exclusiveImg/exclusive7.jpg';
 import BeiJingExclusive8 from '@/assets/city/beijing/exclusiveImg/exclusive8.jpg';
+import BeiJingAttraction1 from '@/assets/city/beijing/attraction/attraction1.jpg';
+import BeiJingAttraction2 from '@/assets/city/beijing/attraction/attraction2.jpg';
+import BeiJingAttraction3 from '@/assets/city/beijing/attraction/attraction3.jpg';
+import BeiJingAttraction4 from '@/assets/city/beijing/attraction/attraction4.jpg';
+import BeiJingFood1 from '@/assets/city/beijing/food/food1.jpg';
+import BeiJingFood2 from '@/assets/city/beijing/food/food2.jpg';
+import BeiJingFood3 from '@/assets/city/beijing/food/food3.jpg';
+import BeiJingFood4 from '@/assets/city/beijing/food/food4.jpg';
 
 export const allCities: BaseCityItem[] = [
   {
@@ -986,45 +994,45 @@ export const allCities: BaseCityItem[] = [
     attractions: [
       {
         name: '故宫博物院',
-        image: 'https://images.unsplash.com/photo-1508804185872-d7badad00f7d?w=800',
+        image: BeiJingAttraction1,
         description:
           '世界上现存规模最大、保存最为完整的木质结构古建筑群，感受600年皇家气派。',
       },
       {
         name: '长城',
-        image: 'https://images.unsplash.com/photo-1508804185872-d7badad00f7d?w=800',
+        image: BeiJingAttraction2,
         description: '不到长城非好汉！推荐慕田峪段，人少景美，适合拍照。',
       },
       {
         name: '颐和园',
-        image: 'https://images.unsplash.com/photo-1599571234909-29ed5d1321d6?w=800',
+        image: BeiJingAttraction3,
         description: '中国现存最大的皇家园林，昆明湖畔漫步，感受皇家园林的精致。',
       },
       {
         name: '天坛公园',
-        image: 'https://images.unsplash.com/photo-1548013146-72479768bada?w=800',
+        image: BeiJingAttraction4,
         description: '明清两代帝王祭天的场所，祈年殿的建筑之美令人叹为观止。',
       },
     ],
     foods: [
       {
         name: '北京烤鸭',
-        image: 'https://images.unsplash.com/photo-1518492104633-130d0cc84637?w=400',
+        image: BeiJingFood1,
         description: '外皮酥脆，肉质鲜嫩。推荐全聚德、大董，记得提前预约！',
       },
       {
         name: '老北京炸酱面',
-        image: 'https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=400',
+        image: BeiJingFood2,
         description: '面条劲道，酱香浓郁，配上黄瓜丝、豆芽等菜码，绝对地道。',
       },
       {
         name: '涮羊肉',
-        image: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400',
+        image: BeiJingFood3,
         description: '冬天必吃！鲜嫩的羊肉配上麻酱蘸料，暖胃又暖心。',
       },
       {
         name: '豆汁儿配焦圈',
-        image: 'https://images.unsplash.com/photo-1555126634-323283e090fa?w=400',
+        image: BeiJingFood4,
         description: '老北京特色早点，酸中带甜的独特风味，敢尝试才是真正的旅行家！',
       },
     ],
