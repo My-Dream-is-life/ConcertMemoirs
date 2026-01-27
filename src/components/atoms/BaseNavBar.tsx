@@ -14,6 +14,7 @@ const navItem: NavItem[] = [
   { path: ROUTER_PATH.CITY_LIST, label: '巡演城市' },
   { path: ROUTER_PATH.TICKETS, label: '票根珍藏' },
   { path: ROUTER_PATH.COLLECTION, label: '收藏柜' },
+  { path: ROUTER_PATH.MUSIC_LIST, label: '新歌集锦' },
 ];
 
 const BaseNavBar: FC = () => {

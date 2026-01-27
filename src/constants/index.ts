@@ -8,4 +8,6 @@ export enum ROUTER_PATH {
   COLLECTION = '/collection',
   NOT_FOUND = '/404',
   ARTIST_INTRODUCTION = '/artist-introduction',
+  MUSIC_LIST = '/music-list',
+  MUSIC_PLAYER = '/music-player/:id',
 }
