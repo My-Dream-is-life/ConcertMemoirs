@@ -2,6 +2,15 @@ import type { Music } from '@/types';
 import TomorrowCoordinatesImg from '@/assets/music/tomorrowCoordinates/img.jpg';
 import TomorrowCoordinatesLyrics from '@/assets/music/tomorrowCoordinates/lyrics.lrc?raw';
 import TomorrowCoordinatesMusic from '@/assets/music/tomorrowCoordinates/music.mp3';
+import InAnInstantImg from '@/assets/music/inAnInstant/img.jpg';
+import InAnInstantLyrics from '@/assets/music/inAnInstant/lyrics.lrc?raw';
+import InAnInstantMusic from '@/assets/music/inAnInstant/music.mp3';
+import RevealedToYouImg from '@/assets/music/revealedToYou/img.jpg';
+import RevealedToYouLyrics from '@/assets/music/revealedToYou/lyrics.lrc?raw';
+import RevealedToYouMusic from '@/assets/music/revealedToYou/music.mp3';
+import SkibidiImg from '@/assets/music/skibidi/img.jpg';
+import SkibidiLyrics from '@/assets/music/skibidi/lyrics.lrc?raw';
+import SkibidiMusic from '@/assets/music/skibidi/music.mp3';
 
 export const music: Music[] = [
   {
@@ -16,35 +25,32 @@ export const music: Music[] = [
   },
   {
     id: 2,
-    title: '她说',
+    title: '瞬间的瞬间',
     artist: '林俊杰',
-    album: '她说',
-    cover:
-      'https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?w=300&h=300&fit=crop',
-    url: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3',
-    lyrics: TomorrowCoordinatesLyrics,
+    album: '瞬间的瞬间',
+    cover: InAnInstantImg,
+    url: InAnInstantMusic,
+    lyrics: InAnInstantLyrics,
     isNew: true,
   },
   {
     id: 3,
-    title: '不为谁而作的歌',
-    artist: '林俊杰',
-    album: '和自己对话',
-    cover:
-      'https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=300&h=300&fit=crop',
-    url: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3',
-    lyrics: TomorrowCoordinatesLyrics,
+    title: '为你揭晓',
+    artist: '林俊杰, 张艺兴',
+    album: '为你揭晓',
+    cover: RevealedToYouImg,
+    url: RevealedToYouMusic,
+    lyrics: RevealedToYouLyrics,
     isNew: true,
   },
   {
     id: 4,
-    title: '修炼爱情',
-    artist: '林俊杰',
-    album: '因你而在',
-    cover:
-      'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=300&h=300&fit=crop',
-    url: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3',
-    lyrics: TomorrowCoordinatesLyrics,
+    title: 'Skibidi',
+    artist: '林俊杰, 成龙',
+    album: 'Skibidi',
+    cover: SkibidiImg,
+    url: SkibidiMusic,
+    lyrics: SkibidiLyrics,
     isNew: true,
   },
   {
