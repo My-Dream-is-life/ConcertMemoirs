@@ -11,6 +11,15 @@ import RevealedToYouMusic from '@/assets/music/revealedToYou/music.mp3';
 import SkibidiImg from '@/assets/music/skibidi/img.jpg';
 import SkibidiLyrics from '@/assets/music/skibidi/lyrics.lrc?raw';
 import SkibidiMusic from '@/assets/music/skibidi/music.mp3';
+import LunarEclipseImg from '@/assets/music/lunarEclipse/img.jpg';
+import LunarEclipseLyrics from '@/assets/music/lunarEclipse/lyrics.lrc?raw';
+import LunarEclipseMusic from '@/assets/music/lunarEclipse/music.mp3';
+import TurnOfAPageImg from '@/assets/music/turnOfAPage/img.jpg';
+import TurnOfAPageLyrics from '@/assets/music/turnOfAPage/lyrics.lrc?raw';
+import TurnOfAPageMusic from '@/assets/music/turnOfAPage/music.mp3';
+import AbsolutelyImg from '@/assets/music/absolutely/img.jpg';
+import AbsolutelyLyrics from '@/assets/music/absolutely/lyrics.lrc?raw';
+import AbsolutelyMusic from '@/assets/music/absolutely/music.mp3';
 
 export const music: Music[] = [
   {
@@ -55,84 +64,32 @@ export const music: Music[] = [
   },
   {
     id: 5,
-    title: '那些你很冒险的梦',
-    artist: '林俊杰',
-    album: '学不会',
-    cover:
-      'https://images.unsplash.com/photo-1459749411175-04bf5292ceea?w=300&h=300&fit=crop',
-    url: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3',
-    lyrics: TomorrowCoordinatesLyrics,
-  },
-  {
-    id: 6,
-    title: '小酒窝',
-    artist: '林俊杰 / 蔡卓妍',
-    album: 'JJ陆',
-    cover:
-      'https://images.unsplash.com/photo-1446057032654-9d8885db76c6?w=300&h=300&fit=crop',
-    url: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-6.mp3',
-    lyrics: TomorrowCoordinatesLyrics,
-  },
-  {
-    id: 7,
-    title: '倒带',
-    artist: '林俊杰',
-    album: '第二天堂',
-    cover:
-      'https://images.unsplash.com/photo-1507838153414-b4b713384a76?w=300&h=300&fit=crop',
-    url: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-7.mp3',
-    lyrics: TomorrowCoordinatesLyrics,
-  },
-  {
-    id: 8,
-    title: '手心的蔷薇',
-    artist: '林俊杰 / 邓紫棋',
-    album: '新地球',
-    cover:
-      'https://images.unsplash.com/photo-1487180144351-b8472da7d491?w=300&h=300&fit=crop',
-    url: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3',
-    lyrics: TomorrowCoordinatesLyrics,
-  },
-  {
-    id: 9,
-    title: '可惜没如果',
-    artist: '林俊杰',
-    album: '新地球',
-    cover:
-      'https://images.unsplash.com/photo-1504898770365-14faca6a7320?w=300&h=300&fit=crop',
-    url: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-9.mp3',
-    lyrics: TomorrowCoordinatesLyrics,
+    title: '在月蚀里抱紧我',
+    artist: '林俊杰, 黄丽玲',
+    album: '在月蚀里抱紧我',
+    cover: LunarEclipseImg,
+    url: LunarEclipseMusic,
+    lyrics: LunarEclipseLyrics,
     isNew: true,
   },
   {
-    id: 10,
-    title: '曹操',
+    id: 6,
+    title: '光阴副本 / Turn Of A Page',
     artist: '林俊杰',
-    album: '曹操',
-    cover:
-      'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=300&h=300&fit=crop',
-    url: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-10.mp3',
-    lyrics: TomorrowCoordinatesLyrics,
+    album: '光阴副本',
+    cover: TurnOfAPageImg,
+    url: TurnOfAPageMusic,
+    lyrics: TurnOfAPageLyrics,
+    isNew: true,
   },
   {
-    id: 11,
-    title: '记得',
-    artist: '林俊杰',
-    album: '西界',
-    cover:
-      'https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?w=300&h=300&fit=crop',
-    url: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-11.mp3',
-    lyrics: TomorrowCoordinatesLyrics,
-  },
-  {
-    id: 12,
-    title: '醉赤壁',
-    artist: '林俊杰',
-    album: 'JJ陆',
-    cover:
-      'https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=300&h=300&fit=crop',
-    url: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-12.mp3',
-    lyrics: TomorrowCoordinatesLyrics,
+    id: 7,
+    title: '绝不绝(无畏契约一周年瓦友节献礼曲)',
+    artist: '林俊杰, VALORANT',
+    album: '绝不绝',
+    cover: AbsolutelyImg,
+    url: AbsolutelyMusic,
+    lyrics: AbsolutelyLyrics,
     isNew: true,
   },
 ];
