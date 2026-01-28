@@ -7,6 +7,8 @@ import CityDetail from './pages/city/detail';
 import Tickets from './pages/Tickets';
 import Collection from './pages/Collection';
 import ArtistIntro from './pages/ArtistIntro';
+import MusicList from './pages/music/NewList';
+import MusicPlayer from './pages/music/player';
 import NotFound from './pages/NotFound';
 import { ROUTER_PATH } from './constants';
 
@@ -47,7 +49,15 @@ const router = createBrowserRouter([
         path: ROUTER_PATH.ARTIST_INTRODUCTION,
         element: <ArtistIntro />,
       },
+      {
+        path: ROUTER_PATH.MUSIC_LIST,
+        element: <MusicList />,
+      },
     ],
+  },
+  {
+    path: ROUTER_PATH.MUSIC_PLAYER,
+    element: <MusicPlayer />,
   },
   {
     path: ROUTER_PATH.NOT_FOUND,

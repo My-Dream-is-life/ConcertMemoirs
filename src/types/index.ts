@@ -63,3 +63,20 @@ export interface TicketItem {
   orderNumber: string;
   specialNotes?: string;
 }
+
+export interface Music {
+  id: number;
+  title: string;
+  artist: string;
+  album: string;
+  duration?: string;
+  cover: string;
+  url: string;
+  lyrics: string;
+  isNew?: boolean;
+}
+
+export interface LyricLine {
+  time: number;
+  text: string;
+}

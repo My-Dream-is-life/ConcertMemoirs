@@ -12,6 +12,7 @@ import type { GalleryItem } from '@/types';
 import { useSmallLayout } from '@/hooks/useSmallLayout';
 import BaseParticles from '../atoms/BaseParticles';
 import { formatTime } from '@/lib/utils';
+import { useInitMusicPlayer } from '@/hooks/useInitMusicPlayer';
 
 interface RotatingGalleryProps {
   galleries: GalleryItem[];
@@ -27,7 +28,6 @@ const RotatingGallery: FC<RotatingGalleryProps> = ({ galleries }) => {
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
 
-  const audioRef = useRef<HTMLAudioElement | null>(null);
   const progressRef = useRef<HTMLDivElement>(null);
   const isSwitchingRef = useRef(false);
 
@@ -50,72 +50,18 @@ const RotatingGallery: FC<RotatingGalleryProps> = ({ galleries }) => {
     setIsPlaying(true);
   }, [total]);
 
-  useEffect(() => {
-    const audio = new Audio();
-    audio.volume = 0.5;
-    audio.loop = false;
-    audioRef.current = audio;
-
-    const onTimeUpdate = () => {
-      setCurrentTime(audio.currentTime);
-    };
-    const onLoaded = () => {
-      setDuration(audio.duration || 0);
-    };
-    const onEnded = () => {
+  const audioRef = useInitMusicPlayer({
+    isPlaying,
+    url: currentGallery.songFile,
+    volume: 0.5,
+    onTimeUpdate: setCurrentTime,
+    onLoadedMetadata: setDuration,
+    onEnded: () => {
       if (isSwitchingRef.current) return;
       if (!isPlaying) return;
-
       setCurrentIndex((prev) => (prev + 1) % total);
-    };
-
-    audio.addEventListener('timeupdate', onTimeUpdate);
-    audio.addEventListener('loadedmetadata', onLoaded);
-    audio.addEventListener('ended', onEnded);
-
-    return () => {
-      audio.pause();
-      audio.removeEventListener('timeupdate', onTimeUpdate);
-      audio.removeEventListener('loadedmetadata', onLoaded);
-      audio.removeEventListener('ended', onEnded);
-      audioRef.current = null;
-    };
-  }, [isPlaying, total]);
-
-  useEffect(() => {
-    const audio = audioRef.current;
-
-    if (!audio) return;
-
-    isSwitchingRef.current = true;
-    audio.src = currentGallery.songFile;
-    audio.currentTime = 0;
-    setCurrentTime(0);
-    setDuration(0);
-
-    const playIfNeeded = async () => {
-      if (isPlaying) {
-        try {
-          await audio.play();
-        } catch {}
-      }
-      isSwitchingRef.current = false;
-    };
-
-    playIfNeeded();
-  }, [currentGallery, isPlaying]);
-
-  useEffect(() => {
-    const audio = audioRef.current;
-
-    if (!audio) return;
-
-    if (isPlaying) {
-      audio.play().catch(() => {});
-    } else {
-      audio.pause();
-    }
-  }, [isPlaying]);
+    },
+  });
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
