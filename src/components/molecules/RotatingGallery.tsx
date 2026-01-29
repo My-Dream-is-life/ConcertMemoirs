@@ -8,6 +8,7 @@ import {
   SoundOutlined,
   MutedOutlined,
 } from '@ant-design/icons';
+import clsx from 'clsx';
 import type { GalleryItem } from '@/types';
 import { useSmallLayout } from '@/hooks/useSmallLayout';
 import BaseParticles from '../atoms/BaseParticles';
@@ -179,7 +180,7 @@ const RotatingGallery: FC<RotatingGalleryProps> = ({ galleries }) => {
         </div>
       </div>
 
-      <div className="relative h-[420px] md:h-[520px]" style={{ perspective: '1200px' }}>
+      <div className="relative h-[400px]" style={{ perspective: '1200px' }}>
         <div className="absolute inset-0 flex items-center justify-center">
           <div
             className="relative h-[300px] w-[220px] md:h-[340px] md:w-[260px]"
@@ -329,7 +330,12 @@ const RotatingGallery: FC<RotatingGalleryProps> = ({ galleries }) => {
 
         <div className="absolute bottom-0 left-1/2 h-20 w-[400px] -translate-x-1/2 rounded-full bg-gradient-to-t from-purple-500/10 to-transparent blur-xl" />
 
-        <div className="absolute bottom-4 left-0 right-0 z-10 flex items-center justify-center gap-4">
+        <div
+          className={clsx(
+            'absolute left-0 right-0 z-10 flex items-center justify-center gap-4',
+            isSP ? '-bottom-8' : '-bottom-12'
+          )}
+        >
           <button
             onClick={handlePrev}
             className="rounded-full border border-white/20 bg-white/10 p-3 text-white backdrop-blur-sm transition-all duration-300 hover:scale-110 hover:border-purple-400/50 hover:bg-white/20"

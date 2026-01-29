@@ -122,7 +122,7 @@ const Home: FC = () => {
 
       <section className="bg-background/50 px-4 py-20 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
-          <div className="mb-16 text-center">
+          <div className="text-center">
             <h2 className="mb-4 font-display text-3xl font-bold text-foreground md:text-4xl">
               追随音乐的脚步
             </h2>

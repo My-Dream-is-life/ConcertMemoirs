@@ -57,7 +57,7 @@ const PictureSection: FC<PictureSectionProps> = ({ pictures }) => {
         <img
           src={previewImage}
           alt="preview"
-          className="max-h-[85vh] max-w-[90vw] rounded-lg object-contain"
+          className="max-h-[75vh] rounded-lg object-contain"
         />
       </Modal>
     </>

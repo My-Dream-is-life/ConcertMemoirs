@@ -1,6 +1,12 @@
 import { useState, useRef, useEffect, useCallback, useMemo } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { motion, AnimatePresence, useAnimation } from 'framer-motion';
+import {
+  motion,
+  animate,
+  AnimatePresence,
+  useAnimation,
+  useMotionValue,
+} from 'framer-motion';
 import { Slider, Drawer } from 'antd';
 import {
   PlayCircleFilled,
@@ -13,7 +19,6 @@ import {
   HeartFilled,
   LeftOutlined,
   MenuOutlined,
-  CustomerServiceOutlined,
   FileTextOutlined,
 } from '@ant-design/icons';
 import clsx from 'clsx';
@@ -28,6 +33,7 @@ const MusicPlayer = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const controls = useAnimation();
+  const rotate = useMotionValue(0);
   const isSP = useSmallLayout();
 
   const [curMusicIdx, setCurMusicIdx] = useState(0);
@@ -42,8 +48,7 @@ const MusicPlayer = () => {
   const [isLoading, setIsLoading] = useState(true);
   const lyricsContainerRef = useRef<HTMLDivElement | null>(null);
 
-  const currentMusic = music[curMusicIdx];
-
+  const currentMusic = useMemo(() => music[curMusicIdx], [curMusicIdx]);
   const particles = useMemo(() => <BaseParticles />, []);
   const lyrics = useMemo(() => {
     return currentMusic ? getLyrics(music, currentMusic.id) : [];
@@ -76,25 +81,22 @@ const MusicPlayer = () => {
   }, [id]);
   useEffect(() => {
     if (isPlaying) {
-      controls.start({
-        rotate: 360,
-        transition: {
-          duration: 8,
-          repeat: Infinity,
-          ease: 'linear',
-        },
+      animate(rotate, rotate.get() + 360, {
+        duration: 8,
+        ease: 'linear',
+        repeat: Infinity,
       });
     } else {
       controls.stop();
     }
-  }, [controls, isPlaying]);
+  }, [controls, rotate, isPlaying]);
 
-  const handleNext = useCallback(() => {
-    setCurMusicIdx((prev) => (prev + 1) % music.length);
-    setIsPlaying(true);
-  }, []);
   const handlePrev = useCallback(() => {
     setCurMusicIdx((prev) => (prev - 1 + music.length) % music.length);
+    setIsPlaying(true);
+  }, []);
+  const handleNext = useCallback(() => {
+    setCurMusicIdx((prev) => (prev + 1) % music.length);
     setIsPlaying(true);
   }, []);
 
@@ -180,18 +182,13 @@ const MusicPlayer = () => {
         >
           <div className="absolute -inset-8 animate-pulse rounded-full bg-gradient-to-r from-primary/30 via-purple-500/20 to-fuchsia-500/30 blur-2xl" />
 
-          <motion.div animate={controls} className="relative">
+          <motion.div animate={controls} style={{ rotate }} className="relative">
             <div className="h-72 w-72 overflow-hidden rounded-full border-8 border-secondary shadow-2xl shadow-primary/30 md:h-80 md:w-80">
               <img
                 src={currentMusic?.cover}
                 alt={currentMusic?.title}
                 className="h-full w-full object-cover"
               />
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="flex h-20 w-20 items-center justify-center rounded-full border-4 border-primary/50 bg-background/90">
-                  <CustomerServiceOutlined className="text-2xl text-primary" />
-                </div>
-              </div>
             </div>
           </motion.div>
 
@@ -289,7 +286,12 @@ const MusicPlayer = () => {
               onClick={() => setShowVolume(!showVolume)}
               className="rounded-full p-3 transition-colors hover:bg-secondary/50"
             >
-              <SoundOutlined className="text-2xl text-muted-foreground hover:text-foreground" />
+              <SoundOutlined
+                className={clsx(
+                  'text-2xl text-muted-foreground hover:text-foreground hover:text-purple-400',
+                  showVolume && 'text-primary'
+                )}
+              />
             </button>
             <AnimatePresence>
               {showVolume && (
@@ -389,7 +391,7 @@ const MusicPlayer = () => {
                   currentLyricIndex === index
                     ? 'scale-105 bg-primary/10 text-xl font-bold text-primary md:text-2xl'
                     : index < currentLyricIndex
-                      ? 'text-base text-muted-foreground/50'
+                      ? 'text-base text-muted-foreground/60'
                       : 'text-base text-muted-foreground'
                 }`}
                 onClick={() => {
