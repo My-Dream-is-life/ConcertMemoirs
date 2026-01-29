@@ -23,6 +23,18 @@ export interface GalleryItem {
   songFile: string;
 }
 
+export interface ConcertThemeItem {
+  id: string;
+  name: string;
+  artist: string;
+  watchCount: number;
+  description: string;
+  themeMusic: string;
+  themeColor: string;
+  themeImage: string;
+  themeTime: string;
+}
+
 export interface BaseItem {
   name: string;
   image?: string;

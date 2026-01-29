@@ -12,9 +12,11 @@ import KoreaHome from '@/assets/city/korea/home.jpg';
 import KoreaSong from '@/assets/city/korea/freak.mp3';
 import BeiJingHome from '@/assets/city/beijing/home.jpg';
 import BeiJingSong from '@/assets/city/beijing/takeABow.mp3';
-import GalleryConcert from '@/assets/gallery-concert.jpg';
-import gallerySong from '@/assets/galleryRemember.mp3';
-import type { GalleryItem } from '@/types';
+import GalleryConcert from '@/assets/home/gallery-concert.jpg';
+import gallerySong from '@/assets/home/galleryRemember.mp3';
+import FinallapTheme from '@/assets/home/finallap-theme.jpg';
+import JJ20Theme from '@/assets/home/jj20-theme.jpg';
+import type { GalleryItem, ConcertThemeItem } from '@/types';
 
 export const galleries: GalleryItem[] = [
   {
@@ -96,5 +98,30 @@ export const galleries: GalleryItem[] = [
     color: '#f59e0b',
     song: '《记得》',
     songFile: gallerySong,
+  },
+];
+
+export const concertThemes: ConcertThemeItem[] = [
+  {
+    id: 'finallap',
+    name: 'JJ20 FINAL LAP世界巡回演唱会',
+    artist: '林俊杰',
+    watchCount: 2,
+    description: 'JJ20 世界巡回演唱会收官里程',
+    themeMusic: '光阴副本',
+    themeColor: 'hsl(200 80% 60%)',
+    themeImage: FinallapTheme,
+    themeTime: '2024年12月 - 2025年7月',
+  },
+  {
+    id: 'jj20',
+    name: 'JJ 林俊杰 JJ20 世界巡回演唱会',
+    artist: '林俊杰',
+    watchCount: 5,
+    description: '二十年音乐旅程的里程碑巡演',
+    themeMusic: '7300多天',
+    themeColor: 'hsl(270 80% 60%)',
+    themeImage: JJ20Theme,
+    themeTime: '2022年11月 - 2024年11月',
   },
 ];

@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import jjImg from '@/assets/home-concert.jpg';
+import jjImg from '@/assets/home/home-concert.jpg';
 import BaseParticles from '@/components/atoms/BaseParticles';
 
 const ArtistIntro: FC = () => {
