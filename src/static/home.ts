@@ -12,9 +12,11 @@ import KoreaHome from '@/assets/city/korea/home.jpg';
 import KoreaSong from '@/assets/city/korea/freak.mp3';
 import BeiJingHome from '@/assets/city/beijing/home.jpg';
 import BeiJingSong from '@/assets/city/beijing/takeABow.mp3';
-import GalleryConcert from '@/assets/gallery-concert.jpg';
-import gallerySong from '@/assets/galleryRemember.mp3';
-import type { GalleryItem } from '@/types';
+import GalleryConcert from '@/assets/home/gallery-concert.jpg';
+import gallerySong from '@/assets/home/galleryRemember.mp3';
+import FinallapTheme from '@/assets/home/finallap-theme.jpg';
+import JJ20Theme from '@/assets/home/jj20-theme.jpg';
+import type { GalleryItem, ConcertThemeItem } from '@/types';
 
 export const galleries: GalleryItem[] = [
   {
@@ -96,5 +98,80 @@ export const galleries: GalleryItem[] = [
     color: '#f59e0b',
     song: '《记得》',
     songFile: gallerySong,
+  },
+];
+
+export const concertThemes: ConcertThemeItem[] = [
+  {
+    id: 'finallap',
+    name: 'JJ20 FINAL LAP世界巡回演唱会',
+    artist: '林俊杰',
+    watchCount: 2,
+    description: 'JJ20 世界巡回演唱会收官里程',
+    themeMusic: '光阴副本',
+    themeColor: 'hsl(200 80% 60%)',
+    themeImage: FinallapTheme,
+    themeTime: '2024年12月 - 2025年07月',
+    venues: [
+      '新加坡国家体育场',
+      'KIA Forum',
+      'Scotiabank Arena',
+      'Chase Center',
+      'Barclays Center',
+      'Boston',
+      'The O2',
+      'La Defense Arena',
+      'Qudos Bank Arena',
+      'Rod Laver Arena',
+      'Bukit Jalil National Stadium',
+      '台北大巨蛋',
+      'INSPIRE ARENA 迎仕柏综艺馆',
+      '北京市国家体育场-鸟巢',
+    ],
+    highlights: ['回归音乐本质', '原创歌曲首唱', '酷炫舞台设计', '特邀嘉宾秀'],
+    setlistCount: 29,
+    avgDuration: '3小时',
+    firstShow: '2024-12-28',
+  },
+  {
+    id: 'jj20',
+    name: 'JJ 林俊杰 JJ20 世界巡回演唱会',
+    artist: '林俊杰',
+    watchCount: 5,
+    description: '二十年音乐旅程的里程碑巡演',
+    themeMusic: '7300多天',
+    themeColor: 'hsl(270 80% 60%)',
+    themeImage: JJ20Theme,
+    themeTime: '2023年09月 - 2024年11月',
+    venues: [
+      '广州天河体育中心体育场',
+      '广西体育中心体育场',
+      '国家体育场-鸟巢',
+      '武汉五环体育中心体育场',
+      '南京奥体中心体育场',
+      '咸阳奥体中心体育场',
+      '成都东安湖体育公园主体育场',
+      '福州海峡奥林匹克体育中心体育场',
+      '杭州奥体中心体育场',
+      '天津奥体中心体育场',
+      '深圳大运中心体育场',
+      '济南奥体中心体育场',
+      '苏州奥林匹克体育中心体育场',
+      '贵阳奥林匹克体育中心体育场',
+      '哈尔滨国际会展中心体育场',
+      '南昌国际体育中心体育场',
+      '兰州奥体中心玫瑰体育场',
+      '山西体育中心体育场',
+      '郑州奥林匹克体育中心',
+      '青岛市民健身中心海之沙体育场',
+      '厦门奥林匹克体育中心白鹭体育场',
+      'K-ARENA YOKOHAMA',
+      'IMPACT ARENA',
+      '重庆奥林匹克体育中心体育场',
+    ],
+    highlights: ['3D全息投影开场', '万人大合唱《江南》', '感动落泪环节'],
+    setlistCount: 48,
+    avgDuration: '3小时',
+    firstShow: '2023-09-08',
   },
 ];
