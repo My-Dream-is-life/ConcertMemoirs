@@ -33,6 +33,11 @@ export interface ConcertThemeItem {
   themeColor: string;
   themeImage: string;
   themeTime: string;
+  venues: string[];
+  highlights: string[];
+  setlistCount: number;
+  avgDuration: string;
+  firstShow: string;
 }
 
 export interface BaseItem {

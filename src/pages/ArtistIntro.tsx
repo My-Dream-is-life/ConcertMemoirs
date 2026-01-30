@@ -10,7 +10,7 @@ const ArtistIntro: FC = () => {
       <div className="animate-pulse-slow absolute -top-32 left-1/2 z-0 h-[600px] w-[600px] -translate-x-1/2 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary/30 via-primary/10 to-transparent opacity-60 blur-3xl" />
       <div className="animate-pulse-slow absolute bottom-0 right-0 z-0 h-96 w-96 bg-[radial-gradient(ellipse_at_bottom_right,_var(--tw-gradient-stops))] from-amber-300/20 via-primary/10 to-transparent opacity-40 blur-2xl" />
 
-      <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-col-reverse gap-10 px-6 py-16 md:flex-row md:items-center md:justify-between">
+      <div className="relative z-10 mx-auto flex w-full flex-col-reverse gap-10 px-6 py-12 md:flex-row md:items-center md:justify-between">
         <div className="relative flex w-full items-center justify-center md:w-1/2">
           <div className="animate-blob -left-50 absolute -top-10 -z-10 hidden h-[600px] w-[600px] rounded-full bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary/40 via-amber-300/20 to-transparent opacity-80 blur-3xl md:block" />
           <div className="relative flex items-center justify-center">
