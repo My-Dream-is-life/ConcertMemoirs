@@ -16,7 +16,7 @@ import GalleryConcert from '@/assets/home/gallery-concert.jpg';
 import gallerySong from '@/assets/home/galleryRemember.mp3';
 import FinallapTheme from '@/assets/home/finallap-theme.jpg';
 import JJ20Theme from '@/assets/home/jj20-theme.jpg';
-import type { GalleryItem, ConcertThemeItem } from '@/types';
+import type { GalleryItem, ConcertThemeItem, NewConcertInfo } from '@/types';
 
 export const galleries: GalleryItem[] = [
   {
@@ -129,7 +129,7 @@ export const concertThemes: ConcertThemeItem[] = [
       '北京市国家体育场-鸟巢',
     ],
     highlights: ['回归音乐本质', '原创歌曲首唱', '酷炫舞台设计', '特邀嘉宾秀'],
-    setlistCount: 29,
+    setlistCount: 50,
     avgDuration: '3小时',
     firstShow: '2024-12-28',
   },
@@ -170,8 +170,10 @@ export const concertThemes: ConcertThemeItem[] = [
       '重庆奥林匹克体育中心体育场',
     ],
     highlights: ['3D全息投影开场', '万人大合唱《江南》', '感动落泪环节'],
-    setlistCount: 48,
+    setlistCount: 44,
     avgDuration: '3小时',
     firstShow: '2023-09-08',
   },
 ];
+
+export const newConcert: NewConcertInfo | undefined = undefined;

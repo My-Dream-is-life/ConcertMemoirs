@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Music, Sparkles, Heart, MapPin, Clock } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -17,25 +17,63 @@ import {
   CalendarOutlined,
   EnvironmentOutlined,
 } from '@ant-design/icons';
+import BasePulseRings from '@/components/atoms/BasePulseRings';
+import BaseNeonText from '@/components/atoms/BaseNeonText';
 import RotatingGallery from '@/components/molecules/RotatingGallery';
 import CityAreaMap from '@/components/molecules/CityAreaMap';
 import MiniPieChart from '@/components/molecules/MiniPieChart';
 import ThemeCard3D from '@/components/molecules/ThemeCard3D';
+import CountDownFlipCard from '@/components/molecules/CountDownFlipCard';
 import { useSmallLayout } from '@/hooks/useSmallLayout';
 import { ROUTER_PATH } from '@/constants';
-import { galleries, concertThemes } from '@/static/home';
+import { galleries, concertThemes, newConcert } from '@/static/home';
 import HomeConcert from '@/assets/home/home-concert.jpg';
-import type { ConcertThemeItem } from '@/types';
+import type { ConcertThemeItem, CountDownTimeUnit } from '@/types';
+import { formatDate, formatDateTime } from '@/lib/utils';
 
 const Home: FC = () => {
   const isSP = useSmallLayout();
   const navigate = useNavigate();
 
+  const [timeLeft, setTimeLeft] = useState<CountDownTimeUnit[]>([
+    { value: 0, label: '天' },
+    { value: 0, label: '时' },
+    { value: 0, label: '分' },
+    { value: 0, label: '秒' },
+  ]);
   const [selectedTheme, setSelectedTheme] = useState<ConcertThemeItem>(concertThemes[0]);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   const watchTotalCount = concertThemes.reduce((acc, cur) => acc + cur.watchCount, 0);
   const watchMaxCount = Math.max(...concertThemes.map((t) => t.watchCount));
+
+  useEffect(() => {
+    const calculateTimeLeft = () => {
+      const now = new Date().getTime();
+      if (!newConcert) return;
+
+      const target = new Date(newConcert.date).getTime();
+      const difference = target - now;
+
+      if (difference > 0) {
+        const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+        setTimeLeft([
+          { value: days, label: '天' },
+          { value: hours, label: '时' },
+          { value: minutes, label: '分' },
+          { value: seconds, label: '秒' },
+        ]);
+      }
+    };
+
+    calculateTimeLeft();
+    const timer = setInterval(calculateTimeLeft, 1000);
+    return () => clearInterval(timer);
+  }, []);
 
   return (
     <div>
@@ -100,6 +138,176 @@ const Home: FC = () => {
           <div className="flex h-10 w-6 items-start justify-center rounded-full border-2 border-primary/50 p-2">
             <div className="h-3 w-1.5 animate-fade-in rounded-full bg-primary" />
           </div>
+        </div>
+      </section>
+
+      <section className="relative overflow-hidden px-6 py-12 sm:px-12">
+        <div className="absolute inset-0 bg-gradient-to-b from-primary/5 via-background to-primary/5" />
+
+        <div className="relative mx-auto max-w-6xl">
+          <Card
+            className="overflow-hidden border-primary/30 bg-card/80 backdrop-blur-xl"
+            styles={{ body: { padding: 0 } }}
+          >
+            <div className="relative p-5 sm:p-8 md:p-12">
+              <BasePulseRings />
+
+              <div className="absolute left-0 right-0 top-0 h-1 bg-gradient-to-r from-transparent via-primary to-transparent" />
+
+              {!newConcert ? (
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  className="relative z-10 flex flex-col items-center justify-center py-8"
+                >
+                  <motion.div
+                    animate={{
+                      scale: [1, 1.1, 1],
+                      rotate: [0, 5, -5, 0],
+                    }}
+                    transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
+                    className="relative mb-6"
+                  >
+                    <div className="absolute inset-0 rounded-full bg-primary/30 blur-2xl" />
+                    <div className="relative flex h-24 w-24 items-center justify-center rounded-full border border-primary/30 bg-gradient-to-br from-primary/20 to-primary/5 sm:h-32 sm:w-32">
+                      <CalendarOutlined className="text-4xl text-primary/60 sm:text-5xl" />
+                      <motion.div
+                        animate={{ opacity: [0.3, 0.8, 0.3] }}
+                        transition={{ duration: 2, repeat: Infinity }}
+                        className="absolute inset-0 rounded-full border-2 border-primary/40"
+                      />
+                    </div>
+                  </motion.div>
+
+                  <motion.h3
+                    animate={{
+                      textShadow: [
+                        '0 0 20px hsl(var(--primary) / 0.5)',
+                        '0 0 40px hsl(var(--primary) / 0.8)',
+                        '0 0 20px hsl(var(--primary) / 0.5)',
+                      ],
+                    }}
+                    transition={{ duration: 2, repeat: Infinity }}
+                    className="mb-4 text-center font-display text-2xl font-bold text-primary sm:text-3xl md:text-4xl"
+                  >
+                    近期暂无演唱会
+                  </motion.h3>
+
+                  <motion.p
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.3 }}
+                    className="max-w-md text-center text-sm text-muted-foreground sm:text-base"
+                  >
+                    <span className="inline-flex items-center gap-2">
+                      <Sparkles className="h-4 w-4 text-amber-400" />
+                      敬请期待下一场精彩演出
+                      <Sparkles className="h-4 w-4 text-amber-400" />
+                    </span>
+                  </motion.p>
+
+                  <div className="mt-8 flex items-center gap-3">
+                    {[...Array(10)].map((_, i) => (
+                      <motion.div
+                        key={i}
+                        animate={{
+                          scaleY: [0.3, 1, 0.3],
+                          opacity: [0.3, 1, 0.3],
+                        }}
+                        transition={{
+                          duration: 1,
+                          repeat: Infinity,
+                          delay: i * 0.15,
+                          ease: 'easeInOut',
+                        }}
+                        className="h-8 w-1 rounded-full bg-gradient-to-t from-primary/20 to-primary"
+                      />
+                    ))}
+                  </div>
+                </motion.div>
+              ) : (
+                <>
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    className="relative z-10 mb-8 text-center"
+                  >
+                    <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/20 px-4 py-1.5">
+                      <ThunderboltOutlined className="animate-pulse text-primary" />
+                      <span className="text-sm font-medium text-primary">即将开演</span>
+                    </div>
+
+                    <h2 className="mb-2 font-display text-2xl font-bold sm:text-3xl md:text-4xl">
+                      <BaseNeonText>{newConcert.name}</BaseNeonText>
+                    </h2>
+
+                    <div className="flex items-center justify-center gap-2 text-xl font-bold text-foreground sm:text-2xl">
+                      <Sparkles className="h-5 w-5 text-amber-400" />
+                      <span className="bg-gradient-to-r from-amber-400 to-amber-200 bg-clip-text text-transparent">
+                        {newConcert.address}
+                      </span>
+                      <Sparkles className="h-5 w-5 text-amber-400" />
+                    </div>
+                  </motion.div>
+
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.2 }}
+                    className="relative z-10 mb-8 flex items-center justify-center gap-2 sm:gap-4 md:gap-6"
+                  >
+                    {timeLeft.map((unit, index) => (
+                      <div
+                        key={unit.label}
+                        className="flex items-center gap-2 sm:gap-4 md:gap-6"
+                      >
+                        <CountDownFlipCard value={unit.value} label={unit.label} />
+                        {index < timeLeft.length - 1 && (
+                          <div className="flex flex-col gap-2">
+                            <motion.div
+                              animate={{ opacity: [1, 0.3, 1] }}
+                              transition={{ duration: 1, repeat: Infinity }}
+                              className="h-2 w-2 rounded-full bg-primary shadow-[0_0_10px_hsl(var(--primary))]"
+                            />
+                            <motion.div
+                              animate={{ opacity: [1, 0.3, 1] }}
+                              transition={{ duration: 1, repeat: Infinity, delay: 0.5 }}
+                              className="h-2 w-2 rounded-full bg-primary shadow-[0_0_10px_hsl(var(--primary))]"
+                            />
+                          </div>
+                        )}
+                      </div>
+                    ))}
+                  </motion.div>
+
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.4 }}
+                    className="relative z-10 flex flex-col items-center justify-center gap-4 text-muted-foreground sm:flex-row sm:gap-8"
+                  >
+                    <div className="flex items-center gap-2 rounded-lg border border-primary/20 bg-primary/10 px-4 py-2">
+                      <CalendarOutlined className="text-primary" />
+                      <span className="text-sm sm:text-base">
+                        {formatDate(newConcert.date)} {formatDateTime(newConcert.date)}
+                      </span>
+                    </div>
+
+                    <div className="flex items-center gap-2 rounded-lg border border-primary/20 bg-primary/10 px-4 py-2">
+                      <EnvironmentOutlined className="text-primary" />
+                      <span className="text-sm sm:text-base">{newConcert.venue}</span>
+                    </div>
+                  </motion.div>
+                </>
+              )}
+
+              <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-primary to-transparent" />
+            </div>
+          </Card>
         </div>
       </section>
 

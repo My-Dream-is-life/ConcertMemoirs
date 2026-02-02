@@ -58,3 +58,23 @@ export const getCurrentLyricIndex = (
 
   return 0;
 };
+
+export const formatDate = (date: string) => {
+  const formatDate = new Date(date);
+
+  return formatDate.toLocaleDateString('zh-CN', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    weekday: 'long',
+  });
+};
+
+export const formatDateTime = (date: string) => {
+  const formatDate = new Date(date);
+
+  return formatDate.toLocaleTimeString('zh-CN', {
+    hour: '2-digit',
+    minute: '2-digit',
+  });
+};
