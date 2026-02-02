@@ -97,3 +97,12 @@ export interface LyricLine {
   time: number;
   text: string;
 }
+
+export interface CountDownTimeUnit {
+  value: number;
+  label: string;
+}
+
+export interface NewConcertInfo extends BaseCityItem {
+  venue: string;
+}
