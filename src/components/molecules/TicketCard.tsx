@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 import type { TicketItem } from '@/types';
 
 interface TicketCardProp {
@@ -9,6 +10,9 @@ interface TicketCardProp {
 }
 
 const TicketCard: FC<TicketCardProp> = ({ ticket, index, onClick }) => {
+  const { t } = useTranslation();
+  const { t: tCommon } = useTranslation('common');
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 50, rotateX: -15 }}
@@ -48,7 +52,7 @@ const TicketCard: FC<TicketCardProp> = ({ ticket, index, onClick }) => {
                 d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
               />
             </svg>
-            点击查看详情
+            {tCommon('Common.Action.ToViewDetail')}
           </span>
         </div>
 
@@ -59,7 +63,10 @@ const TicketCard: FC<TicketCardProp> = ({ ticket, index, onClick }) => {
                 {ticket.tourName}
               </div>
               <h3 className="text-2xl font-bold text-white">
-                {ticket.artist} {ticket.name}站
+                {tCommon('Common.Concert.Detail.Title', {
+                  artist: ticket.artist,
+                  name: ticket.name,
+                })}
               </h3>
             </div>
 
@@ -89,11 +96,11 @@ const TicketCard: FC<TicketCardProp> = ({ ticket, index, onClick }) => {
 
             <div className="flex gap-6">
               <div className="space-y-1">
-                <div className="text-xs text-purple-400">日期</div>
+                <div className="text-xs text-purple-400">{t('Tickets.Date')}</div>
                 <div className="font-semibold text-white">{ticket.date}</div>
               </div>
               <div className="space-y-1">
-                <div className="text-xs text-purple-400">开场时间</div>
+                <div className="text-xs text-purple-400">{t('Tickets.Time')}</div>
                 <div className="font-semibold text-white">{ticket.time}</div>
               </div>
             </div>
@@ -101,11 +108,13 @@ const TicketCard: FC<TicketCardProp> = ({ ticket, index, onClick }) => {
             <div className="rounded-xl border border-purple-500/20 bg-purple-950/50 p-4">
               <div className="flex items-center justify-between">
                 <div>
-                  <div className="mb-1 text-xs text-purple-400">座位</div>
+                  <div className="mb-1 text-xs text-purple-400">{t('Tickets.Seat')}</div>
                   <div className="font-bold text-white">{ticket.seat}</div>
                 </div>
                 <div className="text-right">
-                  <div className="mb-1 text-xs text-purple-400">区域</div>
+                  <div className="mb-1 text-xs text-purple-400">
+                    {t('Tickets.Section')}
+                  </div>
                   <div className="font-semibold text-purple-300">{ticket.section}</div>
                 </div>
               </div>

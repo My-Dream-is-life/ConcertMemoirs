@@ -1,6 +1,7 @@
 import { FC } from 'react';
 import { motion } from 'framer-motion';
 import type { ConcertThemeItem } from '@/types';
+import { useTranslation } from 'react-i18next';
 
 interface MiniPieChartProps {
   concert: ConcertThemeItem[];
@@ -8,6 +9,8 @@ interface MiniPieChartProps {
 }
 
 const MiniPieChart: FC<MiniPieChartProps> = ({ concert, total }) => {
+  const { t } = useTranslation();
+
   let currentAngle = 0;
 
   return (
@@ -40,7 +43,9 @@ const MiniPieChart: FC<MiniPieChartProps> = ({ concert, total }) => {
       </svg>
 
       <div className="absolute inset-0 flex items-center justify-center">
-        <span className="text-xs font-bold text-foreground">{total}场</span>
+        <span className="text-xs font-bold text-foreground">
+          {t('Home.ConcertCount.Matches', { total })}
+        </span>
       </div>
     </div>
   );

@@ -4,6 +4,7 @@ import {
   EnvironmentOutlined,
   CustomerServiceOutlined,
 } from '@ant-design/icons';
+import { useTranslation } from 'react-i18next';
 import type { BaseCityItem } from '@/types';
 
 interface DetailLayoutProps extends BaseCityItem {
@@ -18,6 +19,8 @@ const DetailLayout: FC<DetailLayoutProps> = ({
   memory,
   children,
 }) => {
+  const { t } = useTranslation('common');
+
   return (
     <div>
       <div className="relative h-[60vh] min-h-[400px]">
@@ -37,7 +40,7 @@ const DetailLayout: FC<DetailLayoutProps> = ({
           </div>
 
           <h1 className="mb-4 font-display text-4xl font-bold text-foreground md:text-6xl">
-            JJ20 {name}站
+            {t('Common.Concert.Detail.Title', { artist: '', name })}
           </h1>
 
           <div className="flex max-w-2xl items-start gap-3">

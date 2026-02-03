@@ -2,6 +2,7 @@ import * as echarts from 'echarts';
 import { FC, useEffect, useRef, useState, useCallback } from 'react';
 import ReactECharts from 'echarts-for-react';
 import { X, MapPin, Calendar, Music } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import BaseParticles from '../atoms/BaseParticles';
 import type { BaseCityItem } from '@/types';
 import { allCities } from '@/static/city';
@@ -16,6 +17,8 @@ interface ModalProps {
 }
 
 const Modal: FC<ModalProps> = ({ city, onClose }) => {
+  const { t } = useTranslation();
+
   if (!city) return null;
 
   return (
@@ -36,7 +39,7 @@ const Modal: FC<ModalProps> = ({ city, onClose }) => {
             <div className="relative z-10 flex h-full items-center justify-center">
               <div className="text-center">
                 <h2 className="text-3xl font-bold text-white drop-shadow-lg">
-                  🎵 {city.name} 演唱会
+                  🎵 {t('Home.CityMap.Concert.Name', { name: city.name })}
                 </h2>
                 <div className="mt-2 flex items-center justify-center gap-4 text-purple-200">
                   <div className="flex items-center gap-1">
@@ -57,7 +60,7 @@ const Modal: FC<ModalProps> = ({ city, onClose }) => {
             <div className="mb-6 overflow-hidden rounded-xl border-2 border-purple-500/30">
               <img
                 src={city.image}
-                alt={`${city.name}演唱会`}
+                alt={t('Home.CityMap.Concert.Name', { name: city.name })}
                 className="h-64 w-full object-cover transition-transform duration-500 hover:scale-105"
                 loading="lazy"
               />
@@ -74,20 +77,20 @@ const Modal: FC<ModalProps> = ({ city, onClose }) => {
               <div className="rounded-lg border border-purple-500/20 bg-purple-900/30 p-4">
                 <h3 className="mb-2 flex items-center gap-2 font-bold text-purple-300">
                   <MapPin size={18} />
-                  演唱会记忆
+                  {t('Home.CityMap.Modal.ConcertMemories')}
                 </h3>
                 <ul className="space-y-2 text-purple-100">
                   <li className="flex items-center gap-2">
                     <div className="h-2 w-2 rounded-full bg-purple-400" />
-                    <span>万人合唱的震撼瞬间</span>
+                    <span>{t('Home.CityMap.Modal.ConcertMemories.desc1')}</span>
                   </li>
                   <li className="flex items-center gap-2">
                     <div className="h-2 w-2 rounded-full bg-purple-400" />
-                    <span>灯光与音乐的完美融合</span>
+                    <span>{t('Home.CityMap.Modal.ConcertMemories.desc2')}</span>
                   </li>
                   <li className="flex items-center gap-2">
                     <div className="h-2 w-2 rounded-full bg-purple-400" />
-                    <span>粉丝热情点燃全场</span>
+                    <span>{t('Home.CityMap.Modal.ConcertMemories.desc3')}</span>
                   </li>
                 </ul>
               </div>
@@ -97,7 +100,7 @@ const Modal: FC<ModalProps> = ({ city, onClose }) => {
                   onClick={onClose}
                   className="w-full rounded-lg bg-gradient-to-r from-purple-600 to-pink-600 py-3 font-bold text-white transition-all hover:from-purple-700 hover:to-pink-700 hover:shadow-lg active:scale-95"
                 >
-                  关闭详情
+                  {t('Home.CityMap.Modal.Close')}
                 </button>
               </div>
             </div>
@@ -111,6 +114,9 @@ const Modal: FC<ModalProps> = ({ city, onClose }) => {
 };
 
 const CityAreaMap: FC = () => {
+  const { t } = useTranslation();
+  const { t: tCommon } = useTranslation('common');
+
   const [activeCity, setActiveCity] = useState<BaseCityItem>();
   const [isShow, setIsShow] = useState<boolean>(false);
   const [isMapLoaded, setIsMapLoaded] = useState<boolean>(false);
@@ -160,8 +166,8 @@ const CityAreaMap: FC = () => {
       return {
         backgroundColor: 'transparent',
         title: {
-          text: '🎵 演唱会足迹地图',
-          subtext: '点击城市可查看演唱会详情',
+          text: `🎵 ${t('Home.CityMap.Title')}`,
+          subtext: t('Home.CityMap.Subtitle'),
           left: 'center',
           top: 30,
           textStyle: {
@@ -190,10 +196,10 @@ const CityAreaMap: FC = () => {
             if ('name' in params) {
               return `
               <div style="font-weight: bold; color: #d8b4fe; margin-bottom: 8px;">
-                🎤 ${params.name} 演唱会
+                🎤 ${t('Home.CityMap.Concert.Name', { name: params.name })}
               </div>
               <div style="color: #e9d5ff; font-size: 12px;">
-                点击查看详情
+                ${tCommon('Common.Action.ToViewDetail')}
               </div>
             `;
             }
@@ -337,7 +343,7 @@ const CityAreaMap: FC = () => {
         ],
       };
     },
-    [isMapLoaded, processedData]
+    [isMapLoaded, processedData, t, tCommon]
   );
 
   const handleChartClick = (params: {
@@ -376,7 +382,7 @@ const CityAreaMap: FC = () => {
 
       {!isMapLoaded && (
         <div className="absolute inset-0 flex items-center justify-center">
-          <div className="text-purple-300">正在加载地图数据...</div>
+          <div className="text-purple-300">{t('Home.CityMap.Loading')}</div>
         </div>
       )}
 
@@ -394,12 +400,16 @@ const CityAreaMap: FC = () => {
       <div className="absolute bottom-4 left-4 right-4">
         <div className="flex items-center justify-between rounded-xl border border-purple-500/30 bg-black/40 px-6 py-3 backdrop-blur-sm">
           <div className="text-white">
-            <div className="text-sm text-purple-300">已点亮城市</div>
+            <div className="text-sm text-purple-300">
+              {t('Home.CityMap.CityLightsUp')}
+            </div>
             <div className="text-2xl font-bold text-purple-100">{allCities.length}</div>
           </div>
           <div className="text-white">
-            <div className="text-sm text-pink-300">追光之旅</div>
-            <div className="text-xl font-bold text-pink-100">继续前行 ✨</div>
+            <div className="text-sm text-pink-300">{t('Home.CityMap.ChasingLight')}</div>
+            <div className="text-xl font-bold text-pink-100">
+              {t('Home.CityMap.MoveOn')} ✨
+            </div>
           </div>
         </div>
       </div>

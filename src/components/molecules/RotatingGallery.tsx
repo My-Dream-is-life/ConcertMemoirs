@@ -9,6 +9,7 @@ import {
   MutedOutlined,
 } from '@ant-design/icons';
 import clsx from 'clsx';
+import { useTranslation } from 'react-i18next';
 import type { GalleryItem } from '@/types';
 import { useSmallLayout } from '@/hooks/useSmallLayout';
 import BaseParticles from '../atoms/BaseParticles';
@@ -23,6 +24,8 @@ const { Title, Text } = Typography;
 
 const RotatingGallery: FC<RotatingGalleryProps> = ({ galleries }) => {
   const isSP = useSmallLayout();
+  const { t } = useTranslation();
+  const { t: tCommon } = useTranslation('common');
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(true);
@@ -104,7 +107,7 @@ const RotatingGallery: FC<RotatingGalleryProps> = ({ galleries }) => {
         className="relative z-10 mb-2 text-center"
         style={{ color: 'var(--foreground)' }}
       >
-        演出回忆相册
+        {t('Home.MemoryAlbum')}
       </Title>
       <Text className="relative z-10 mb-8 block text-center text-gray-400">
         {currentGallery.name} · {currentGallery.date}
@@ -134,7 +137,10 @@ const RotatingGallery: FC<RotatingGalleryProps> = ({ galleries }) => {
             ))}
           </div>
           <span className="text-sm font-medium text-white">
-            {isPlaying ? '♪ 正在播放' : '⏸ 已暂停'} · {currentGallery.song}
+            {isPlaying
+              ? `♪ ${tCommon('Common.Music.Playing')}`
+              : `⏸ ${tCommon('Common.Music.Paused')}`}{' '}
+            · {currentGallery.song}
           </span>
           <button
             onClick={() => {
@@ -315,7 +321,9 @@ const RotatingGallery: FC<RotatingGalleryProps> = ({ galleries }) => {
                                 animation: isPlaying ? 'pulse 2s infinite' : 'none',
                               }}
                             >
-                              {isPlaying ? '正在播放' : '已暂停'}
+                              {isPlaying
+                                ? tCommon('Common.Music.Playing')
+                                : tCommon('Common.Music.Paused')}
                             </div>
                           )}
                         </div>
