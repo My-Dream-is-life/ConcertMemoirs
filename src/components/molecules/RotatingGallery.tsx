@@ -107,7 +107,7 @@ const RotatingGallery: FC<RotatingGalleryProps> = ({ galleries }) => {
         className="relative z-10 mb-2 text-center"
         style={{ color: 'var(--foreground)' }}
       >
-        {t('Home.MemoryAlbum')}
+        {t('Home.MemoryAlbum.Title')}
       </Title>
       <Text className="relative z-10 mb-8 block text-center text-gray-400">
         {currentGallery.name} · {currentGallery.date}

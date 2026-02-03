@@ -70,7 +70,7 @@ const ThemeCard3D: FC<ThemeCard3DProps> = ({
 
       <div className="absolute right-3 top-3">
         <Tag color={theme.themeColor} className="border-0 font-bold backdrop-blur-sm">
-          {t('Home.ConcertCount.Secondary', { secondary: theme.watchCount })}
+          {t('Home.ConcertCount.ThemeCard3D.Secondary', { secondary: theme.watchCount })}
         </Tag>
       </div>
 
