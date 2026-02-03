@@ -45,7 +45,6 @@ const LanguagesDropdown: FC = () => {
         className="absolute inset-0 rounded-xl bg-primary/20 blur-xl"
         animate={{
           opacity: isOpen ? 0.6 : 0.3,
-          scale: isOpen ? 1.2 : 1,
         }}
         transition={{ duration: 0.3 }}
       />
@@ -64,7 +63,7 @@ const LanguagesDropdown: FC = () => {
             backdropFilter: 'blur(20px)',
           },
         }}
-        trigger={['click']}
+        trigger={['hover', 'click']}
         placement="topRight"
         onOpenChange={setIsOpen}
         popupRender={(menu) => (
