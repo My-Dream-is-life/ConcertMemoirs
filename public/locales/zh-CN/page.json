@@ -118,5 +118,10 @@
   "Tickets.Order.Number": "订单编号",
   "Timeline.Title": "追星时间线",
   "Timeline.Description": "记录每一场演唱会，每一次感动，每一个难忘的瞬间",
-  "Timeline.Continue": "未完待续...期待下一场相遇"
+  "Timeline.Continue": "未完待续...期待下一场相遇",
+  "CityDetail.Video": "精选视频",
+  "CityDetail.Photo": "精选照片",
+  "CityDetail.Attraction": "必游景点",
+  "CityDetail.Food": "特色美食",
+  "CityDetail.Travel": "旅游攻略"
 }
