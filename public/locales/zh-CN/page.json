@@ -115,5 +115,8 @@
   "Tickets.Performance.Gate": "入场通道",
   "Tickets.Performance.Memory": "演出回忆",
   "Tickets.Thanks": "感谢每一次相遇",
-  "Tickets.Order.Number": "订单编号"
+  "Tickets.Order.Number": "订单编号",
+  "Timeline.Title": "追星时间线",
+  "Timeline.Description": "记录每一场演唱会，每一次感动，每一个难忘的瞬间",
+  "Timeline.Continue": "未完待续...期待下一场相遇"
 }
