@@ -98,8 +98,22 @@
   "NotFound.Status": "404",
   "NotFound.Title": "抱歉，您访问的页面不存在",
   "NotFound.Action": "返回首页",
+  "Tickets.Collect": "珍藏票根",
+  "Tickets.Title": "我的演唱会门票",
+  "Tickets.Description": "每一张票根，都是一段不可复制的回忆",
+  "Tickets.Concert.Count": "场演唱会",
+  "Tickets.City.Count": "座城市",
+  "Tickets.Year": "年",
+  "Tickets.Venue": "场馆",
   "Tickets.Date": "日期",
   "Tickets.Time": "开场时间",
   "Tickets.Seat": "座位",
-  "Tickets.Section": "区域"
+  "Tickets.Section": "区域",
+  "Tickets.Price": "票价",
+  "Tickets.Performance.Date": "演出日期",
+  "Tickets.Performance.Venue": "演出场馆",
+  "Tickets.Performance.Gate": "入场通道",
+  "Tickets.Performance.Memory": "演出回忆",
+  "Tickets.Thanks": "感谢每一次相遇",
+  "Tickets.Order.Number": "订单编号"
 }

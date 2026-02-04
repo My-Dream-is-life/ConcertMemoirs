@@ -18,6 +18,7 @@ import {
   EnvironmentOutlined,
 } from '@ant-design/icons';
 import { useTranslation } from 'react-i18next';
+import clsx from 'clsx';
 import BasePulseRings from '@/components/atoms/BasePulseRings';
 import BaseNeonText from '@/components/atoms/BaseNeonText';
 import RotatingGallery from '@/components/molecules/RotatingGallery';
@@ -527,11 +528,12 @@ const Home: FC = () => {
                       whileInView={{ opacity: 1, x: 0 }}
                       viewport={{ once: true }}
                       transition={{ delay: 0.1 * index }}
-                      className={`-m-3 cursor-pointer rounded-xl p-3 transition-all duration-300 ${
+                      className={clsx(
+                        '-m-3 cursor-pointer rounded-xl p-3 transition-all duration-300',
                         selectedTheme.id === theme.id
                           ? 'bg-primary/10 ring-1 ring-primary/30'
                           : 'hover:bg-white/5'
-                      }`}
+                      )}
                       onClick={() => setSelectedTheme(theme)}
                       onMouseEnter={() => setHoveredIndex(index)}
                       onMouseLeave={() => setHoveredIndex(null)}
