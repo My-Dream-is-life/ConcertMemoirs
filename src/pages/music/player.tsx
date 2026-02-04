@@ -22,6 +22,7 @@ import {
   FileTextOutlined,
 } from '@ant-design/icons';
 import clsx from 'clsx';
+import { useTranslation } from 'react-i18next';
 import { music } from '@/static/music';
 import { formatTime, getLyrics, getCurrentLyricIndex } from '@/lib/utils';
 import { ROUTER_PATH } from '@/constants';
@@ -35,6 +36,8 @@ const MusicPlayer = () => {
   const controls = useAnimation();
   const rotate = useMotionValue(0);
   const isSP = useSmallLayout();
+  const { t } = useTranslation();
+  const { t: tCommon } = useTranslation('common');
 
   const [curMusicIdx, setCurMusicIdx] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -165,7 +168,9 @@ const MusicPlayer = () => {
         >
           <LeftOutlined className="text-lg text-foreground" />
         </button>
-        <h1 className="text-lg font-semibold text-foreground">正在播放</h1>
+        <h1 className="text-lg font-semibold text-foreground">
+          {tCommon('Common.Music.Playing')}
+        </h1>
         <button
           onClick={() => setShowPlaylist(true)}
           className="rounded-full bg-secondary/50 p-3 transition-colors hover:bg-secondary"
@@ -337,7 +342,7 @@ const MusicPlayer = () => {
           >
             <FileTextOutlined className="text-primary" />
             <span className="text-foreground">
-              {showLyrics ? '歌词关闭' : '歌词显示'}
+              {showLyrics ? t('Music.Player.LyricsClose') : t('Music.Player.LyricsOpen')}
             </span>
           </button>
 
@@ -346,7 +351,7 @@ const MusicPlayer = () => {
             className="flex items-center gap-2 rounded-full bg-secondary/50 px-6 py-3 transition-colors hover:bg-secondary"
           >
             <UnorderedListOutlined className="text-primary" />
-            <span className="text-foreground">播放列表</span>
+            <span className="text-foreground">{t('Music.Player.Playlist')}</span>
             <span className="text-muted-foreground">({music.length})</span>
           </button>
         </div>
@@ -356,7 +361,7 @@ const MusicPlayer = () => {
         title={
           <div className="flex items-center gap-2">
             <FileTextOutlined className="text-primary" />
-            <span>歌词</span>
+            <span>{t('Music.Player.Lyrics')}</span>
             <span className="text-sm text-muted-foreground">- {currentMusic?.title}</span>
           </div>
         }
@@ -420,8 +425,10 @@ const MusicPlayer = () => {
         title={
           <div className="flex items-center gap-2">
             <UnorderedListOutlined className="text-primary" />
-            <span>播放列表</span>
-            <span className="text-sm text-muted-foreground">({music.length}首)</span>
+            <span>{t('Music.Player.Playlist')}</span>
+            <span className="text-sm text-muted-foreground">
+              {t('Music.Player.Playlist.TracksCount', { count: music.length })}
+            </span>
           </div>
         }
         placement="right"

@@ -131,5 +131,10 @@
   "Music.NewList.AllMusic": "全部歌曲",
   "Music.NewList.Music": "歌曲",
   "Music.NewList.Album": "专辑",
-  "Music.NewList.Duration": "时长"
+  "Music.NewList.Duration": "时长",
+  "Music.Player.LyricsClose": "歌词关闭",
+  "Music.Player.LyricsOpen": "歌词显示",
+  "Music.Player.Lyrics": "歌词",
+  "Music.Player.Playlist": "播放列表",
+  "Music.Player.Playlist.TracksCount": "{{count}} 首"
 }
