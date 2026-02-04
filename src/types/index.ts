@@ -90,7 +90,6 @@ export interface Music {
   cover: string;
   url: string;
   lyrics: string;
-  isNew?: boolean;
 }
 
 export interface LyricLine {
