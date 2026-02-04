@@ -96,13 +96,13 @@ const LanguagesDropdown: FC = () => {
 
           <div className="relative z-10 flex items-center gap-2">
             <span className="text-lg">{currentLanguage.flag}</span>
-            <span className="text-sm font-medium text-foreground">
+            <span className="text-nowrap text-sm font-medium text-foreground">
               {currentLanguage.nativeName}
             </span>
           </div>
 
           <motion.div
-            className="relative z-10 ml-1"
+            className="relative z-10"
             animate={{ rotate: isOpen ? 180 : 0 }}
             transition={{ duration: 0.2 }}
           >
