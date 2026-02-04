@@ -1,0 +1,15 @@
+{
+  "Common.Logo.Title": "JJ20回憶錄",
+  "Common.Header.NavBar.Timeline": "時間軸",
+  "Common.Header.NavBar.City.List": "巡演城市",
+  "Common.Header.NavBar.Tickets": "票根珍藏",
+  "Common.Header.NavBar.Collection": "收藏櫃",
+  "Common.Header.NavBar.Music.List": "新歌集錦",
+  "Common.Concert.Detail.Title": "{{artist}} JJ20 {{name}}站",
+  "Common.Music.Playing": "播放中",
+  "Common.Music.Paused": "已暫停",
+  "Common.Action.ViewDetail": "查看詳情",
+  "Common.Action.ToViewDetail": "點擊查看詳情",
+  "Common.Footer.Content": "JJ20 演唱會回憶錄 · 用音樂記錄每一次相遇",
+  "Common.Footer.Copyright": "© 2026 songcarin.cn 版權所有 ICP許可: 蜀ICP備2025179062"
+}
