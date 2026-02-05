@@ -1,0 +1,15 @@
+{
+  "Common.Logo.Title": "Mémoires JJ20",
+  "Common.Header.NavBar.Timeline": "Chronologie",
+  "Common.Header.NavBar.City.List": "Villes en tournée",
+  "Common.Header.NavBar.Tickets": "Collection de billets",
+  "Common.Header.NavBar.Collection": "Vitrine de collection",
+  "Common.Header.NavBar.Music.List": "Sélection des nouvelles chansons",
+  "Common.Concert.Detail.Title": "{{artist}} JJ20 – Arrêt {{name}}",
+  "Common.Music.Playing": "En cours de lecture",
+  "Common.Music.Paused": "En pause",
+  "Common.Action.ViewDetail": "Voir les détails",
+  "Common.Action.ToViewDetail": "Cliquez pour voir les détails",
+  "Common.Footer.Content": "Mémoires du concert JJ20 · Enregistrer chaque rencontre avec la musique",
+  "Common.Footer.Copyright": "© 2026 songcarin.cn Tous droits réservés Licence ICP : 蜀ICP备2025179062"
+}
