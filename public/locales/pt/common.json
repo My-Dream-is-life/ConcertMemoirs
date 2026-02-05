@@ -1,0 +1,15 @@
+{
+  "Common.Logo.Title": "Memórias JJ20",
+  "Common.Header.NavBar.Timeline": "Linha do Tempo",
+  "Common.Header.NavBar.City.List": "Cidades da Turnê",
+  "Common.Header.NavBar.Tickets": "Coleção de Ingressos",
+  "Common.Header.NavBar.Collection": "Vitrine de Coleção",
+  "Common.Header.NavBar.Music.List": "Destaques de Novas Músicas",
+  "Common.Concert.Detail.Title": "{{artist}} JJ20 {{name}}",
+  "Common.Music.Playing": "Reproduzindo",
+  "Common.Music.Paused": "Pausado",
+  "Common.Action.ViewDetail": "Ver Detalhes",
+  "Common.Action.ToViewDetail": "Clique para ver detalhes",
+  "Common.Footer.Content": "Memórias do Show JJ20 · Registrando cada encontro com música",
+  "Common.Footer.Copyright": "© 2026 songcarin.cn Todos os direitos reservados Licença ICP: 蜀ICP备2025179062"
+}
