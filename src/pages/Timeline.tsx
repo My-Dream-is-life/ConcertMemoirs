@@ -8,11 +8,14 @@ import {
 } from '@ant-design/icons';
 import { Music, Sparkles } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import TimelineConcert from '@/assets/timeline-concert.jpg';
 import { timeline } from '@/static/timeline';
 import { ROUTER_PATH } from '@/constants';
 
 const Timeline: FC = () => {
+  const { t } = useTranslation();
+
   return (
     <div>
       <section className="relative h-[50vh] min-h-[400px]">
@@ -28,11 +31,11 @@ const Timeline: FC = () => {
           <Sparkles className="mb-4 h-8 w-8 animate-pulse text-primary" />
 
           <h1 className="mb-4 font-display text-4xl font-bold text-foreground md:text-6xl">
-            追星时间线
+            {t('Timeline.Title')}
           </h1>
 
           <p className="max-w-xl text-lg text-muted-foreground">
-            记录每一场演唱会，每一次感动，每一个难忘的瞬间
+            {t('Timeline.Description')}
           </p>
         </div>
       </section>
@@ -95,7 +98,7 @@ const Timeline: FC = () => {
             <div className="flex h-12 w-12 animate-pulse items-center justify-center rounded-full border-2 border-primary bg-primary/20">
               <HeartOutlined className="text-xl text-primary" />
             </div>
-            <p className="mt-4 italic text-muted-foreground">未完待续...期待下一场相遇</p>
+            <p className="mt-4 italic text-muted-foreground">{t('Timeline.Continue')}</p>
           </div>
         </div>
       </section>

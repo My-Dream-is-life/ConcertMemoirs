@@ -6,10 +6,13 @@ import {
   CalendarOutlined,
   ArrowRightOutlined,
 } from '@ant-design/icons';
+import { useTranslation } from 'react-i18next';
 import { ROUTER_PATH } from '@/constants';
 import type { BaseCityItem } from '@/types';
 
 const CityCard: FC<BaseCityItem> = ({ id, name, image, date, description }) => {
+  const { t } = useTranslation('common');
+
   return (
     <Link to={ROUTER_PATH.CITY_DETAIL.replace(':id', id)} className="group block">
       <Card
@@ -38,7 +41,7 @@ const CityCard: FC<BaseCityItem> = ({ id, name, image, date, description }) => {
                 {description}
               </p>
               <div className="flex items-center gap-2 text-sm font-medium text-primary transition-all group-hover:gap-4">
-                <span>查看详情</span>
+                <span>{t('Common.Action.ViewDetail')}</span>
                 <ArrowRightOutlined />
               </div>
             </div>

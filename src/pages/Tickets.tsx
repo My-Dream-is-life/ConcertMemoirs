@@ -1,12 +1,16 @@
 import { FC, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Modal } from 'antd';
+import { useTranslation } from 'react-i18next';
 import TicketCard from '@/components/molecules/TicketCard';
 import { tickets } from '@/static/ticket';
 import type { TicketItem } from '@/types';
 import '@/css/ticketModal.css';
 
 const Tickets: FC = () => {
+  const { t } = useTranslation();
+  const { t: tCommon } = useTranslation('common');
+
   const [selectedTicket, setSelectedTicket] = useState<TicketItem>();
   const [modalOpen, setModalOpen] = useState(false);
 
@@ -46,33 +50,39 @@ const Tickets: FC = () => {
           >
             <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-purple-500/30 bg-purple-500/20 px-4 py-2">
               <span className="h-2 w-2 animate-pulse rounded-full bg-purple-400" />
-              <span className="text-sm font-medium text-purple-300">珍藏票根</span>
+              <span className="text-sm font-medium text-purple-300">
+                {t('Tickets.Collect')}
+              </span>
             </div>
 
             <h1 className="mb-4 text-4xl font-bold md:text-5xl">
               <span className="bg-gradient-to-r from-purple-300 via-purple-100 to-purple-300 bg-clip-text text-transparent">
-                我的演唱会门票
+                {t('Tickets.Title')}
               </span>
             </h1>
 
             <p className="mx-auto max-w-2xl text-lg text-purple-300/70">
-              每一张票根，都是一段不可复制的回忆
+              {t('Tickets.Description')}
             </p>
 
             <div className="mt-8 flex justify-center gap-8">
               <div className="text-center">
                 <div className="text-3xl font-bold text-purple-300">{total}</div>
-                <div className="text-sm text-purple-400/60">场演唱会</div>
+                <div className="text-sm text-purple-400/60">
+                  {t('Tickets.Concert.Count')}
+                </div>
               </div>
               <div className="w-px bg-purple-500/30" />
               <div className="text-center">
                 <div className="text-3xl font-bold text-purple-300">{cityTotal}</div>
-                <div className="text-sm text-purple-400/60">座城市</div>
+                <div className="text-sm text-purple-400/60">
+                  {t('Tickets.City.Count')}
+                </div>
               </div>
               <div className="w-px bg-purple-500/30" />
               <div className="text-center">
                 <div className="text-3xl font-bold text-purple-300">2024 - 2025</div>
-                <div className="text-sm text-purple-400/60">年</div>
+                <div className="text-sm text-purple-400/60">{t('Tickets.Year')}</div>
               </div>
             </div>
           </motion.div>
@@ -96,7 +106,7 @@ const Tickets: FC = () => {
           >
             <div className="inline-flex items-center gap-3 text-purple-400/50">
               <div className="h-px w-12 bg-gradient-to-r from-transparent to-purple-500/50" />
-              <span className="text-sm">感谢每一次相遇</span>
+              <span className="text-sm">{t('Tickets.Thanks')}</span>
               <div className="h-px w-12 bg-gradient-to-l from-transparent to-purple-500/50" />
             </div>
           </motion.div>
@@ -166,7 +176,10 @@ const Tickets: FC = () => {
                     transition={{ delay: 0.2 }}
                     className="mb-2 bg-gradient-to-r from-purple-200 via-white to-purple-200 bg-clip-text text-3xl font-bold text-transparent"
                   >
-                    {selectedTicket.artist} {selectedTicket.name}站
+                    {tCommon('Common.Concert.Detail.Title', {
+                      artist: selectedTicket.artist,
+                      name: selectedTicket.name,
+                    })}
                   </motion.h2>
 
                   <motion.p
@@ -199,13 +212,17 @@ const Tickets: FC = () => {
                       <div className="space-y-4 p-6">
                         <div className="flex justify-between">
                           <div>
-                            <div className="text-xs text-purple-400">场馆</div>
+                            <div className="text-xs text-purple-400">
+                              {t('Tickets.Venue')}
+                            </div>
                             <div className="font-semibold text-purple-900">
                               {selectedTicket.address}
                             </div>
                           </div>
                           <div className="text-right">
-                            <div className="text-xs text-purple-400">日期</div>
+                            <div className="text-xs text-purple-400">
+                              {t('Tickets.Date')}
+                            </div>
                             <div className="font-semibold text-purple-900">
                               {selectedTicket.date}
                             </div>
@@ -215,13 +232,17 @@ const Tickets: FC = () => {
                         <div className="border-t border-dashed border-purple-300 pt-4">
                           <div className="flex items-center justify-between">
                             <div>
-                              <div className="text-xs text-purple-400">座位</div>
+                              <div className="text-xs text-purple-400">
+                                {t('Tickets.Seat')}
+                              </div>
                               <div className="text-lg font-bold text-purple-900">
                                 {selectedTicket.seat}
                               </div>
                             </div>
                             <div className="text-right">
-                              <div className="text-xs text-purple-400">票价</div>
+                              <div className="text-xs text-purple-400">
+                                {t('Tickets.Price')}
+                              </div>
                               <div className="text-xl font-bold text-purple-600">
                                 {selectedTicket.price}
                               </div>
@@ -258,15 +279,35 @@ const Tickets: FC = () => {
                   className="mb-8 grid grid-cols-2 gap-4 md:grid-cols-3"
                 >
                   {[
-                    { label: '演出日期', value: selectedTicket.date, icon: '📅' },
-                    { label: '开场时间', value: selectedTicket.time, icon: '⏰' },
-                    { label: '演出场馆', value: selectedTicket.address, icon: '🏟️' },
-                    { label: '入场通道', value: selectedTicket.gate, icon: '🚪' },
-                    { label: '座位区域', value: selectedTicket.section, icon: '🎫' },
-                    { label: '票价', value: selectedTicket.price, icon: '💰' },
+                    {
+                      label: t('Tickets.Performance.Date'),
+                      value: selectedTicket.date,
+                      icon: '📅',
+                    },
+                    { label: t('Tickets.Time'), value: selectedTicket.time, icon: '⏰' },
+                    {
+                      label: t('Tickets.Performance.Venue'),
+                      value: selectedTicket.address,
+                      icon: '🏟️',
+                    },
+                    {
+                      label: t('Tickets.Performance.Gate'),
+                      value: selectedTicket.gate,
+                      icon: '🚪',
+                    },
+                    {
+                      label: t('Tickets.Seat') + t('Tickets.Section'),
+                      value: selectedTicket.section,
+                      icon: '🎫',
+                    },
+                    {
+                      label: t('Tickets.Price'),
+                      value: selectedTicket.price,
+                      icon: '💰',
+                    },
                   ].map((item, index) => (
                     <motion.div
-                      key={item.label}
+                      key={index}
                       initial={{ opacity: 0, scale: 0.9 }}
                       animate={{ opacity: 1, scale: 1 }}
                       transition={{ delay: 0.6 + index * 0.05 }}
@@ -292,7 +333,7 @@ const Tickets: FC = () => {
                       <span className="text-2xl">✨</span>
                       <div>
                         <div className="mb-1 text-sm font-medium text-purple-300">
-                          演出回忆
+                          {t('Tickets.Performance.Memory')}
                         </div>
                         <div className="text-white/90">{selectedTicket.specialNotes}</div>
                       </div>
@@ -306,7 +347,9 @@ const Tickets: FC = () => {
                   transition={{ delay: 0.9 }}
                   className="mt-6 border-t border-purple-500/20 pt-6 text-center"
                 >
-                  <div className="text-xs text-purple-400/60">订单编号</div>
+                  <div className="text-xs text-purple-400/60">
+                    {t('Tickets.Order.Number')}
+                  </div>
                   <div className="font-mono text-sm text-purple-300">
                     {selectedTicket.orderNumber}
                   </div>

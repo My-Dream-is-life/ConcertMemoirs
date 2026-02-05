@@ -3,6 +3,7 @@ import clsx from 'clsx';
 import { motion } from 'framer-motion';
 import { CrownOutlined, CustomerServiceOutlined, HeartOutlined } from '@ant-design/icons';
 import { Tag } from 'antd';
+import { useTranslation } from 'react-i18next';
 import type { ConcertThemeItem } from '@/types';
 
 interface ThemeCard3DProps {
@@ -20,6 +21,8 @@ const ThemeCard3D: FC<ThemeCard3DProps> = ({
   maxCount,
   onClick,
 }) => {
+  const { t } = useTranslation();
+
   const rankBgMap: Record<number, string> = {
     1: 'bg-amber-100',
     2: 'bg-amber-200',
@@ -67,7 +70,7 @@ const ThemeCard3D: FC<ThemeCard3DProps> = ({
 
       <div className="absolute right-3 top-3">
         <Tag color={theme.themeColor} className="border-0 font-bold backdrop-blur-sm">
-          {theme.watchCount} 次
+          {t('Home.ConcertCount.ThemeCard3D.Secondary', { secondary: theme.watchCount })}
         </Tag>
       </div>
 

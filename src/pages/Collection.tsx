@@ -2,6 +2,8 @@ import { FC, useState } from 'react';
 import { Modal } from 'antd';
 import { motion } from 'framer-motion';
 import { Lock, CheckCircle } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
+import clsx from 'clsx';
 import BaseParticles from '@/components/atoms/BaseParticles';
 import { collections, rarityConfig, type CollectionItem } from '@/static/collection';
 import CollectionProgress from '@/components/molecules/CollectionProgress';
@@ -13,6 +15,8 @@ interface CabinetItemProps {
 }
 
 const CabinetItem: FC<CabinetItemProps> = ({ item, index, onClick }) => {
+  const { t } = useTranslation();
+
   const config = rarityConfig[item.rarity];
 
   return (
@@ -22,7 +26,7 @@ const CabinetItem: FC<CabinetItemProps> = ({ item, index, onClick }) => {
       transition={{ delay: index * 0.1, duration: 0.5 }}
       whileHover={{ scale: 1.05, rotateY: 5 }}
       onClick={onClick}
-      className={`group cursor-pointer ${!item.collected && 'opacity-70 grayscale'}`}
+      className={clsx('group cursor-pointer', !item.collected && 'opacity-70 grayscale')}
     >
       <div className="relative">
         <div className="absolute inset-0 -rotate-1 transform rounded-2xl bg-gradient-to-b from-purple-900/80 to-purple-950/90" />
@@ -37,7 +41,10 @@ const CabinetItem: FC<CabinetItemProps> = ({ item, index, onClick }) => {
 
             <motion.div
               whileHover={{ y: -5 }}
-              className={`relative aspect-square w-full overflow-hidden rounded-xl shadow-2xl ${config.glow}`}
+              className={clsx(
+                'relative aspect-square w-full overflow-hidden rounded-xl shadow-2xl',
+                config.glow
+              )}
             >
               <img
                 src={item.image}
@@ -46,7 +53,10 @@ const CabinetItem: FC<CabinetItemProps> = ({ item, index, onClick }) => {
               />
 
               <div
-                className={`absolute inset-0 bg-gradient-to-t ${config.color} opacity-20 transition-opacity group-hover:opacity-40`}
+                className={clsx(
+                  'absolute inset-0 bg-gradient-to-t opacity-20 transition-opacity group-hover:opacity-40',
+                  config.color
+                )}
               />
 
               <motion.div
@@ -77,7 +87,10 @@ const CabinetItem: FC<CabinetItemProps> = ({ item, index, onClick }) => {
             <h3 className="truncate text-lg font-bold text-white">{item.name}</h3>
             <div className="mt-2 flex items-center justify-center gap-2">
               <span
-                className={`rounded-full bg-gradient-to-r px-2 py-0.5 text-xs font-medium ${config.color} text-white`}
+                className={clsx(
+                  'rounded-full bg-gradient-to-r px-2 py-0.5 text-xs font-medium text-white',
+                  config.color
+                )}
               >
                 {config.label}
               </span>
@@ -85,7 +98,9 @@ const CabinetItem: FC<CabinetItemProps> = ({ item, index, onClick }) => {
             </div>
 
             {!item.collected && (
-              <p className="mt-1 text-xs italic text-purple-500">尚未收集</p>
+              <p className="mt-1 text-xs italic text-purple-500">
+                {t('Collection.NotCollected')}
+              </p>
             )}
           </div>
 
@@ -100,6 +115,8 @@ const CabinetItem: FC<CabinetItemProps> = ({ item, index, onClick }) => {
 };
 
 const Collection: FC = () => {
+  const { t } = useTranslation();
+
   const [selectedItem, setSelectedItem] = useState<CollectionItem | null>(null);
 
   return (
@@ -120,10 +137,10 @@ const Collection: FC = () => {
             transition={{ duration: 5, repeat: Infinity }}
             style={{ backgroundSize: '200% auto' }}
           >
-            ✨ 珍藏柜 ✨
+            ✨ {t('Collection.Title')} ✨
           </motion.h1>
 
-          <p className="mb-10 text-lg text-purple-300">收藏每一份珍贵的演唱会周边</p>
+          <p className="mb-10 text-lg text-purple-300">{t('Collection.Description')}</p>
 
           <CollectionProgress items={collections} />
         </motion.div>
@@ -147,7 +164,7 @@ const Collection: FC = () => {
         >
           <div className="w-full max-w-xs cursor-pointer rounded-2xl border-2 border-dashed border-purple-500/30 bg-purple-900/30 p-8 text-center transition-colors hover:border-purple-500/50">
             <div className="mb-2 text-4xl">➕</div>
-            <div className="text-purple-400">更多收藏即将到来...</div>
+            <div className="text-purple-400">{t('Collection.More')}</div>
           </div>
         </motion.div>
       </div>
@@ -167,7 +184,10 @@ const Collection: FC = () => {
             className="p-4"
           >
             <div
-              className={`relative overflow-hidden rounded-2xl shadow-2xl ${rarityConfig[selectedItem.rarity].glow} mb-6`}
+              className={clsx(
+                'relative mb-6 overflow-hidden rounded-2xl shadow-2xl',
+                rarityConfig[selectedItem.rarity].glow
+              )}
             >
               <img
                 src={selectedItem.image}
@@ -176,11 +196,17 @@ const Collection: FC = () => {
               />
 
               <div
-                className={`absolute inset-0 bg-gradient-to-t ${rarityConfig[selectedItem.rarity].color} opacity-20`}
+                className={clsx(
+                  'absolute inset-0 bg-gradient-to-t opacity-20',
+                  rarityConfig[selectedItem.rarity].color
+                )}
               />
 
               <div
-                className={`absolute right-4 top-4 rounded-full bg-gradient-to-r px-3 py-1 text-sm font-bold ${rarityConfig[selectedItem.rarity].color} flex items-center gap-1 text-white shadow-lg`}
+                className={clsx(
+                  'absolute right-4 top-4 flex items-center gap-1 rounded-full bg-gradient-to-r px-3 py-1 text-sm font-bold text-white shadow-lg',
+                  rarityConfig[selectedItem.rarity].color
+                )}
               >
                 {(() => {
                   const Icon = rarityConfig[selectedItem.rarity].icon;
@@ -192,12 +218,12 @@ const Collection: FC = () => {
               {selectedItem.collected ? (
                 <div className="absolute bottom-4 left-4 flex items-center gap-1 rounded-full bg-green-500/90 px-3 py-1 text-sm text-white">
                   <CheckCircle className="h-4 w-4" />
-                  已收集
+                  {t('Collection.Modal.Collected')}
                 </div>
               ) : (
                 <div className="absolute bottom-4 left-4 flex items-center gap-1 rounded-full bg-purple-500/90 px-3 py-1 text-sm text-white">
                   <Lock className="h-4 w-4" />
-                  未收集
+                  {t('Collection.Modal.NotCollected')}
                 </div>
               )}
             </div>
@@ -207,13 +233,17 @@ const Collection: FC = () => {
 
             <div className="grid grid-cols-2 gap-4 rounded-xl bg-purple-900/30 p-4">
               <div>
-                <div className="text-sm text-purple-400">获得地点</div>
+                <div className="text-sm text-purple-400">
+                  {t('Collection.Modal.Location')}
+                </div>
                 <div className="font-medium text-white">{selectedItem.city}</div>
               </div>
 
               <div>
                 <div className="text-sm text-purple-400">
-                  {selectedItem.collected ? '获得日期' : '预计获得'}
+                  {selectedItem.collected
+                    ? `${t('Collection.Modal.Date')}`
+                    : `${t('Collection.Modal.Expected')}`}
                 </div>
                 <div className="font-medium text-white">{selectedItem.date}</div>
               </div>

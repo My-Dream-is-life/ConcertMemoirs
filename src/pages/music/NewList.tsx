@@ -9,6 +9,7 @@ import {
   ThunderboltOutlined,
   SoundOutlined,
 } from '@ant-design/icons';
+import { useTranslation } from 'react-i18next';
 import { music } from '@/static/music';
 import BaseParticles from '@/components/atoms/BaseParticles';
 import { ROUTER_PATH } from '@/constants';
@@ -40,6 +41,7 @@ const FavoriteMusic: FC<{ id: number }> = ({ id }) => {
 
 const MusicList: FC = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const [hoveredId, setHoveredId] = useState<number | null>(null);
   const [musicList, setMusicList] = useState(music.map((m) => ({ ...m, duration: 0 })));
@@ -63,8 +65,6 @@ const MusicList: FC = () => {
       );
     });
   }, []);
-
-  const newMusic = musicList.filter((s) => s.isNew);
 
   const navigateToPlayerPage = (id: number) => {
     navigate(ROUTER_PATH.MUSIC_PLAYER.replace(':id', String(id)));
@@ -95,26 +95,28 @@ const MusicList: FC = () => {
           <div className="mb-4 flex items-center justify-center gap-3">
             <ThunderboltOutlined className="animate-pulse text-3xl text-primary" />
             <h1 className="bg-gradient-to-r from-primary via-purple-400 to-fuchsia-400 bg-clip-text text-4xl font-bold text-transparent md:text-5xl">
-              新歌速递
+              {t('Music.NewList.Title')}
             </h1>
             <ThunderboltOutlined className="animate-pulse text-3xl text-primary" />
           </div>
           <p className="text-lg text-muted-foreground">
-            发现林俊杰最新音乐，感受JJ的音乐魅力
+            {t('Music.NewList.Description')}
           </p>
         </motion.div>
 
         <section className="mb-16">
           <div className="mb-6 flex items-center gap-2">
             <FireOutlined className="text-xl text-orange-500" />
-            <h2 className="text-2xl font-bold text-foreground">热门新歌</h2>
+            <h2 className="text-2xl font-bold text-foreground">
+              {t('Music.NewList.Popular')}
+            </h2>
             <span className="rounded-full bg-primary/20 px-2 py-0.5 text-xs text-primary">
-              NEW
+              {t('Music.NewList.New')}
             </span>
           </div>
 
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {newMusic.map(({ id, title, cover, artist, album }, index) => (
+            {musicList.map(({ id, title, cover, artist, album }, index) => (
               <motion.div
                 key={id}
                 initial={{ opacity: 0, y: 20 }}
@@ -166,76 +168,70 @@ const MusicList: FC = () => {
         <section>
           <h2 className="mb-6 flex items-center gap-2 text-2xl font-bold text-foreground">
             <SoundOutlined className="text-primary" />
-            全部歌曲
+            {t('Music.NewList.AllMusic')}
           </h2>
 
           <div className="overflow-hidden rounded-2xl border border-border/50 bg-secondary/30 backdrop-blur-sm">
             <div className="grid grid-cols-12 gap-4 border-b border-border/50 px-6 py-4 text-sm text-muted-foreground">
               <div className="col-span-1"></div>
-              <div className="col-span-5">歌曲</div>
-              <div className="col-span-3">专辑</div>
-              <div className="col-span-2">时长</div>
+              <div className="col-span-5">{t('Music.NewList.Music')}</div>
+              <div className="col-span-3">{t('Music.NewList.Album')}</div>
+              <div className="col-span-2">{t('Music.NewList.Duration')}</div>
               <div className="col-span-1"></div>
             </div>
 
-            {musicList.map(
-              ({ id, title, cover, isNew, artist, album, duration }, index) => (
-                <motion.div
-                  key={id}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: index * 0.05 }}
-                  onClick={() => navigateToPlayerPage(id)}
-                  className="group grid cursor-pointer grid-cols-12 gap-4 border-b border-border/20 px-6 py-4 transition-all duration-300 last:border-0 hover:bg-primary/10"
-                >
-                  <div className="col-span-1 flex items-center">
-                    <span className="text-muted-foreground group-hover:hidden">
-                      {String(index + 1).padStart(2, '0')}
-                    </span>
-                    <PlayCircleOutlined className="hidden text-lg text-primary group-hover:block" />
-                  </div>
+            {musicList.map(({ id, title, cover, artist, album, duration }, index) => (
+              <motion.div
+                key={id}
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: index * 0.05 }}
+                onClick={() => navigateToPlayerPage(id)}
+                className="group grid cursor-pointer grid-cols-12 gap-4 border-b border-border/20 px-6 py-4 transition-all duration-300 last:border-0 hover:bg-primary/10"
+              >
+                <div className="col-span-1 flex items-center">
+                  <span className="text-muted-foreground group-hover:hidden">
+                    {String(index + 1).padStart(2, '0')}
+                  </span>
+                  <PlayCircleOutlined className="hidden text-lg text-primary group-hover:block" />
+                </div>
 
-                  <div className="col-span-5 flex items-center gap-3">
-                    <div className="relative h-12 w-12 flex-shrink-0 overflow-hidden rounded-lg">
-                      <img
-                        src={cover}
-                        alt={title}
-                        className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-110"
-                      />
+                <div className="col-span-5 flex items-center gap-3">
+                  <div className="relative h-12 w-12 flex-shrink-0 overflow-hidden rounded-lg">
+                    <img
+                      src={cover}
+                      alt={title}
+                      className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-110"
+                    />
+                  </div>
+                  <div className="min-w-0">
+                    <div className="flex items-center gap-2">
+                      <span className="truncate font-medium text-foreground transition-colors group-hover:text-primary">
+                        {title}
+                      </span>
+                      <span className="rounded bg-primary/20 px-1.5 py-0.5 text-[10px] text-primary">
+                        {t('Music.NewList.New')}
+                      </span>
                     </div>
-                    <div className="min-w-0">
-                      <div className="flex items-center gap-2">
-                        <span className="truncate font-medium text-foreground transition-colors group-hover:text-primary">
-                          {title}
-                        </span>
-                        {isNew && (
-                          <span className="rounded bg-primary/20 px-1.5 py-0.5 text-[10px] text-primary">
-                            NEW
-                          </span>
-                        )}
-                      </div>
-                      <p className="truncate text-sm text-muted-foreground">{artist}</p>
-                    </div>
+                    <p className="truncate text-sm text-muted-foreground">{artist}</p>
                   </div>
+                </div>
 
-                  <div className="col-span-3 flex items-center">
-                    <span className="truncate text-sm text-muted-foreground">
-                      {album}
-                    </span>
-                  </div>
+                <div className="col-span-3 flex items-center">
+                  <span className="truncate text-sm text-muted-foreground">{album}</span>
+                </div>
 
-                  <div className="col-span-2 flex items-center">
-                    <span className="text-sm text-muted-foreground">
-                      {formatTime(duration)}
-                    </span>
-                  </div>
+                <div className="col-span-2 flex items-center">
+                  <span className="text-sm text-muted-foreground">
+                    {formatTime(duration)}
+                  </span>
+                </div>
 
-                  <div className="col-span-1 flex items-center justify-end">
-                    <FavoriteMusic id={id} />
-                  </div>
-                </motion.div>
-              )
-            )}
+                <div className="col-span-1 flex items-center justify-end">
+                  <FavoriteMusic id={id} />
+                </div>
+              </motion.div>
+            ))}
           </div>
         </section>
       </main>

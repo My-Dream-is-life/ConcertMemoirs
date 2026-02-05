@@ -1,0 +1,15 @@
+{
+  "Common.Logo.Title": "JJ20思い出録",
+  "Common.Header.NavBar.Timeline": "タイムライン",
+  "Common.Header.NavBar.City.List": "ツアー都市",
+  "Common.Header.NavBar.Tickets": "チケット収蔵",
+  "Common.Header.NavBar.Collection": "コレクション",
+  "Common.Header.NavBar.Music.List": "新曲集",
+  "Common.Concert.Detail.Title": "{{artist}} JJ20 {{name}}公演",
+  "Common.Music.Playing": "再生中",
+  "Common.Music.Paused": "一時停止中",
+  "Common.Action.ViewDetail": "詳細を見る",
+  "Common.Action.ToViewDetail": "クリックで詳細を表示",
+  "Common.Footer.Content": "JJ20 コンサート思い出録・音楽で出会いを記録する",
+  "Common.Footer.Copyright": "© 2026 songcarin.cn 無断複写・転載を禁じます ICP許可: 蜀ICP备2025179062"
+}

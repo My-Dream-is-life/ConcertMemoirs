@@ -30,7 +30,6 @@ export const music: Music[] = [
     cover: TomorrowCoordinatesImg,
     url: TomorrowCoordinatesMusic,
     lyrics: TomorrowCoordinatesLyrics,
-    isNew: true,
   },
   {
     id: 2,
@@ -40,7 +39,6 @@ export const music: Music[] = [
     cover: InAnInstantImg,
     url: InAnInstantMusic,
     lyrics: InAnInstantLyrics,
-    isNew: true,
   },
   {
     id: 3,
@@ -50,7 +48,6 @@ export const music: Music[] = [
     cover: RevealedToYouImg,
     url: RevealedToYouMusic,
     lyrics: RevealedToYouLyrics,
-    isNew: true,
   },
   {
     id: 4,
@@ -60,7 +57,6 @@ export const music: Music[] = [
     cover: SkibidiImg,
     url: SkibidiMusic,
     lyrics: SkibidiLyrics,
-    isNew: true,
   },
   {
     id: 5,
@@ -70,7 +66,6 @@ export const music: Music[] = [
     cover: LunarEclipseImg,
     url: LunarEclipseMusic,
     lyrics: LunarEclipseLyrics,
-    isNew: true,
   },
   {
     id: 6,
@@ -80,7 +75,6 @@ export const music: Music[] = [
     cover: TurnOfAPageImg,
     url: TurnOfAPageMusic,
     lyrics: TurnOfAPageLyrics,
-    isNew: true,
   },
   {
     id: 7,
@@ -90,6 +84,5 @@ export const music: Music[] = [
     cover: AbsolutelyImg,
     url: AbsolutelyMusic,
     lyrics: AbsolutelyLyrics,
-    isNew: true,
   },
 ];

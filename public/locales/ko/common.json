@@ -1,0 +1,15 @@
+{
+  "Common.Logo.Title": "JJ20 추억록",
+  "Common.Header.NavBar.Timeline": "타임라인",
+  "Common.Header.NavBar.City.List": "투어 도시",
+  "Common.Header.NavBar.Tickets": "티켓 보관함",
+  "Common.Header.NavBar.Collection": "콜렉션",
+  "Common.Header.NavBar.Music.List": "신곡 모음",
+  "Common.Concert.Detail.Title": "{{artist}} JJ20 {{name}} 공연",
+  "Common.Music.Playing": "재생 중",
+  "Common.Music.Paused": "일시정지",
+  "Common.Action.ViewDetail": "상세보기",
+  "Common.Action.ToViewDetail": "클릭하여 상세보기",
+  "Common.Footer.Content": "JJ20 콘서트 추억록 · 음악으로 만남을 기록하다",
+  "Common.Footer.Copyright": "© 2026 songcarin.cn All Rights Reserved ICP 라이선스: 蜀ICP备2025179062"
+}

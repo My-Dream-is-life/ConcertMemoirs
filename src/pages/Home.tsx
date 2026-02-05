@@ -17,6 +17,8 @@ import {
   CalendarOutlined,
   EnvironmentOutlined,
 } from '@ant-design/icons';
+import { useTranslation } from 'react-i18next';
+import clsx from 'clsx';
 import BasePulseRings from '@/components/atoms/BasePulseRings';
 import BaseNeonText from '@/components/atoms/BaseNeonText';
 import RotatingGallery from '@/components/molecules/RotatingGallery';
@@ -34,12 +36,14 @@ import { formatDate, formatDateTime } from '@/lib/utils';
 const Home: FC = () => {
   const isSP = useSmallLayout();
   const navigate = useNavigate();
+  const { t } = useTranslation();
+  const { t: tCommon } = useTranslation('common');
 
   const [timeLeft, setTimeLeft] = useState<CountDownTimeUnit[]>([
-    { value: 0, label: '天' },
-    { value: 0, label: '时' },
-    { value: 0, label: '分' },
-    { value: 0, label: '秒' },
+    { value: 0, label: t('Home.Countdown.Day') },
+    { value: 0, label: t('Home.Countdown.Hour') },
+    { value: 0, label: t('Home.Countdown.Minute') },
+    { value: 0, label: t('Home.Countdown.Second') },
   ]);
   const [selectedTheme, setSelectedTheme] = useState<ConcertThemeItem>(concertThemes[0]);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
@@ -61,12 +65,12 @@ const Home: FC = () => {
         const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
         const seconds = Math.floor((difference % (1000 * 60)) / 1000);
 
-        setTimeLeft([
-          { value: days, label: '天' },
-          { value: hours, label: '时' },
-          { value: minutes, label: '分' },
-          { value: seconds, label: '秒' },
-        ]);
+        setTimeLeft((prev) =>
+          prev.map((unit, index) => ({
+            ...unit,
+            value: [days, hours, minutes, seconds][index],
+          }))
+        );
       }
     };
 
@@ -89,7 +93,7 @@ const Home: FC = () => {
           <div className="mb-6 animate-fade-up">
             <span className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/20 px-4 py-2 text-sm font-medium text-primary backdrop-blur-sm">
               <Sparkles className="h-4 w-4" />
-              二十年音乐旅程
+              {t('Home.VisibleArea.Label')}
             </span>
           </div>
 
@@ -97,19 +101,17 @@ const Home: FC = () => {
             className="mb-8 animate-fade-up font-display text-5xl font-bold text-foreground md:text-7xl lg:text-8xl"
             style={{ animationDelay: '100ms' }}
           >
-            JJ20
+            {t('Home.VisibleArea.Title.JJ20')}
             <span className="mt-3 block bg-gradient-to-r from-primary to-amber-300 bg-clip-text text-2xl text-transparent md:text-4xl lg:text-5xl">
-              演唱会回忆录
+              {t('Home.VisibleArea.Title')}
             </span>
           </h1>
 
           <p
-            className="mb-8 max-w-2xl animate-fade-up text-lg text-muted-foreground md:text-xl"
+            className="mb-8 max-w-2xl animate-fade-up whitespace-pre text-lg text-muted-foreground md:text-xl"
             style={{ animationDelay: '200ms' }}
           >
-            用音乐记录每一次相遇，用脚步丈量每一座城市
-            <br />
-            这是属于JM的JJ20世界巡回之旅
+            {t('Home.VisibleArea.Desc')}
           </p>
 
           <div
@@ -121,15 +123,15 @@ const Home: FC = () => {
               <span className="bg-gradient-to-r from-primary to-amber-300 bg-clip-text font-bold text-transparent">
                 40
               </span>
-              座城市
+              {t('Home.VisibleArea.Tag1')}
             </span>
             <span className="flex items-center gap-2">
               <Music className="h-4 w-4 text-primary" />
-              无数回忆
+              {t('Home.VisibleArea.Tag2')}
             </span>
             <span className="flex items-center gap-2">
               <Heart className="h-4 w-4 text-primary" />
-              永恒热爱
+              {t('Home.VisibleArea.Tag3')}
             </span>
           </div>
         </div>
@@ -191,7 +193,7 @@ const Home: FC = () => {
                     transition={{ duration: 2, repeat: Infinity }}
                     className="mb-4 text-center font-display text-2xl font-bold text-primary sm:text-3xl md:text-4xl"
                   >
-                    近期暂无演唱会
+                    {t('Home.Countdown.NoConcert.Title')}
                   </motion.h3>
 
                   <motion.p
@@ -202,7 +204,7 @@ const Home: FC = () => {
                   >
                     <span className="inline-flex items-center gap-2">
                       <Sparkles className="h-4 w-4 text-amber-400" />
-                      敬请期待下一场精彩演出
+                      {t('Home.Countdown.NoConcert.Desc')}
                       <Sparkles className="h-4 w-4 text-amber-400" />
                     </span>
                   </motion.p>
@@ -236,7 +238,9 @@ const Home: FC = () => {
                   >
                     <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/20 px-4 py-1.5">
                       <ThunderboltOutlined className="animate-pulse text-primary" />
-                      <span className="text-sm font-medium text-primary">即将开演</span>
+                      <span className="text-sm font-medium text-primary">
+                        {t('Home.Countdown.Begin')}
+                      </span>
                     </div>
 
                     <h2 className="mb-2 font-display text-2xl font-bold sm:text-3xl md:text-4xl">
@@ -261,7 +265,7 @@ const Home: FC = () => {
                   >
                     {timeLeft.map((unit, index) => (
                       <div
-                        key={unit.label}
+                        key={index}
                         className="flex items-center gap-2 sm:gap-4 md:gap-6"
                       >
                         <CountDownFlipCard value={unit.value} label={unit.label} />
@@ -327,24 +331,23 @@ const Home: FC = () => {
             <div className="flex-1 text-left">
               <h2 className="mb-2 flex animate-fade-up items-center gap-2 font-display text-3xl font-bold text-primary md:text-4xl">
                 <span className="inline-block animate-pulse text-amber-300">★</span>
-                林俊杰 · JJ Lin
+                {t('Home.Artist.Name')}
               </h2>
               <p
                 className="mb-2 animate-fade-up text-base text-foreground/90 md:text-lg"
                 style={{ animationDelay: '100ms' }}
               >
-                华语乐坛灵魂人物，20+年音乐旅程，代表作《江南》《修炼爱情》《她说》等。点击了解更多
-                →
+                {t('Home.Artist.Desc')}
               </p>
               <div
                 className="mt-2 flex animate-fade-up gap-4"
                 style={{ animationDelay: '200ms' }}
               >
                 <span className="inline-flex items-center gap-1 rounded-full bg-primary/20 px-3 py-1 text-sm font-medium text-primary">
-                  音乐才子
+                  {t('Home.Artist.Tag1')}
                 </span>
                 <span className="inline-flex items-center gap-1 rounded-full bg-amber-300/20 px-3 py-1 text-sm font-medium text-amber-400">
-                  20年陪伴
+                  {t('Home.Artist.Tag2')}
                 </span>
               </div>
             </div>
@@ -378,7 +381,7 @@ const Home: FC = () => {
                 <BarChartOutlined className="text-2xl text-primary" />
               </motion.div>
               <h2 className="font-display text-3xl font-bold text-foreground md:text-4xl">
-                演唱会计数
+                {t('Home.ConcertCount.Title')}
               </h2>
               <motion.div
                 animate={{ rotate: 360 }}
@@ -394,7 +397,7 @@ const Home: FC = () => {
               transition={{ delay: 0.1 }}
               className="mx-auto max-w-2xl text-muted-foreground"
             >
-              记录每一次与音乐的相遇，见证追星旅程的点点滴滴
+              {t('Home.ConcertCount.Desc')}
             </motion.p>
 
             <motion.div
@@ -422,7 +425,9 @@ const Home: FC = () => {
                 <div className="text-3xl font-bold text-foreground">
                   {watchTotalCount}
                 </div>
-                <div className="text-sm text-muted-foreground">总观看场次</div>
+                <div className="text-sm text-muted-foreground">
+                  {t('Home.ConcertCount.TotalScreen')}
+                </div>
               </Card>
             </motion.div>
 
@@ -433,7 +438,9 @@ const Home: FC = () => {
                 <div className="text-3xl font-bold text-foreground">
                   {concertThemes.length}
                 </div>
-                <div className="text-sm text-muted-foreground">不同主题</div>
+                <div className="text-sm text-muted-foreground">
+                  {t('Home.ConcertCount.Theme')}
+                </div>
               </Card>
             </motion.div>
 
@@ -442,7 +449,9 @@ const Home: FC = () => {
                 <div className="absolute inset-0 translate-x-[-100%] bg-gradient-to-r from-pink-500/0 via-pink-500/10 to-pink-500/0 transition-transform duration-1000 group-hover:translate-x-[100%]" />
                 <CustomerServiceOutlined className="mb-2 text-3xl text-pink-400" />
                 <div className="text-3xl font-bold text-foreground">{watchMaxCount}</div>
-                <div className="text-sm text-muted-foreground">最多观看</div>
+                <div className="text-sm text-muted-foreground">
+                  {t('Home.ConcertCount.MaxWatch')}
+                </div>
               </Card>
             </motion.div>
 
@@ -451,7 +460,9 @@ const Home: FC = () => {
                 <div className="absolute inset-0 translate-x-[-100%] bg-gradient-to-r from-amber-500/0 via-amber-500/10 to-amber-500/0 transition-transform duration-1000 group-hover:translate-x-[100%]" />
                 <RocketOutlined className="mb-2 text-3xl text-amber-400" />
                 <div className="text-3xl font-bold text-foreground">∞</div>
-                <div className="text-sm text-muted-foreground">美好回忆</div>
+                <div className="text-sm text-muted-foreground">
+                  {t('Home.ConcertCount.Memory')}
+                </div>
               </Card>
             </motion.div>
           </motion.div>
@@ -465,7 +476,7 @@ const Home: FC = () => {
           >
             <h3 className="mb-6 flex items-center gap-2 font-display text-xl font-bold text-foreground">
               <ThunderboltOutlined className="text-primary" />
-              全部主题概览
+              {t('Home.ConcertCount.AllTheme')}
               <Badge count={concertThemes.length} className="ml-2" />
             </h3>
 
@@ -503,9 +514,9 @@ const Home: FC = () => {
               >
                 <h3 className="mb-6 flex items-center gap-2 font-display text-xl font-bold text-foreground">
                   <BarChartOutlined className="text-primary" />
-                  演唱会次数统计
+                  {t('Home.ConcertCount.FrequencyStatistics')}
                   <span className="ml-auto text-sm font-normal text-muted-foreground">
-                    点击查看详情
+                    {tCommon('Common.Action.ToViewDetail')}
                   </span>
                 </h3>
 
@@ -517,11 +528,12 @@ const Home: FC = () => {
                       whileInView={{ opacity: 1, x: 0 }}
                       viewport={{ once: true }}
                       transition={{ delay: 0.1 * index }}
-                      className={`-m-3 cursor-pointer rounded-xl p-3 transition-all duration-300 ${
+                      className={clsx(
+                        '-m-3 cursor-pointer rounded-xl p-3 transition-all duration-300',
                         selectedTheme.id === theme.id
                           ? 'bg-primary/10 ring-1 ring-primary/30'
                           : 'hover:bg-white/5'
-                      }`}
+                      )}
                       onClick={() => setSelectedTheme(theme)}
                       onMouseEnter={() => setHoveredIndex(index)}
                       onMouseLeave={() => setHoveredIndex(null)}
@@ -539,14 +551,18 @@ const Home: FC = () => {
                         </div>
                         <div className="flex items-center gap-2">
                           <span className="font-bold text-primary">
-                            {theme.watchCount} 次
+                            {t('Home.ConcertCount.ThemeCard3D.Secondary', {
+                              secondary: theme.watchCount,
+                            })}
                           </span>
                           {watchMaxCount === theme.watchCount && (
                             <CrownOutlined className="text-amber-400" />
                           )}
                         </div>
                       </div>
-                      <Tooltip title={`${theme.name}: ${theme.watchCount} 次观看`}>
+                      <Tooltip
+                        title={`${theme.name}: ${t('Home.ConcertCount.Watch.Secondary', { secondary: theme.watchCount })}`}
+                      >
                         <div className="relative">
                           <Progress
                             percent={(theme.watchCount / watchTotalCount) * 100}
@@ -631,7 +647,9 @@ const Home: FC = () => {
                           style={{ backgroundColor: `${selectedTheme.themeColor}40` }}
                         >
                           <span className="text-lg font-bold text-white">
-                            {selectedTheme.watchCount} 次观看
+                            {t('Home.ConcertCount.Watch.Secondary', {
+                              secondary: selectedTheme.watchCount,
+                            })}
                           </span>
                         </motion.div>
                       </div>
@@ -672,16 +690,18 @@ const Home: FC = () => {
                         <div className="rounded-lg bg-white/5 p-3">
                           <div className="mb-1 flex items-center gap-2 text-xs text-muted-foreground">
                             <CustomerServiceOutlined />
-                            曲目数量
+                            {t('Home.ConcertCount.TracksCount.Title')}
                           </div>
                           <div className="font-bold text-foreground">
-                            {selectedTheme.setlistCount} 首
+                            {t('Home.ConcertCount.TracksCount', {
+                              count: selectedTheme.setlistCount,
+                            })}
                           </div>
                         </div>
                         <div className="rounded-lg bg-white/5 p-3">
                           <div className="mb-1 flex items-center gap-2 text-xs text-muted-foreground">
                             <CalendarOutlined />
-                            演出时长
+                            {t('Home.ConcertCount.Duration')}
                           </div>
                           <div className="font-bold text-foreground">
                             {selectedTheme.avgDuration}
@@ -690,7 +710,7 @@ const Home: FC = () => {
                         <div className="rounded-lg bg-white/5 p-3">
                           <div className="mb-1 flex items-center gap-2 text-xs text-muted-foreground">
                             <CalendarOutlined />
-                            首场演出
+                            {t('Home.ConcertCount.FirstConcert')}
                           </div>
                           <div className="text-sm font-bold text-foreground">
                             {selectedTheme.firstShow}
@@ -699,10 +719,12 @@ const Home: FC = () => {
                         <div className="rounded-lg bg-white/5 p-3">
                           <div className="mb-1 flex items-center gap-2 text-xs text-muted-foreground">
                             <EnvironmentOutlined />
-                            演出场馆
+                            {t('Home.ConcertCount.Venues.Title')}
                           </div>
                           <div className="font-bold text-foreground">
-                            {selectedTheme.venues.length} 个
+                            {t('Home.ConcertCount.Venues', {
+                              count: selectedTheme.venues.length,
+                            })}
                           </div>
                         </div>
                       </motion.div>
@@ -716,7 +738,7 @@ const Home: FC = () => {
                         >
                           <div className="mb-2 flex items-center gap-1 text-xs text-muted-foreground">
                             <StarOutlined className="text-amber-400" />
-                            精彩亮点
+                            {t('Home.ConcertCount.Highlights.Title')}
                           </div>
                           <div className="flex flex-wrap gap-2">
                             {selectedTheme.highlights.map((highlight, i) => (
@@ -762,7 +784,7 @@ const Home: FC = () => {
                               <CustomerServiceOutlined
                                 style={{ color: selectedTheme.themeColor }}
                               />
-                              限定主题曲
+                              {t('Home.ConcertCount.ThemeMusic')}
                             </div>
                             <div className="truncate text-lg font-bold text-foreground">
                               {selectedTheme.themeMusic}
@@ -814,10 +836,10 @@ const Home: FC = () => {
       <section className="bg-background/50 px-6 py-12 sm:px-12">
         <div className="text-center">
           <h2 className="mb-4 font-display text-3xl font-bold text-foreground md:text-4xl">
-            追随音乐的脚步
+            {t('Home.FollowMusic.Title')}
           </h2>
           <p className="mx-auto max-w-2xl text-muted-foreground">
-            每一座城市都承载着独特的记忆，每一场演唱会都是一次心灵的洗礼
+            {t('Home.FollowMusic.Desc')}
           </p>
         </div>
 
@@ -836,15 +858,13 @@ const Home: FC = () => {
               </div>
               <div>
                 <h3 className="mb-1 font-display text-xl font-bold text-foreground">
-                  追星时间线
+                  {t('Home.Timeline.Title')}
                 </h3>
-                <p className="text-sm text-muted-foreground">
-                  按时间顺序回顾每一场演唱会的感动及难忘瞬间
-                </p>
+                <p className="text-sm text-muted-foreground">{t('Home.Timeline.Desc')}</p>
               </div>
             </div>
             <span className="font-medium text-primary transition-transform group-hover:translate-x-2">
-              查看详情 →
+              {tCommon('Common.Action.ViewDetail')} →
             </span>
           </div>
         </Link>
@@ -855,9 +875,9 @@ const Home: FC = () => {
         <div className="relative mx-auto max-w-4xl text-center">
           <Music className="mx-auto mb-6 h-12 w-12 text-primary" />
           <blockquote className="mb-6 font-display text-2xl italic text-foreground md:text-3xl">
-            &quot; 二十年的坚持，是因为有你们一路相伴 &quot;
+            &quot; {t('Home.Description')} &quot;
           </blockquote>
-          <cite className="text-muted-foreground">—— 林俊杰(JJ Lin)</cite>
+          <cite className="text-muted-foreground">{t('Home.Description.Artist')}</cite>
         </div>
       </section>
 

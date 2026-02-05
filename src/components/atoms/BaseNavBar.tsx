@@ -2,30 +2,18 @@ import { FC, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Drawer } from 'antd';
 import { MenuOutlined, CloseOutlined } from '@ant-design/icons';
-import { ROUTER_PATH } from '@/constants';
-
-interface NavItem {
-  path: string;
-  label: string;
-}
-
-const navItem: NavItem[] = [
-  { path: ROUTER_PATH.TIME_LINE, label: '时间线' },
-  { path: ROUTER_PATH.CITY_LIST, label: '巡演城市' },
-  { path: ROUTER_PATH.TICKETS, label: '票根珍藏' },
-  { path: ROUTER_PATH.COLLECTION, label: '收藏柜' },
-  { path: ROUTER_PATH.MUSIC_LIST, label: '新歌集锦' },
-];
+import { useNavBar } from '@/hooks/useNavBar';
 
 const BaseNavBar: FC = () => {
   const location = useLocation();
   const [isOpen, setIsOpen] = useState(false);
+  const { navItems } = useNavBar();
 
   return (
     <>
       {/* pc */}
       <div className="hidden items-center gap-1 md:flex">
-        {navItem.map((item, idx) => (
+        {navItems.map((item, idx) => (
           <Link
             key={idx}
             to={item.path}
@@ -62,7 +50,7 @@ const BaseNavBar: FC = () => {
         onClose={() => setIsOpen(false)}
       >
         <div className="space-y-2 p-4">
-          {navItem.map((item, idx) => (
+          {navItems.map((item, idx) => (
             <Link
               key={idx}
               to={item.path}

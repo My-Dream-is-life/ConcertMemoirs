@@ -1,6 +1,7 @@
 import { FC } from 'react';
 import { motion } from 'framer-motion';
 import { Trophy } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { rarityConfig, type CollectionItem } from '@/static/collection';
 
 interface CollectionProgressProps {
@@ -8,6 +9,8 @@ interface CollectionProgressProps {
 }
 
 const CollectionProgress: FC<CollectionProgressProps> = ({ items }) => {
+  const { t } = useTranslation();
+
   const total = items.length;
   const collected = items.filter((item) => item.collected).length;
   const percentage = Math.round((collected / total) * 100);
@@ -51,13 +54,15 @@ const CollectionProgress: FC<CollectionProgressProps> = ({ items }) => {
               transition={{ delay: 0.8 }}
               className="absolute -right-2 -top-2 rounded-full bg-gradient-to-r from-amber-400 to-orange-500 px-2 py-1 text-xs font-bold text-white"
             >
-              Lv.{Math.floor(percentage / 20) + 1}
+              {t('Collection.Level', { level: Math.floor(percentage / 20) + 1 })}
             </motion.div>
           </div>
 
           <div className="w-full flex-1">
             <div className="mb-2 flex items-center justify-between">
-              <h3 className="text-lg font-bold text-white md:text-xl">收藏进度</h3>
+              <h3 className="text-lg font-bold text-white md:text-xl">
+                {t('Collection.Progress')}
+              </h3>
               <motion.span
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -84,9 +89,13 @@ const CollectionProgress: FC<CollectionProgressProps> = ({ items }) => {
             </div>
 
             <div className="mt-2 flex justify-between">
-              <span className="text-sm text-purple-300">已收集 {percentage}%</span>
+              <span className="text-sm text-purple-300">
+                {t('Collection.Success', { success: percentage })}
+              </span>
               <span className="text-sm text-purple-400">
-                {percentage === 100 ? '🎉 收藏完成！' : `还需 ${total - collected} 件`}
+                {percentage === 100
+                  ? `🎉 ${t('Collection.Completed')}`
+                  : `${t('Collection.Remaining', { remaining: total - collected })}`}
               </span>
             </div>
           </div>
