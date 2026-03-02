@@ -1,4 +1,7 @@
 import type { Music } from '@/types';
+import IAmVeryCarefulAboutFateImg from '@/assets/music/iAmVeryCarefulAboutFate/img.jpg';
+import IAmVeryCarefulAboutFateLyrics from '@/assets/music/iAmVeryCarefulAboutFate/lyrics.lrc?raw';
+import IAmVeryCarefulAboutFateMusic from '@/assets/music/iAmVeryCarefulAboutFate/music.mp3';
 import TomorrowCoordinatesImg from '@/assets/music/tomorrowCoordinates/img.jpg';
 import TomorrowCoordinatesLyrics from '@/assets/music/tomorrowCoordinates/lyrics.lrc?raw';
 import TomorrowCoordinatesMusic from '@/assets/music/tomorrowCoordinates/music.mp3';
@@ -24,6 +27,15 @@ import AbsolutelyMusic from '@/assets/music/absolutely/music.mp3';
 export const music: Music[] = [
   {
     id: 1,
+    title: '我对缘分小心翼翼',
+    artist: '林俊杰',
+    album: '影视剧《逐玉》主题曲',
+    cover: IAmVeryCarefulAboutFateImg,
+    url: IAmVeryCarefulAboutFateMusic,
+    lyrics: IAmVeryCarefulAboutFateLyrics,
+  },
+  {
+    id: 2,
     title: '明日坐标',
     artist: '林俊杰',
     album: '明日坐标',
@@ -32,7 +44,7 @@ export const music: Music[] = [
     lyrics: TomorrowCoordinatesLyrics,
   },
   {
-    id: 2,
+    id: 3,
     title: '瞬间的瞬间',
     artist: '林俊杰',
     album: '瞬间的瞬间',
@@ -41,7 +53,7 @@ export const music: Music[] = [
     lyrics: InAnInstantLyrics,
   },
   {
-    id: 3,
+    id: 4,
     title: '为你揭晓',
     artist: '林俊杰, 张艺兴',
     album: '为你揭晓',
@@ -50,7 +62,7 @@ export const music: Music[] = [
     lyrics: RevealedToYouLyrics,
   },
   {
-    id: 4,
+    id: 5,
     title: 'Skibidi',
     artist: '林俊杰, 成龙',
     album: 'Skibidi',
@@ -59,7 +71,7 @@ export const music: Music[] = [
     lyrics: SkibidiLyrics,
   },
   {
-    id: 5,
+    id: 6,
     title: '在月蚀里抱紧我',
     artist: '林俊杰, 黄丽玲',
     album: '在月蚀里抱紧我',
@@ -68,7 +80,7 @@ export const music: Music[] = [
     lyrics: LunarEclipseLyrics,
   },
   {
-    id: 6,
+    id: 7,
     title: '光阴副本 / Turn Of A Page',
     artist: '林俊杰',
     album: '光阴副本',
@@ -77,7 +89,7 @@ export const music: Music[] = [
     lyrics: TurnOfAPageLyrics,
   },
   {
-    id: 7,
+    id: 8,
     title: '绝不绝(无畏契约一周年瓦友节献礼曲)',
     artist: '林俊杰, VALORANT',
     album: '绝不绝',
