@@ -92,7 +92,7 @@ const RotatingGallery: FC<RotatingGalleryProps> = ({ galleries }) => {
   };
 
   return (
-    <div className="relative py-12">
+    <div className="relative pb-12 pt-16">
       <div
         className="absolute inset-0 opacity-30 blur-3xl transition-all duration-1000"
         style={{

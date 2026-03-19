@@ -1,6 +1,16 @@
 import { FC, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Music, Sparkles, Heart, MapPin, Clock } from 'lucide-react';
+import {
+  Music,
+  Sparkles,
+  Heart,
+  MapPin,
+  Clock,
+  Globe,
+  Users,
+  Award,
+  Building2,
+} from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Card, Progress, Tooltip, Badge, Tag } from 'antd';
 import { useNavigate } from 'react-router-dom';
@@ -26,12 +36,14 @@ import CityAreaMap from '@/components/molecules/CityAreaMap';
 import MiniPieChart from '@/components/molecules/MiniPieChart';
 import ThemeCard3D from '@/components/molecules/ThemeCard3D';
 import CountDownFlipCard from '@/components/molecules/CountDownFlipCard';
+import CityCard from '@/components/molecules/CityCard';
 import { useSmallLayout } from '@/hooks/useSmallLayout';
 import { ROUTER_PATH } from '@/constants';
 import { galleries, concertThemes, newConcert } from '@/static/home';
 import HomeConcert from '@/assets/home/home-concert.jpg';
 import type { ConcertThemeItem, CountDownTimeUnit } from '@/types';
 import { formatDate, formatDateTime } from '@/lib/utils';
+import { allCities } from '@/static/city';
 
 const Home: FC = () => {
   const isSP = useSmallLayout();
@@ -843,7 +855,147 @@ const Home: FC = () => {
           </p>
         </div>
 
+        <div className="mt-16 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {allCities.slice(-3).map((city) => (
+            <CityCard key={city.id} {...city} />
+          ))}
+        </div>
+
         <RotatingGallery galleries={galleries} />
+      </section>
+
+      <section className="relative overflow-hidden px-4 py-24 sm:px-6 lg:px-8">
+        <div className="absolute inset-0 bg-gradient-to-b from-background via-card/50 to-background" />
+        <div className="absolute left-1/4 top-0 h-96 w-96 rounded-full bg-primary/5 blur-[120px]" />
+        <div className="absolute bottom-0 right-1/4 h-80 w-80 rounded-full bg-accent/5 blur-[100px]" />
+
+        <div className="relative mx-auto max-w-6xl">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="mb-16 text-center"
+          >
+            <span className="mb-6 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/10 px-4 py-2 text-sm font-medium text-primary">
+              <Building2 className="h-4 w-4" />
+              {t('Home.JFJCompany.Title')}
+            </span>
+            <h2 className="mb-4 font-display text-3xl font-bold text-foreground md:text-5xl">
+              {t('Home.JFJCompany.Name')}
+            </h2>
+            <p className="mx-auto max-w-2xl text-lg text-muted-foreground">
+              {t('Home.JFJCompany.Desc')}
+            </p>
+          </motion.div>
+
+          <div className="mb-12 grid gap-8 md:grid-cols-2">
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              viewport={{ once: true }}
+              className="rounded-2xl border border-primary/20 bg-gradient-to-br from-card via-card/80 to-primary/5 p-8 backdrop-blur-sm transition-all duration-500 hover:border-primary/40 hover:shadow-[0_0_60px_hsl(270_70%_60%/0.15)]"
+            >
+              <h3 className="mb-4 flex items-center gap-3 font-display text-2xl font-bold text-foreground">
+                <div className="rounded-lg bg-primary/15 p-2">
+                  <Globe className="h-5 w-5 text-primary" />
+                </div>
+                {t('Home.JFJCompany.About')}
+              </h3>
+              <p className="mb-4 leading-relaxed text-muted-foreground">
+                {t('Home.JFJCompany.About.Desc1')}
+              </p>
+              <p className="leading-relaxed text-muted-foreground">
+                {t('Home.JFJCompany.About.Desc2')}
+              </p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              viewport={{ once: true }}
+              className="rounded-2xl border border-primary/20 bg-gradient-to-br from-card via-card/80 to-accent/5 p-8 backdrop-blur-sm transition-all duration-500 hover:border-primary/40 hover:shadow-[0_0_60px_hsl(280_60%_50%/0.15)]"
+            >
+              <h3 className="mb-6 flex items-center gap-3 font-display text-2xl font-bold text-foreground">
+                <div className="rounded-lg bg-accent/15 p-2">
+                  <Award className="h-5 w-5 text-accent" />
+                </div>
+                {t('Home.JFJCompany.CoreBusiness')}
+              </h3>
+              <div className="space-y-4">
+                {[
+                  {
+                    label: t('Home.JFJCompany.CoreBusiness.MusicProduction'),
+                    desc: t('Home.JFJCompany.CoreBusiness.MusicProduction.Desc'),
+                  },
+                  {
+                    label: t('Home.JFJCompany.CoreBusiness.ConcertPlanning'),
+                    desc: t('Home.JFJCompany.CoreBusiness.ConcertPlanning.Desc'),
+                  },
+                  {
+                    label: t('Home.JFJCompany.CoreBusiness.ArtistManagement'),
+                    desc: t('Home.JFJCompany.CoreBusiness.ArtistManagement.Desc'),
+                  },
+                  {
+                    label: t('Home.JFJCompany.CoreBusiness.DigitalMusic'),
+                    desc: t('Home.JFJCompany.CoreBusiness.DigitalMusic.Desc'),
+                  },
+                ].map((item, i) => (
+                  <motion.div
+                    key={item.label}
+                    initial={{ opacity: 0, x: 20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.4 + i * 0.1 }}
+                    viewport={{ once: true }}
+                    className="flex items-start gap-3 rounded-xl border border-border/50 bg-background/50 p-3 transition-colors hover:border-primary/30"
+                  >
+                    <div className="mt-2 h-2 w-2 shrink-0 rounded-full bg-primary" />
+                    <div>
+                      <span className="font-medium text-foreground">{item.label}</span>
+                      <p className="mt-0.5 text-sm text-muted-foreground">{item.desc}</p>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.5 }}
+            viewport={{ once: true }}
+            className="grid grid-cols-2 gap-4 md:grid-cols-4"
+          >
+            {[
+              { icon: Music, value: '14+', label: t('Home.JFJCompany.StudioAlbum') },
+              { icon: Globe, value: '50+', label: t('Home.JFJCompany.TourCities') },
+              {
+                icon: Users,
+                value: t('Home.JFJCompany.GlobalFans.Count', { count: 2200 }),
+                label: t('Home.JFJCompany.GlobalFans'),
+              },
+              { icon: Award, value: '200+', label: t('Home.JFJCompany.Awards') },
+            ].map((stat, i) => (
+              <motion.div
+                key={stat.label}
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.6 + i * 0.1 }}
+                viewport={{ once: true }}
+                className="group rounded-xl border border-border/50 bg-card/60 p-6 text-center backdrop-blur-sm transition-all duration-300 hover:border-primary/30"
+              >
+                <stat.icon className="mx-auto mb-3 h-6 w-6 text-primary transition-transform group-hover:scale-110" />
+                <div className="mb-1 bg-gradient-to-r from-primary to-accent bg-clip-text font-display text-2xl font-bold text-transparent md:text-3xl">
+                  {stat.value}
+                </div>
+                <div className="text-sm text-muted-foreground">{stat.label}</div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
       </section>
 
       <section className="px-6 py-12 sm:px-12">
